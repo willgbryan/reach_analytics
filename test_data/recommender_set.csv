@@ -1,0 +1,11 @@
+customer_id,item_id,order_id,shipping_address,num_items,checkout_cost ($)
+101,A001,O0001,"123 Elm St, Springfield, IL 62704",2,25.50
+101,A003,O0002,"123 Elm St, Springfield, IL 62704",1,15.00
+102,A002,O0003,"456 Oak Rd, Shelbyville, IL 62565",3,45.00
+103,A005,O0004,"789 Maple Dr, Ogdenville, IL 62258",1,10.50
+104,A001,O0005,"101 Birch Way, Capital City, IL 62901",5,60.00
+104,A004,O0006,"101 Birch Way, Capital City, IL 62901",2,20.00
+105,A002,O0007,"202 Pine Pl, North Haverbrook, IL 62305",4,50.00
+106,A003,O0008,"303 Cedar Ln, Brockway, IL 62450",1,15.50
+107,A005,O0009,"404 Fir Ct, Salsbury, IL 62629",3,31.50
+108,A001,O0010,"505 Spruce St, Riverton, IL 62561",2,25.00
