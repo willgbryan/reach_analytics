@@ -7,26 +7,30 @@ import json
 # load testing data
 recommender_system_set = pd.read_csv('C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/test_data/recommender_set.csv')
 
-openai.api_key = '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'
+openai.api_key = ''
 
 role_prompt_zero = """
 As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some sample data.
-
 Simply return the top 3 types of machine learning approaches you would suggest without an explanation.
-
 Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>,)."
 """.strip()
 
 role_prompt_one = """
 As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided sample data.
-
 You will respond with valid python code that generates new features for the dataset that are appropriate for the "model_selection".
-
 Format your response as:
 
 ```python
 # code
 ```
+All code should lie within a single: 
+```python
+# code
+```
+Do not return more than one:
+```python
+# code
+``` 
 """.strip()
 
 role_prompt_two = """
@@ -41,6 +45,14 @@ Format your response as:
 ```python
 # code
 ```
+All code should lie within a single: 
+```python
+# code
+```
+Do not return more than one:
+```python
+# code
+``` 
 """.strip()
 
 def send_request_to_gpt(step_role, context, prompt, stream=False):
@@ -179,14 +191,24 @@ def print_context(context):
         print('\n' + '=' * 50 + '\n')  # separate different messages
 
 
+def extract_code(message):
+    substr = message.find('```python')
+    incomplete_code = message[substr + 9 : len(message)]
+    substr = incomplete_code.find('```')
+    code = incomplete_code[0:substr]
+    return code
+
+def extract_content_from_gpt_response(response):
+    return response['choices'][0]['message']['content']
+
 df_context = dataframe_summary(recommender_system_set)
 
 suggestions = extract_suggestions(send_request_to_gpt(step_role=role_prompt_zero, context=df_context, prompt='What kind of machine learning solution would you recommend for this dataset if I am looking to increase average checkout price'))
 selected_content = prompt_user_for_selection(suggestions)
 
 step_zero_context = update_context(df_context, selected_content, step=0)
-step_one_context = update_context(step_zero_context, send_request_to_gpt(step_role=role_prompt_one, context=step_zero_context, prompt='Create two new features for my dataset'), step=1)
-step_two_context = update_context(step_one_context, send_request_to_gpt(step_role=role_prompt_two, context=step_one_context, prompt='Based on my model_selection, sample_data, and raw_feature_output. Output the machine learning model code'), step=2)
+step_one_context = update_context(step_zero_context, extract_content_from_gpt_response(send_request_to_gpt(step_role=role_prompt_one, context=step_zero_context, prompt='Create two new features for my dataset')), step=1)
+step_two_context = update_context(step_one_context, extract_content_from_gpt_response(send_request_to_gpt(step_role=role_prompt_two, context=step_one_context, prompt='Based on my model_selection, sample_data, and raw_feature_output. Output the machine learning model code')), step=2)
 
 print_context(step_two_context)
 
