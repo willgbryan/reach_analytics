@@ -3,16 +3,29 @@ import numpy as np
 import pandas as pd
 import tiktoken
 import json
+import os
+
+# langchain imports
+from langchain.agents.agent_toolkits import create_python_agent
+from langchain.tools.python.tool import PythonREPLTool
+from langchain.python import PythonREPL
+from langchain.llms.openai import OpenAI
+from langchain.agents.agent_types import AgentType
+from langchain.chat_models import ChatOpenAI
+
 
 # load testing data
 recommender_system_set = pd.read_csv('C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/test_data/recommender_set.csv')
 
-openai.api_key = ''
+# expose the key alot
+openai.api_key = 'sk-'
+os.environ["OPENAI_API_KEY"] = 'sk-'
+
 
 role_prompt_zero = """
 As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some sample data.
-Simply return the top 3 types of machine learning approaches you would suggest without an explanation.
-Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>,)."
+Simply return the top 5 types of machine learning approaches you would suggest without an explanation.
+Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>, <suggestion_5>)"
 """.strip()
 
 role_prompt_one = """
@@ -35,11 +48,9 @@ Do not return more than one:
 
 role_prompt_two = """
 As a machine learning assistant, your task is to help users write machine learning model code.
-
 You will respond with valid python code that defines a machine learning solution.
-
-Sample data can be found in the context: sample_data. The model to write can be found in the context: model_selection. New features can be found in the context: raw_feature_output. 
-
+Sample data can be found in the context: sample_data. The model to write can be found in the context: model_selection. New features can be found in the context: raw_feature_output.
+Include the sample data in the code body.
 Format your response as:
 
 ```python
@@ -201,6 +212,15 @@ def extract_code(message):
 def extract_content_from_gpt_response(response):
     return response['choices'][0]['message']['content']
 
+def code_validation_agent(code):
+    agent_executor = create_python_agent(
+    llm=OpenAI(temperature=0, max_tokens=1000),
+    tool=PythonREPLTool(),
+    verbose=True,
+    agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+)  
+    agent_executor.run(f"Test the following code to ensure it runs. If the code does not run iterate with improvements until it clears. Code to test: {code}")
+
 df_context = dataframe_summary(recommender_system_set)
 
 suggestions = extract_suggestions(send_request_to_gpt(step_role=role_prompt_zero, context=df_context, prompt='What kind of machine learning solution would you recommend for this dataset if I am looking to increase average checkout price'))
@@ -210,6 +230,9 @@ step_zero_context = update_context(df_context, selected_content, step=0)
 step_one_context = update_context(step_zero_context, extract_content_from_gpt_response(send_request_to_gpt(step_role=role_prompt_one, context=step_zero_context, prompt='Create two new features for my dataset')), step=1)
 step_two_context = update_context(step_one_context, extract_content_from_gpt_response(send_request_to_gpt(step_role=role_prompt_two, context=step_one_context, prompt='Based on my model_selection, sample_data, and raw_feature_output. Output the machine learning model code')), step=2)
 
+output_code = extract_code(extract_content_from_gpt_response(send_request_to_gpt(step_role=role_prompt_two, context=step_one_context, prompt='Based on my model_selection, sample_data, and raw_feature_output. Output the machine learning model code')))
 print_context(step_two_context)
+print(output_code)
+print(code_validation_agent(output_code))
 
 
