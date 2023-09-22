@@ -27,8 +27,8 @@ exceeding the rate limit.
 """
 
 # expose the key alot
-openai.api_key = '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'
-os.environ["OPENAI_API_KEY"] = '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'
+openai.api_key = ''
+os.environ["OPENAI_API_KEY"] = ''
 
 goal_prompt = "What kind of machine learning solution would you recommend for this dataset if I am looking to detect sleep onset and wake. You will develop a model trained on wrist-worn accelerometer data in order to determine a persoms sleep state."
 
