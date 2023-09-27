@@ -73,8 +73,8 @@ class Reach:
         self.openai_api_key = openai_api_key
         self.marqo_client = marqo_client
         self.marqo_index = marqo_index
-        self.train_set = train_set_path
-        self.test_set = test_set_path
+        self.train_set_path = train_set_path
+        self.test_set_path = test_set_path
         self.dataset_description = dataset_description
         self.goal_prompt = goal_prompt
         self.attempt_validation = attempt_validation
@@ -173,7 +173,7 @@ class Reach:
         )
 
     def query_marqo_db(self, index_name: str, search_query: str) -> Dict[str, Any]:
-        query = mq.index(index_name).search(q=search_query)
+        query = mq.index(index_name).search(q=search_query, searchable_attributes=["Title", "Description"])
 
         return query
     
