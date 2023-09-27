@@ -346,7 +346,7 @@ class Reach:
         for model in suggestions:
             preprocess_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=self.preprocess_preprompt, 
+                        role_preprompt=self.preprocess_preprompt, 
                         context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
                         prompt="Generate preprocessing code for my dataset"
                     )
@@ -354,7 +354,7 @@ class Reach:
     
             feature_engineering_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=self.feature_engineering_preprompt, 
+                        role_preprompt=self.feature_engineering_preprompt, 
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
@@ -364,7 +364,7 @@ class Reach:
                 )
             model_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=self.feature_engineering_preprompt, 
+                        role_preprompt=self.feature_engineering_preprompt, 
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
