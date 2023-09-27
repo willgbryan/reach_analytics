@@ -86,7 +86,7 @@ class Reach:
         self.preprocess_preprompt = f"""
             As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
             Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
-            Training series can be found at {train_set_path}.
+            Training series can be found at {self.train_set_path}.
             Your response must be valid python code.
             Format your response as:
 
@@ -119,7 +119,7 @@ class Reach:
             As a machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
             Data information can be found in the context: data_summary. The model to write can be found in the context: model_selection. Preprocessing code can be found in the context: preprocessing_code_output. New features can be found in the context: raw_feature_output.
-            Training series can be found at {train_set_path}.
+            Training series can be found at {self.train_set_path}.
             Use the preprocessing and feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
             Always return an accuracy score.
@@ -209,7 +209,7 @@ class Reach:
         )
         return response
     
-    def preprocess_dataframe(self, df_path: str, unique_value_ratio: float = 0.05) -> pd.DataFrame:
+    def preprocess_dataframe(self, unique_value_ratio: float = 0.05) -> pd.DataFrame:
         """
         Preprocess a Pandas DataFrame by inferring column data types and identifying anomalies.
         
@@ -222,10 +222,10 @@ class Reach:
         """
         anomalies = {}
 
-        if ".parquet" in df_path:
-            df = pd.read_parquet(df_path)
-        elif ".csv" in df_path:
-            df = pd.read_csv(df_path)
+        if ".parquet" in self.train_set_path:
+            df = pd.read_parquet(self.train_set_path)
+        elif ".csv" in self.train_set_path:
+            df = pd.read_csv(self.train_set_path)
         
         # Detect anomalies based on Z-score for numerical columns
         for col in df.select_dtypes(include=[np.number]).columns:
@@ -328,7 +328,7 @@ class Reach:
     def main(self, index_name: str) -> None:
         workflow = Workflow()
 
-        processed_train_data = self.preprocess_dataframe(self.train_set_path)  
+        processed_train_data = self.preprocess_dataframe()  
 
         df_context = self.dataframe_summary(
             processed_train_data, 
