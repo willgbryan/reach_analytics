@@ -55,13 +55,11 @@ dataset_description = """
 
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
-mq = marqo.Client(url="http://localhost:8882")
 
 class Reach:
     def __init__(
             self,
             openai_api_key: str, 
-            marqo_client: marqo.Client,
             marqo_index: str, 
             train_set_path: str, 
             test_set_path: str, 
@@ -71,7 +69,7 @@ class Reach:
             **kwargs,
             ) -> None:
         self.openai_api_key = openai_api_key
-        self.marqo_client = marqo_client
+        self.marqo_client = marqo.Client(url="http://localhost:8882")
         self.marqo_index = marqo_index
         self.train_set_path = train_set_path
         self.test_set_path = test_set_path
@@ -153,7 +151,7 @@ class Reach:
             model: str = 'sentence-transformers/all-MiniLM-L6-v2'
             ) -> None:
         
-        mq.create_index(index_name, model)
+        self.marqo_client.create_index(index_name, model)
 
     def store_text(
             self,
@@ -162,7 +160,7 @@ class Reach:
             text_to_store: str
             ) -> None:
         
-        mq.index(index_name).add_documents(
+        self.marqo_client.index(index_name).add_documents(
             [
                 {
                     "Title": text_to_store_title,
@@ -173,7 +171,7 @@ class Reach:
         )
 
     def query_marqo_db(self, index_name: str, search_query: str) -> Dict[str, Any]:
-        query = mq.index(index_name).search(q=search_query, searchable_attributes=["Title", "Description"])
+        query = self.marqo_client.index(index_name).search(q=search_query, searchable_attributes=["Title", "Description"])
 
         return query
     
@@ -374,48 +372,48 @@ class Reach:
                     )
                 )
 
-            self.add_index(index_name=index_name)
+            # self.add_index(index_name=index_name)
 
-            self.store_text(
-                index_name=index_name, 
-                text_to_store_title=f"{model}_data_summary", 
-                text_to_store=df_context
-            )
+            # self.store_text(
+            #     index_name=index_name, 
+            #     text_to_store_title=f"{model}_data_summary", 
+            #     text_to_store=df_context
+            # )
 
-            self.store_text(
-                index_name=index_name, 
-                text_to_store_title=f"{model}_preprocessing", 
-                text_to_store=preprocess_context
-            )
+            # self.store_text(
+            #     index_name=index_name, 
+            #     text_to_store_title=f"{model}_preprocessing", 
+            #     text_to_store=preprocess_context
+            # )
 
-            self.store_text(
-                index_name=index_name,
-                text_to_store_title=f"{model}_preprocessing_code",
-                text_to_store=self.extract_code(preprocess_context)
-            )
+            # self.store_text(
+            #     index_name=index_name,
+            #     text_to_store_title=f"{model}_preprocessing_code",
+            #     text_to_store=self.extract_code(preprocess_context)
+            # )
 
-            self.store_text(
-                index_name=index_name, 
-                text_to_store_title=f"{model}_feature_engineering", 
-                text_to_store=feature_engineering_context
-            )
+            # self.store_text(
+            #     index_name=index_name, 
+            #     text_to_store_title=f"{model}_feature_engineering", 
+            #     text_to_store=feature_engineering_context
+            # )
 
-            self.store_text(
-                index_name=index_name,
-                text_to_store_title=f"{model}_feature_engineering_code",
-                text_to_store=self.extract_code(feature_engineering_context)
-            )
+            # self.store_text(
+            #     index_name=index_name,
+            #     text_to_store_title=f"{model}_feature_engineering_code",
+            #     text_to_store=self.extract_code(feature_engineering_context)
+            # )
             
-            self.store_text(
-                index_name=index_name, 
-                text_to_store_title=f"{model}_model", 
-                text_to_store=model_context
-            )
+            # self.store_text(
+            #     index_name=index_name, 
+            #     text_to_store_title=f"{model}_model", 
+            #     text_to_store=model_context
+            # )
 
-            self.store_text(
-                index_name=index_name,
-                text_to_store_title=f"{model}_model_code",
-                text_to_store=self.extract_code(model_context)
-            )
+            # self.store_text(
+            #     index_name=index_name,
+            #     text_to_store_title=f"{model}_model_code",
+            #     text_to_store=self.extract_code(model_context)
+            # )
             
             print(f"Initial model code for model {model}: {self.extract_code(model_context)}")
