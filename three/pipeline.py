@@ -6,13 +6,6 @@ import pandas as pd
 from typing import Dict, List, Any
 from griptape.structures import Workflow
 
-test_set = pd.read_parquet('cmi_sleep_states/test_series.parquet')
-test_set_path = 'cmi_sleep_states/test_series.parquet'
-train_set = pd.read_parquet('C:/Users/willb/Downloads/train_series.parquet')
-train_set_path = 'C:/Users/willb/Downloads/train_series.parquet'
-train_events_set = pd.read_csv('cmi_sleep_states/train_events.csv')
-attempt_validation = False
-
 """
 Current State:
 main will run a sequential pipeline similar to the prototype solution where
@@ -25,10 +18,6 @@ so running 5 different generation builds takes the same time as 1. This will
 likely take some trial and error to figure out how many tasks can be run without
 exceeding the rate limit.
 """
-
-# expose the key alot
-openai.api_key = ''
-os.environ["OPENAI_API_KEY"] = ''
 
 goal_prompt = "What kind of machine learning solution would you recommend for this dataset if I am looking to detect sleep onset and wake. You will develop a model trained on wrist-worn accelerometer data in order to determine a persoms sleep state."
 
@@ -63,78 +52,6 @@ dataset_description = """
             night - An enumeration of potential onset / wakeup event pairs. At most one pair of events can occur for each night.
             event - The type of event, whether onset or wakeup.
             step and timestamp - The recorded time of occurence of the event in the accelerometer series."""
-suggestion_preprompt = """
-As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
-Simply return the top 5 types of machine learning approaches you would suggest without an explanation.
-Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>, <suggestion_5>)".
-""".strip()
-
-# need to think of a way to f string in paths to multiple data sets if passed in kwargs.
-preprocess_preprompt = f"""
-As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
-Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
-Training series can be found at {train_set_path}.
-Your response must be valid python code.
-Format your response as:
-
-```python
-# code
-```
-""".strip()
-
-feature_engineering_preprompt = """
-As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
-You will respond with valid python code that generates new features for the dataset that are appropriate for the "model_selection".
-Reference passed preprocessing code when needed.
-Address NaN or Null values that may arise in engineered features and address them as necessary. 
-Address data types wherever possible, reference "A sample of the data".
-Generate as many features as possible.
-Format your response as:
-
-```python
-# code
-```
-All code should lie within a single: 
-```python
-# code
-```
-Do not return more than one:
-```python
-# code
-``` 
-""".strip()
-
-model_development_preprompt = f"""
-As a machine learning assistant, your task is to help users write machine learning model code.
-You will respond with valid python code that defines a machine learning solution.
-Data information can be found in the context: data_summary. The model to write can be found in the context: model_selection. Preprocessing code can be found in the context: preprocessing_code_output. New features can be found in the context: raw_feature_output.
-Training series can be found at {train_set_path}.
-Use the preprocessing and feature engineering code provided.
-Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
-Always return an accuracy score.
-Format your response as:
-
-```python
-# code
-```
-All code should lie within a single: 
-```python
-# code
-```
-Do not return more than one:
-```python
-# code
-``` 
-""".strip()
-
-validation_preprompt = """
-As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
-Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
-Format your response as:
-
-```python
-# code
-```"""
 
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
@@ -142,34 +59,93 @@ mq = marqo.Client(url="http://localhost:8882")
 
 class Reach:
     def __init__(
-            self, 
+            self,
+            openai_api_key: str, 
             marqo_client: marqo.Client,
             marqo_index: str, 
-            train_set: pd.DataFrame, 
-            test_set: pd.DataFrame, 
+            train_set_path: str, 
+            test_set_path: str, 
             dataset_description: str, 
             goal_prompt: str,
             attempt_validation: bool,
-            suggestion_preprompt: str,
-            preprocess_preprompt: str,
-            feature_engineering_preprompt: str,
-            model_development_preprompt: str,
-            validation_preprompt: str,
             **kwargs,
             ) -> None:
+        self.openai_api_key = openai_api_key
         self.marqo_client = marqo_client
         self.marqo_index = marqo_index
-        self.train_set = train_set
-        self.test_set = test_set
+        self.train_set = train_set_path
+        self.test_set = test_set_path
         self.dataset_description = dataset_description
         self.goal_prompt = goal_prompt
         self.attempt_validation = attempt_validation
-        self.suggestion_preprompt = suggestion_preprompt
-        self.preprocess_preprompt = preprocess_preprompt
-        self.feature_engineering_preprompt = feature_engineering_preprompt
-        self.model_development_preprompt = model_development_preprompt
-        self.validation_preprompt = validation_preprompt
+        self.suggestion_preprompt = """
+            As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
+            Simply return the top 5 types of machine learning approaches you would suggest without an explanation.
+            Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>, <suggestion_5>)".
+            """.strip()
+        self.preprocess_preprompt = f"""
+            As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
+            Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
+            Training series can be found at {train_set_path}.
+            Your response must be valid python code.
+            Format your response as:
 
+            ```python
+            # code
+            ```
+            """.strip()
+        self.feature_engineering_preprompt = """
+            As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
+            You will respond with valid python code that generates new features for the dataset that are appropriate for the "model_selection".
+            Reference passed preprocessing code when needed.
+            Address NaN or Null values that may arise in engineered features and address them as necessary. 
+            Address data types wherever possible, reference "A sample of the data".
+            Generate as many features as possible.
+            Format your response as:
+
+            ```python
+            # code
+            ```
+            All code should lie within a single: 
+            ```python
+            # code
+            ```
+            Do not return more than one:
+            ```python
+            # code
+            ``` 
+            """.strip()
+        self.model_development_preprompt = f"""
+            As a machine learning assistant, your task is to help users write machine learning model code.
+            You will respond with valid python code that defines a machine learning solution.
+            Data information can be found in the context: data_summary. The model to write can be found in the context: model_selection. Preprocessing code can be found in the context: preprocessing_code_output. New features can be found in the context: raw_feature_output.
+            Training series can be found at {train_set_path}.
+            Use the preprocessing and feature engineering code provided.
+            Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
+            Always return an accuracy score.
+            Format your response as:
+
+            ```python
+            # code
+            ```
+            All code should lie within a single: 
+            ```python
+            # code
+            ```
+            Do not return more than one:
+            ```python
+            # code
+            ``` 
+            """.strip()
+        self.validation_preprompt = """
+            As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
+            Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
+            Format your response as:
+
+            ```python
+            # code
+            ```"""
+        self.openai_api_key = openai_api_key
 
     def add_index(
             self,
@@ -207,7 +183,7 @@ class Reach:
             context: Dict[str, str], 
             prompt: str, 
             stream: bool = False
-            ) -> openai.Generator[Any | list | dict, None, None] | Any | list | dict:
+            ) -> (Any | List | Dict):
 
         # Handle string input for context
         if isinstance(context, str):
@@ -233,7 +209,7 @@ class Reach:
         )
         return response
     
-    def preprocess_dataframe(self, df: pd.DataFrame, unique_value_ratio: float = 0.05) -> pd.DataFrame:
+    def preprocess_dataframe(self, df_path: str, unique_value_ratio: float = 0.05) -> pd.DataFrame:
         """
         Preprocess a Pandas DataFrame by inferring column data types and identifying anomalies.
         
@@ -245,6 +221,11 @@ class Reach:
             DataFrame: A DataFrame with adjusted data types and filled NA/NaN values.
         """
         anomalies = {}
+
+        if ".parquet" in df_path:
+            df = pd.read_parquet(df_path)
+        elif ".csv" in df_path:
+            df = pd.read_csv(df_path)
         
         # Detect anomalies based on Z-score for numerical columns
         for col in df.select_dtypes(include=[np.number]).columns:
@@ -323,7 +304,7 @@ class Reach:
     
     def extract_suggestions(
             self,
-            response: openai.Generator[Any | list | dict, None, None] | Any | list | dict
+            response: (Any | List | Dict)
             ) -> List[str]:
         
         content = response["choices"][0]["message"]["content"]
@@ -340,14 +321,14 @@ class Reach:
 
     def extract_content_from_gpt_response(
             self,
-            response: openai.Generator[Any | list | dict, None, None] | Any | list | dict
+            response: (Any | List | Dict)
             ) -> str:
         return response['choices'][0]['message']['content']
     
     def main(self, index_name: str) -> None:
         workflow = Workflow()
 
-        processed_train_data = self.preprocess_dataframe(self.train_set)  
+        processed_train_data = self.preprocess_dataframe(self.train_set_path)  
 
         df_context = self.dataframe_summary(
             processed_train_data, 
@@ -365,7 +346,7 @@ class Reach:
         for model in suggestions:
             preprocess_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=preprocess_preprompt, 
+                        step_role=self.preprocess_preprompt, 
                         context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
                         prompt="Generate preprocessing code for my dataset"
                     )
@@ -373,7 +354,7 @@ class Reach:
     
             feature_engineering_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=feature_engineering_preprompt, 
+                        step_role=self.feature_engineering_preprompt, 
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
@@ -383,7 +364,7 @@ class Reach:
                 )
             model_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
-                        step_role=feature_engineering_preprompt, 
+                        step_role=self.feature_engineering_preprompt, 
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
