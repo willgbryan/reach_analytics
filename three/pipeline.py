@@ -1,6 +1,7 @@
 import os
 import marqo
 import openai
+import traceback
 import numpy as np
 import pandas as pd
 from typing import Dict, List, Any
@@ -19,7 +20,7 @@ likely take some trial and error to figure out how many tasks can be run without
 exceeding the rate limit.
 """
 
-goal_prompt = "What kind of machine learning solution would you recommend for this dataset if I am looking to detect sleep onset and wake. You will develop a model trained on wrist-worn accelerometer data in order to determine a persoms sleep state."
+goal_prompt = "What kind of machine learning solution would you recommend for this dataset if I am looking to detect sleep onset and wake. You will develop a model trained on wrist-worn accelerometer data in order to determine a persons sleep state."
 
 dataset_description = """
             The dataset comprises about 500 multi-day recordings of wrist-worn accelerometer data annotated with two event types: onset, the beginning of sleep, and wakeup, the end of sleep. Your task is to detect the occurrence of these two events in the accelerometer series.
@@ -78,13 +79,13 @@ class Reach:
         self.attempt_validation = attempt_validation
         self.suggestion_preprompt = """
             As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
-            Simply return the top 5 types of machine learning approaches you would suggest without an explanation.
-            Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>, <suggestion_5>)".
+            Simply return the top 4 types of machine learning approaches you would suggest without an explanation.
+            Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>)".
             """.strip()
         self.preprocess_preprompt = f"""
             As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
             Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
-            Training series can be found at {self.train_set_path}.
+            Training data can be found at {self.train_set_path}.
             Your response must be valid python code.
             Format your response as:
 
@@ -117,7 +118,7 @@ class Reach:
             As a machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
             Data information can be found in the context: data_summary. The model to write can be found in the context: model_selection. Preprocessing code can be found in the context: preprocessing_code_output. New features can be found in the context: raw_feature_output.
-            Training series can be found at {self.train_set_path}.
+            Training data can be found at {self.train_set_path}.
             Use the preprocessing and feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
             Always return an accuracy score.
@@ -135,9 +136,10 @@ class Reach:
             # code
             ``` 
             """.strip()
-        self.validation_preprompt = """
+        self.validation_preprompt = f"""
             As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
             Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
+            Training data can be found at {self.train_set_path}.
             Format your response as:
 
             ```python
@@ -178,8 +180,8 @@ class Reach:
     def send_request_to_gpt(
             self,
             role_preprompt: str, 
-            context: Dict[str, str], 
-            prompt: str, 
+            prompt: str,
+            context: Dict[str, str],  
             stream: bool = False
             ) -> (Any | List | Dict):
 
@@ -323,6 +325,53 @@ class Reach:
             ) -> str:
         return response['choices'][0]['message']['content']
     
+    def code_validation_agent(
+            self, 
+            code_to_validate: str, 
+            context: List[Dict[str, str]], 
+            max_attempts: int = 10,
+        ) -> (str | None):
+
+        attempts = 0
+
+        while attempts < max_attempts:
+            try:
+                exec(code_to_validate)
+                print("Code executed without errors.")
+                return code_to_validate
+
+            except Exception as e:
+                error_message = str(e)
+                error_traceback = traceback.format_exc()
+                print(error_message)
+
+                # Debugging via GPT-4
+                response = self.send_request_to_gpt(
+                    role_preprompt=self.validation_preprompt,
+                    context=context,
+                    prompt=f"""
+                    Debug the following python code: {code_to_validate}. \n\nError:\n{error_message}\n\nTraceback:\n{error_traceback}\n\n.
+                    Training data can be found at {self.train_set_path} 
+                    You must return THE ENTIRE ORIGINAL CODE BLOCK with the required changes.
+                    """,
+                )
+
+                suggestion = self.extract_code(
+                    (self.extract_content_from_gpt_response(
+                        response
+                        )
+                    )
+                )
+
+                print(f"Updated Code: \n{suggestion}")
+
+                code_to_validate = suggestion
+                attempts += 1
+
+        print("Max attempts reached. Code is still broken.")
+        return None
+
+    
     def main(self, index_name: str) -> None:
         workflow = Workflow()
 
@@ -371,6 +420,15 @@ class Reach:
                         prompt="Based on my model_selection, data_summary, and raw_feature_output. Output the machine learning model code"
                     )
                 )
+            
+            if self.attempt_validation == True:
+                validated_code = self.code_validation_agent(
+                    code_to_validate=self.extract_code(model_context),
+                    context=[
+                            {"role": "user", "content": f"data_summary: {df_context}"},
+                    ],
+                    max_attempts=10,
+                )
 
             # self.add_index(index_name=index_name)
 
@@ -416,4 +474,4 @@ class Reach:
             #     text_to_store=self.extract_code(model_context)
             # )
             
-            print(f"Initial model code for model {model}: {self.extract_code(model_context)}")
+            print(f"Validated model code for {model}: {validated_code}")
