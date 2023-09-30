@@ -1,9 +1,13 @@
 import os
 import marqo
+import mlflow
 import openai
 import traceback
+import subprocess
+import webbrowser
 import numpy as np
 import pandas as pd
+import mlflow.sklearn
 from typing import Dict, List, Any
 from griptape.structures import Workflow
 
@@ -79,8 +83,8 @@ class Reach:
         self.attempt_validation = attempt_validation
         self.suggestion_preprompt = """
             As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
-            Simply return the top 4 types of machine learning approaches you would suggest without an explanation.
-            Format your response as "(<suggestion_1>, <suggestion_2>, <suggestion_3>, <suggestion_4>)".
+            Simply return the top 1 types of machine learning approaches you would suggest without an explanation.
+            Format your response as "(<suggestion_1>), (<suggestion_2>), (<suggestion_3>), (<suggestion_4>), (<suggestion_5>),".
             """.strip()
         self.preprocess_preprompt = f"""
             As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
@@ -371,6 +375,25 @@ class Reach:
         print("Max attempts reached. Code is still broken.")
         return None
 
+
+    def mlflow_integration(self, validated_model_code: str) -> None:
+        
+        mlflow.sklearn.autolog()
+
+        with mlflow.start_run():
+
+            exec(validated_model_code)
+
+
+    def launch_mlflow_ui(self, port: int = 5000) -> subprocess.Popen[bytes]:
+        """Launch MLflow UI in a separate process."""
+        cmd = ["mlflow", "ui", "--port", str(port)]
+        process = subprocess.Popen(cmd)
+        webbrowser.open(f'http://127.0.0.1:{port}', new=2, autoraise=True)
+
+        return process
+
+
     
     def main(self, index_name: str) -> None:
         workflow = Workflow()
@@ -475,3 +498,8 @@ class Reach:
             # )
             
             print(f"Validated model code for {model}: {validated_code}")
+
+            self.mlflow_integration(
+                validated_model_code=validated_code,
+            )
+            self.launch_mlflow_ui(port = 5000)
