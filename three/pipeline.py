@@ -8,6 +8,7 @@ import webbrowser
 import numpy as np
 import pandas as pd
 import mlflow.sklearn
+from log_module import logger
 from typing import Dict, List, Any
 from griptape.structures import Workflow
 
@@ -81,11 +82,7 @@ class Reach:
         self.dataset_description = dataset_description
         self.goal_prompt = goal_prompt
         self.attempt_validation = attempt_validation
-        self.suggestion_preprompt = """
-            As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
-            Simply return the top 1 types of machine learning approaches you would suggest without an explanation.
-            Format your response as "(<suggestion_1>), (<suggestion_2>), (<suggestion_3>), (<suggestion_4>), (<suggestion_5>),".
-            """.strip()
+        
         self.preprocess_preprompt = f"""
             As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
             Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
@@ -241,7 +238,7 @@ class Reach:
         # TODO: Add dynamic fillna support
         df.fillna(0.0, inplace=True)
         
-        print(f"Anomaly Detection Summary: {anomalies}")
+        logger.info(f"Anomaly Detection Summary: {anomalies}")
         
         return df
 
@@ -306,10 +303,22 @@ class Reach:
         
         return output
     
+    def generate_suggestion_text(self, n_suggestions: int) -> str:
+
+        return ', '.join(['(<suggestion_{0}>)'.format(i) for i in range(1, n_suggestions+1)])
+
     def extract_suggestions(
             self,
-            response: (Any | List | Dict)
+            response: (Any | List | Dict),
+            n_suggestions: int,
             ) -> List[str]:
+        
+        suggestion_text = self.generate_suggestion_text(n_suggestions)
+        self.suggestion_preprompt = f"""
+            As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
+            Simply return the top {n_suggestions} types of machine learning approaches you would suggest without an explanation.
+            Format your response as "{suggestion_text}".
+            """.strip()
         
         content = response["choices"][0]["message"]["content"]
         suggestions = content.strip('()').split(', ')
@@ -341,13 +350,13 @@ class Reach:
         while attempts < max_attempts:
             try:
                 exec(code_to_validate)
-                print("Code executed without errors.")
+                logger.info("Code executed without errors.")
                 return code_to_validate
 
             except Exception as e:
                 error_message = str(e)
                 error_traceback = traceback.format_exc()
-                print(error_message)
+                logger.info(error_message)
 
                 # Debugging via GPT-4
                 response = self.send_request_to_gpt(
@@ -367,21 +376,22 @@ class Reach:
                     )
                 )
 
-                print(f"Updated Code: \n{suggestion}")
+                logger.info(f"Updated Code: \n{suggestion}")
 
                 code_to_validate = suggestion
                 attempts += 1
 
-        print("Max attempts reached. Code is still broken.")
+        logger.info("Max attempts reached. Code is still broken.")
         return None
 
 
-    def mlflow_integration(self, validated_model_code: str) -> None:
+    def mlflow_integration(self, validated_model_code: str, model_name: str) -> None:
         
         mlflow.sklearn.autolog()
 
         with mlflow.start_run():
 
+            mlflow.set_tag("model_name", model_name)
             exec(validated_model_code)
 
 
@@ -394,8 +404,7 @@ class Reach:
         return process
 
 
-    
-    def main(self, index_name: str) -> None:
+    def main(self, n_suggestions: int, index_name: str) -> None:
         workflow = Workflow()
 
         processed_train_data = self.preprocess_dataframe()  
@@ -410,7 +419,8 @@ class Reach:
                     role_preprompt=self.suggestion_preprompt, 
                     context=df_context, 
                     prompt=goal_prompt
-                )
+                ),
+                n_suggestions=n_suggestions,
             )
 
         for model in suggestions:
@@ -497,9 +507,9 @@ class Reach:
             #     text_to_store=self.extract_code(model_context)
             # )
             
-            print(f"Validated model code for {model}: {validated_code}")
+            logger.info(f"Validated model code for {model}: {validated_code}")
 
             self.mlflow_integration(
                 validated_model_code=validated_code,
             )
-            self.launch_mlflow_ui(port = 5000)
+        self.launch_mlflow_ui(port = 5000)
