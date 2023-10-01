@@ -11,6 +11,11 @@ import mlflow.sklearn
 from log_module import logger
 from typing import Dict, List, Any
 from griptape.structures import Workflow
+from docker_runtime import(
+    check_for_image, 
+    build_docker_image, 
+    docker_runtime,
+)
 
 """
 Current State:
@@ -61,6 +66,7 @@ dataset_description = """
 
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
+# log level output is commented out for notebook debugging (replace by print statements)
 
 class Reach:
     def __init__(
@@ -122,7 +128,7 @@ class Reach:
             Training data can be found at {self.train_set_path}.
             Use the preprocessing and feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
-            Always return an accuracy score.
+            Always return an accuracy score and a model results dataframe.
             Format your response as:
 
             ```python
@@ -147,6 +153,8 @@ class Reach:
             # code
             ```"""
         self.openai_api_key = openai_api_key
+
+        self.log = logger()
 
     def add_index(
             self,
@@ -238,7 +246,8 @@ class Reach:
         # TODO: Add dynamic fillna support
         df.fillna(0.0, inplace=True)
         
-        logger.info(f"Anomaly Detection Summary: {anomalies}")
+        print(f"Anomaly Detection Summary: {anomalies}")
+        # self.log.info(f"Anomaly Detection Summary: {anomalies}")
         
         return df
 
@@ -310,15 +319,7 @@ class Reach:
     def extract_suggestions(
             self,
             response: (Any | List | Dict),
-            n_suggestions: int,
             ) -> List[str]:
-        
-        suggestion_text = self.generate_suggestion_text(n_suggestions)
-        self.suggestion_preprompt = f"""
-            As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
-            Simply return the top {n_suggestions} types of machine learning approaches you would suggest without an explanation.
-            Format your response as "{suggestion_text}".
-            """.strip()
         
         content = response["choices"][0]["message"]["content"]
         suggestions = content.strip('()').split(', ')
@@ -338,6 +339,7 @@ class Reach:
             ) -> str:
         return response['choices'][0]['message']['content']
     
+    
     def code_validation_agent(
             self, 
             code_to_validate: str, 
@@ -350,13 +352,15 @@ class Reach:
         while attempts < max_attempts:
             try:
                 exec(code_to_validate)
-                logger.info("Code executed without errors.")
+                print("Code executed without errors.")
+                # self.log.info("Code executed without errors.")
                 return code_to_validate
 
             except Exception as e:
                 error_message = str(e)
                 error_traceback = traceback.format_exc()
-                logger.info(error_message)
+                print(error_message)
+                # self.log.info(error_message)
 
                 # Debugging via GPT-4
                 response = self.send_request_to_gpt(
@@ -376,12 +380,14 @@ class Reach:
                     )
                 )
 
-                logger.info(f"Updated Code: \n{suggestion}")
+                print(f"Updated Code: \n{suggestion}")
+                # self.log.info(f"Updated Code: \n{suggestion}")
 
                 code_to_validate = suggestion
                 attempts += 1
 
-        logger.info("Max attempts reached. Code is still broken.")
+        print("Max attempts reached. Code is still broken.")
+        # self.log.info("Max attempts reached. Code is still broken.")
         return None
 
 
@@ -414,13 +420,19 @@ class Reach:
             self.dataset_description
         )
 
+        suggestion_text = self.generate_suggestion_text(n_suggestions)
+        self.suggestion_preprompt = f"""
+            As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
+            Simply return the top {n_suggestions} types of machine learning approaches you would suggest without an explanation.
+            Format your response as "{suggestion_text}".
+            """.strip()
+
         suggestions = self.extract_suggestions(
                 self.send_request_to_gpt(
                     role_preprompt=self.suggestion_preprompt, 
                     context=df_context, 
                     prompt=goal_prompt
-                ),
-                n_suggestions=n_suggestions,
+                )
             )
 
         for model in suggestions:
@@ -507,9 +519,11 @@ class Reach:
             #     text_to_store=self.extract_code(model_context)
             # )
             
-            logger.info(f"Validated model code for {model}: {validated_code}")
+            print(f"Validated model code for {model}: {validated_code}")
+            # self.log.info(f"Validated model code for {model}: {validated_code}")
 
             self.mlflow_integration(
+                model_name=model,
                 validated_model_code=validated_code,
             )
         self.launch_mlflow_ui(port = 5000)
