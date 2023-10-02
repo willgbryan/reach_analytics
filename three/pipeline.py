@@ -590,10 +590,10 @@ class Reach:
 
             #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
             #that will require some level of artifact cleaning or garbage collection.
-            # self.mlflow_integration(
-            #     model_name=model,
-            #     validated_model_code=validated_code,
-            # )
+            self.mlflow_integration(
+                model_name=model,
+                validated_model_code=validated_code,
+            )
             
             if self.attempt_validation == True:
                 so_what = self.so_what(
@@ -611,4 +611,4 @@ class Reach:
 
         #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
         #that will require some level of artifact cleaning or garbage collection.    
-        # self.launch_mlflow_ui(port = 5000)
+        self.launch_mlflow_ui(port = 5000)
