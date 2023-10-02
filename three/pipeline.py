@@ -1,7 +1,11 @@
+import io
 import os
+import sys
+import json
 import marqo
 import mlflow
 import openai
+import requests
 import traceback
 import subprocess
 import webbrowser
@@ -29,41 +33,6 @@ so running 5 different generation builds takes the same time as 1. This will
 likely take some trial and error to figure out how many tasks can be run without
 exceeding the rate limit.
 """
-
-goal_prompt = "What kind of machine learning solution would you recommend for this dataset if I am looking to detect sleep onset and wake. You will develop a model trained on wrist-worn accelerometer data in order to determine a persons sleep state."
-
-dataset_description = """
-            The dataset comprises about 500 multi-day recordings of wrist-worn accelerometer data annotated with two event types: onset, the beginning of sleep, and wakeup, the end of sleep. Your task is to detect the occurrence of these two events in the accelerometer series.
-
-            While sleep logbooks remain the gold-standard, when working with accelerometer data we refer to sleep as the longest single period of inactivity while the watch is being worn. For this data, we have guided raters with several concrete instructions:
-
-            A single sleep period must be at least 30 minutes in length
-            A single sleep period can be interrupted by bouts of activity that do not exceed 30 consecutive minutes
-            No sleep windows can be detected unless the watch is deemed to be worn for the duration (elaborated upon, below)
-            The longest sleep window during the night is the only one which is recorded
-            If no valid sleep window is identifiable, neither an onset nor a wakeup event is recorded for that night.
-            Sleep events do not need to straddle the day-line, and therefore there is no hard rule defining how many may occur within a given period. However, no more than one window should be assigned per night. For example, it is valid for an individual to have a sleep window from 01h00–06h00 and 19h00–23h30 in the same calendar day, though assigned to consecutive nights
-            There are roughly as many nights recorded for a series as there are 24-hour periods in that series.
-            Though each series is a continuous recording, there may be periods in the series when the accelerometer device was removed. These period are determined as those where suspiciously little variation in the accelerometer signals occur over an extended period of time, which is unrealistic for typical human participants. Events are not annotated for these periods, and you should attempt to refrain from making event predictions during these periods: an event prediction will be scored as false positive.
-
-            Each data series represents this continuous (multi-day/event) recording for a unique experimental subject.
-
-            Note that this is a Code Competition, in which the actual test set is hidden. In this public version, we give some sample data in the correct format to help you author your solutions. The full test set contains about 200 series.
-
-            Files and Field Descriptions
-            train_series.parquet - Series to be used as training data. Each series is a continuous recording of accelerometer data for a single subject spanning many days.
-            series_id - Unique identifier for each accelerometer series.
-            step - An integer timestep for each observation within a series.
-            timestamp - A corresponding datetime with ISO 8601 format %Y-%m-%dT%H:%M:%S%z.
-            anglez - As calculated and described by the GGIR package, z-angle is a metric derived from individual accelerometer components that is commonly used in sleep detection, and refers to the angle of the arm relative to the vertical axis of the body
-            enmo - As calculated and described by the GGIR package, ENMO is the Euclidean Norm Minus One of all accelerometer signals, with negative values rounded to zero. While no standard measure of acceleration exists in this space, this is one of the several commonly computed features
-            test_series.parquet - Series to be used as the test data, containing the same fields as above. You will predict event occurrences for series in this file.
-            train_events.csv - Sleep logs for series in the training set recording onset and wake events.
-            series_id - Unique identifier for each series of accelerometer data in train_series.parquet.
-            night - An enumeration of potential onset / wakeup event pairs. At most one pair of events can occur for each night.
-            event - The type of event, whether onset or wakeup.
-            step and timestamp - The recorded time of occurence of the event in the accelerometer series."""
-
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
 # log level output is commented out for notebook debugging (replace by print statements)
@@ -128,7 +97,7 @@ class Reach:
             Training data can be found at {self.train_set_path}.
             Use the preprocessing and feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
-            Always return an accuracy score and a model results dataframe.
+            Always return an accuracy score and a model results dataframe with descriptive columns.
             Format your response as:
 
             ```python
@@ -143,15 +112,32 @@ class Reach:
             # code
             ``` 
             """.strip()
-        self.validation_preprompt = f"""
-            As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
-            Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
-            Training data can be found at {self.train_set_path}.
+        self.performance_eval_preprompt = f"""
+            As a python coding assistant, your task is to help users add additional outputs to their machine learning model code to improve their understanding of the performed analysis.
+            Update the supplied machine learning model code with model performance evaluation logic such as, but not limited to, feature importance, ROC curves, etc.
+            Prioritze generating new outputs as dataframes or strings rather than visualizations.
             Format your response as:
 
             ```python
             # code
-            ```"""
+            ```
+            """.strip()
+        self.validation_preprompt = f"""
+            As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
+            Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
+            Training data can be found at {self.train_set_path}.
+            You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
+            Format your response as:
+
+            ```python
+            # code
+            ```
+            """.strip()
+        self.so_what_preprompt = f"""
+        As a data analysis assistant, your task is to interpret the users goal, and outputs generated by supplied machine learning model code to generate relevant insights.
+        Reference the supplied goal, data_summary, and model_code in the context.
+        Ideally these insights are actionable, that is to say, the user can leverage these insights to solve a new problem, or gain new understanding of their data.
+        """.strip()
         self.openai_api_key = openai_api_key
 
         self.log = logger()
@@ -369,7 +355,7 @@ class Reach:
                     prompt=f"""
                     Debug the following python code: {code_to_validate}. \n\nError:\n{error_message}\n\nTraceback:\n{error_traceback}\n\n.
                     Training data can be found at {self.train_set_path} 
-                    You must return THE ENTIRE ORIGINAL CODE BLOCK with the required changes.
+                    You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
                     """,
                 )
 
@@ -393,12 +379,21 @@ class Reach:
 
     def mlflow_integration(self, validated_model_code: str, model_name: str) -> None:
         
-        mlflow.sklearn.autolog()
+        mlflow.autolog()
 
-        with mlflow.start_run():
+        with mlflow.start_run() as run:
 
             mlflow.set_tag("model_name", model_name)
-            exec(validated_model_code)
+            try:
+                exec(validated_model_code)
+            except Exception as e:
+                error_message = str(e)
+                print(f"Upstream failure with returned model code: {error_message}")
+                pass
+
+            model_uri = f"runs:/{run.info.run_uuid}/model"
+            registered_model_name = model_name
+            mlflow.register_model(model_uri, registered_model_name)
 
 
     def launch_mlflow_ui(self, port: int = 5000) -> subprocess.Popen[bytes]:
@@ -408,6 +403,51 @@ class Reach:
         webbrowser.open(f'http://127.0.0.1:{port}', new=2, autoraise=True)
 
         return process
+    
+
+    def serve_mlflow_model(self, run_id: str, port: int = 5000) -> subprocess.Popen[bytes]:
+        """Serve an MLflow model in a separate process."""
+        model_uri = f"runs:/{run_id}/model"
+        cmd = ["mlflow", "models", "serve", "-m", model_uri, "--port", str(port)]
+        process = subprocess.Popen(cmd)
+        return process
+    
+    
+    def submit_mlflow_prediction(self, input_data: pd.DataFrame, port: int = 5000) -> dict:
+        url = f'http://127.0.0.1:{port}/invocations'
+        headers = {
+            "Content-Type": "application/json; format=pandas-split"
+        }
+
+        data = input_data.to_json(orient="split")
+
+        response = requests.post(url, headers=headers, data=data)
+        
+        if response.status_code != 200:
+            raise ValueError("Prediction request failed with status: {}".format(response.status_code))
+            
+        return response.json()
+
+
+    def so_what(self, context: List[Dict[str, str]],  validated_model_code: str) -> str:
+        
+        buffer = io.StringIO()
+        sys.stdout = buffer
+        exec(validated_model_code)
+        sys.stdout = sys.__stdout__
+
+        captured_out = buffer.getvalue()
+
+        insight = self.extract_content_from_gpt_response(
+            self.send_request_to_gpt(
+            role_preprompt=self.so_what_preprompt,
+            prompt=f"Given the output of the following code: {validated_model_code}. Output: {captured_out}. What insights can you extract from the model's analysis",
+            context=context,
+            )
+        )
+
+        return insight
+        
 
 
     def main(self, n_suggestions: int, index_name: str) -> None:
@@ -431,7 +471,7 @@ class Reach:
                 self.send_request_to_gpt(
                     role_preprompt=self.suggestion_preprompt, 
                     context=df_context, 
-                    prompt=goal_prompt
+                    prompt=self.goal_prompt
                 )
             )
 
@@ -465,12 +505,27 @@ class Reach:
                         prompt="Based on my model_selection, data_summary, and raw_feature_output. Output the machine learning model code"
                     )
                 )
+            model_context_performance_metric_additions = self.extract_content_from_gpt_response(
+                    self.send_request_to_gpt(
+                        role_preprompt=self.performance_eval_preprompt, 
+                        context=[
+                            {"role": "user", "content": f"goal: {self.goal_prompt}"},
+                            {"role": "user", "content": f"data_summary: {df_context}"},
+                        ], 
+                        prompt=f"""Based on my goal, data_summary, and the following code: {self.extract_code(model_context)}, 
+                        update the code to include model performance evaluations to help me understand the insights the model is generating.
+                        Training data can be found at {self.train_set_path}.
+                        You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
+                        """
+                    )
+                )
             
             if self.attempt_validation == True:
                 validated_code = self.code_validation_agent(
-                    code_to_validate=self.extract_code(model_context),
+                    code_to_validate=self.extract_code(model_context_performance_metric_additions),
                     context=[
-                            {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
                     ],
                     max_attempts=10,
                 )
@@ -507,17 +562,24 @@ class Reach:
             #     text_to_store=self.extract_code(feature_engineering_context)
             # )
             
-            # self.store_text(
-            #     index_name=index_name, 
-            #     text_to_store_title=f"{model}_model", 
-            #     text_to_store=model_context
-            # )
+            # if self.attempt_validation == True:
+            #     self.store_text(
+            #         index_name=index_name,
+            #         text_to_store_title=f"{model}_model_code",
+            #         text_to_store=validated_code
+            #     )
+            # else:
+            #     self.store_text(
+            #         index_name=index_name, 
+            #         text_to_store_title=f"{model}_model", 
+            #         text_to_store=model_context
+            #     )
 
-            # self.store_text(
-            #     index_name=index_name,
-            #     text_to_store_title=f"{model}_model_code",
-            #     text_to_store=self.extract_code(model_context)
-            # )
+            #     self.store_text(
+            #         index_name=index_name,
+            #         text_to_store_title=f"{model}_model_code",
+            #         text_to_store=self.extract_code(model_context)
+            #     )
             
             print(f"Validated model code for {model}: {validated_code}")
             # self.log.info(f"Validated model code for {model}: {validated_code}")
@@ -526,4 +588,18 @@ class Reach:
                 model_name=model,
                 validated_model_code=validated_code,
             )
+            
+            if self.attempt_validation == True:
+                so_what = self.so_what(
+                    context=[
+                        {"role": "user", "content": f"goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"model_code: {validated_code}"},
+                    ],
+                    validated_model_code=validated_code
+                )
+            
+            #TODO so_what return type is str | unbound, need to investigate this
+            print(so_what)
+            # self.log.info(so_what)
         self.launch_mlflow_ui(port = 5000)
