@@ -15,6 +15,7 @@ import mlflow.sklearn
 from log_module import logger
 from typing import Dict, List, Any
 from griptape.structures import Workflow
+from contextlib import contextmanager
 from docker_runtime import(
     check_for_image, 
     build_docker_image, 
@@ -428,27 +429,31 @@ class Reach:
             
         return response.json()
 
-
-    def so_what(self, context: List[Dict[str, str]],  validated_model_code: str) -> str:
-        
+    @contextmanager
+    def capture_stdout(self) -> io.StringIO:
+        original_stdout = sys.stdout
         buffer = io.StringIO()
         sys.stdout = buffer
-        exec(validated_model_code)
-        sys.stdout = sys.__stdout__
+        try:
+            yield buffer
+        finally:
+            sys.stdout = original_stdout
 
+    def so_what(self, context: List[Dict[str, str]],  validated_model_code: str) -> str:
+        with self.capture_stdout() as buffer:
+            exec(validated_model_code)
         captured_out = buffer.getvalue()
 
         insight = self.extract_content_from_gpt_response(
             self.send_request_to_gpt(
-            role_preprompt=self.so_what_preprompt,
-            prompt=f"Given the output of the following code: {validated_model_code}. Output: {captured_out}. What insights can you extract from the model's analysis",
-            context=context,
+                role_preprompt=self.so_what_preprompt,
+                prompt=f"Given the output of the following code: {validated_model_code}. Output: {captured_out}. What insights can you extract from the model's analysis",
+                context=context,
             )
         )
 
         return insight
         
-
 
     def main(self, n_suggestions: int, index_name: str) -> None:
         workflow = Workflow()
@@ -509,10 +514,10 @@ class Reach:
                     self.send_request_to_gpt(
                         role_preprompt=self.performance_eval_preprompt, 
                         context=[
-                            {"role": "user", "content": f"goal: {self.goal_prompt}"},
+                            # {"role": "user", "content": f"goal: {self.goal_prompt}"},
                             {"role": "user", "content": f"data_summary: {df_context}"},
                         ], 
-                        prompt=f"""Based on my goal, data_summary, and the following code: {self.extract_code(model_context)}, 
+                        prompt=f"""Based on my data_summary, and the following code: {self.extract_code(model_context)}, 
                         update the code to include model performance evaluations to help me understand the insights the model is generating.
                         Training data can be found at {self.train_set_path}.
                         You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
@@ -524,7 +529,6 @@ class Reach:
                 validated_code = self.code_validation_agent(
                     code_to_validate=self.extract_code(model_context_performance_metric_additions),
                     context=[
-                        {"role": "user", "content": f"goal: {self.goal_prompt}"},
                         {"role": "user", "content": f"data_summary: {df_context}"},
                     ],
                     max_attempts=10,
@@ -584,10 +588,12 @@ class Reach:
             print(f"Validated model code for {model}: {validated_code}")
             # self.log.info(f"Validated model code for {model}: {validated_code}")
 
-            self.mlflow_integration(
-                model_name=model,
-                validated_model_code=validated_code,
-            )
+            #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
+            #that will require some level of artifact cleaning or garbage collection.
+            # self.mlflow_integration(
+            #     model_name=model,
+            #     validated_model_code=validated_code,
+            # )
             
             if self.attempt_validation == True:
                 so_what = self.so_what(
@@ -602,4 +608,7 @@ class Reach:
             #TODO so_what return type is str | unbound, need to investigate this
             print(so_what)
             # self.log.info(so_what)
-        self.launch_mlflow_ui(port = 5000)
+
+        #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
+        #that will require some level of artifact cleaning or garbage collection.    
+        # self.launch_mlflow_ui(port = 5000)
