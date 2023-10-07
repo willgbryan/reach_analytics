@@ -60,13 +60,15 @@ class Reach:
         self.attempt_validation = attempt_validation
 
         self.decision_preprompt = f"""
-        As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal requires a machine learning solution to answer or not.
-        Only return a single word response: yes or no.
+        As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
+        Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.
+        Otherwise return an explanation as to why a machine learning solution is not a good approach.
         """
 
         self.data_analyst_preprompt = f"""
         As a data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
         Generate the necessary python code to answer the supplied prompt.
+        Data can be found at {self.train_set_path}.
 
          ```python
         # code
@@ -495,8 +497,12 @@ class Reach:
                         prompt="Analyze the supplied user_goal and data_summary in the context and decide if machine learning is necessary to answer the question. Only return a single word respone, yes or no."
                     )
                 )
+        
+        print(f'Decision: {decision}')
 
         if decision == 'yes':
+            # self.log.info('Beginning Model Development')
+            print('Beginning Model Development')
             suggestion_text = self.generate_suggestion_text(n_suggestions)
             self.suggestion_preprompt = f"""
                 As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
