@@ -10,7 +10,7 @@ MAX_TOKENS = {
 
 # Copied from https://platform.openai.com/docs/guides/chat/introduction on 3/17/2023
 # Modified to support gpt-4 as a best guess
-def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0301"):
+def num_tokens_from_messages(messages, model="gpt-4"):
     """Returns the number of tokens used by a list of messages."""
     try:
         encoding = tiktoken.encoding_for_model(model)
@@ -44,7 +44,7 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0301"):
         )
 
 
-def trim_messages_to_fit_token_limit(messages, model="gpt-3.5-turbo-0301", max_tokens=None):
+def trim_messages_to_fit_token_limit(messages, model="gpt-4", max_tokens=None):
     """Reduce the number of messages until they are below the max token limit."""
     num_tokens = num_tokens_from_messages(messages, model=model)
 
@@ -52,6 +52,6 @@ def trim_messages_to_fit_token_limit(messages, model="gpt-3.5-turbo-0301", max_t
         max_tokens = MAX_TOKENS[model]
 
     while num_tokens > max_tokens:
-        messages.pop(0)
+        messages.pop(-1)
         num_tokens = num_tokens_from_messages(messages, model=model)
     return messages
