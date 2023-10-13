@@ -18,8 +18,12 @@ RUN pip install --no-cache-dir \
     tensorflow \
     sklearn \
     xgboost \
+    matplotlib \
+    seaborn \
     pandas \
+    mlflow \ 
+    openai \
+    marqo \ 
     numpy
-
 
 CMD ["python", "script_runner.py"]
