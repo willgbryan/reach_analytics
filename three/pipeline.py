@@ -1,7 +1,6 @@
 import io
 import os
 import sys
-import json
 import marqo
 import mlflow
 import openai
@@ -21,19 +20,14 @@ from docker_runtime import(
     build_docker_image, 
     docker_runtime,
 )
-
-"""
-Current State:
-main will run a sequential pipeline similar to the prototype solution where
-each suggestion is iterated through, preprocessing, feature engineering, and model code
-will be produced. Everything is then stored in marqo, and can be queried.
-
-Next Steps:
-Parallelize tasks in main: each suggestion pipeline should run at the same time
-so running 5 different generation builds takes the same time as 1. This will
-likely take some trial and error to figure out how many tasks can be run without
-exceeding the rate limit.
-"""
+from context import(
+    write_json_to_file,
+    read_json_from_file
+)
+from tokens import (
+    num_tokens_from_messages, 
+    trim_messages_to_fit_token_limit,
+)
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
 # log level output is commented out for notebook debugging (replace by print statements)
@@ -53,6 +47,7 @@ class Reach:
         self.openai_api_key = openai_api_key
         self.marqo_client = marqo.Client(url="http://localhost:8882")
         self.marqo_index = marqo_index
+        self.context_file_name = "memory.txt"
         self.train_set_path = train_set_path
         self.test_set_path = test_set_path
         self.dataset_description = dataset_description
@@ -60,39 +55,37 @@ class Reach:
         self.attempt_validation = attempt_validation
 
         self.decision_preprompt = f"""
-        As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
-        Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.
-        Otherwise return an explanation as to why a machine learning solution is not a good approach.
-        """
+            As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
+            Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.
+            Otherwise return an explanation as to why a machine learning solution is not a good approach.
+            """
 
         self.data_analyst_preprompt = f"""
-        As a data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
-        Generate the necessary python code to answer the supplied prompt.
-        Data can be found at {self.train_set_path}.
-
-         ```python
-        # code
-        ```
-        """.strip()
-        
-        self.preprocess_preprompt = f"""
-            As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
-            Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
-            Training data can be found at {self.train_set_path}.
-            Your response must be valid python code.
-            Format your response as:
+            As a data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
+            Generate the necessary python code to answer the supplied prompt.
+            Data can be found at {self.train_set_path}.
 
             ```python
             # code
             ```
             """.strip()
+        
+        # # Deprecating.
+        # self.preprocess_preprompt = f"""
+        #     As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
+        #     Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
+        #     Training data can be found at {self.train_set_path}.
+        #     Your response must be valid python code.
+        #     Format your response as:
+
+        #     ```python
+        #     # code
+        #     ```
+        #     """.strip()
         self.feature_engineering_preprompt = """
             As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
-            You will respond with valid python code that generates new features for the dataset that are appropriate for the "model_selection".
-            Reference passed preprocessing code when needed.
-            Address NaN or Null values that may arise in engineered features and address them as necessary. 
-            Address data types wherever possible, reference "A sample of the data".
-            Generate as many features as possible.
+            You will respond with valid python code that generates new features for the dataset that are appropriate for the model_selection and the user_goal provided in the context.
+            Generate as many features as possible, generate AT LEAST 3 new features.
             Format your response as:
 
             ```python
@@ -110,9 +103,9 @@ class Reach:
         self.model_development_preprompt = f"""
             As a machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
-            Data information can be found in the context: data_summary. The model to write can be found in the context: model_selection. Preprocessing code can be found in the context: preprocessing_code_output. New features can be found in the context: raw_feature_output.
+            Data information can be found in the context: data_summary. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
             Training data can be found at {self.train_set_path}.
-            Use the preprocessing and feature engineering code provided.
+            Use the feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
             Always return an accuracy score and a model results dataframe with descriptive columns.
             Format your response as:
@@ -150,11 +143,12 @@ class Reach:
             # code
             ```
             """.strip()
+        #TODO improve
         self.so_what_description_preprompt = f"""
-        As a data analysis assistant, your task is to interpret the users goal, and outputs generated by supplied code to generate relevant insights.
-        Reference the supplied user_goal, data_summary, and analysis_code in the context.
-        Ideally these insights are actionable, that is to say, the user can leverage these insights to solve a new problem, or gain new understanding of their data.
-        """.strip()
+            As a data analysis assistant, your task is to interpret the users goal, and outputs generated by supplied code to generate relevant insights.
+            Reference the supplied user_goal, data_summary, and analysis_code in the context.
+            Ideally these insights are actionable, that is to say, the user can leverage generated outputs to answer their question or accomplish their goal.
+            """.strip()
         self.openai_api_key = openai_api_key
 
         self.log = logger()
@@ -348,7 +342,7 @@ class Reach:
             code_to_validate: str, 
             context: List[Dict[str, str]], 
             max_attempts: int = 10,
-        ) -> (str | None):
+        ) -> str:
 
         attempts = 0
 
@@ -487,6 +481,8 @@ class Reach:
             self.dataset_description
         )
 
+        memory_dict = read_json_from_file('memory.txt')
+
         decision = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
                         role_preprompt=self.decision_preprompt, 
@@ -501,8 +497,31 @@ class Reach:
         print(f'Decision: {decision}')
 
         if decision == 'yes':
-            # self.log.info('Beginning Model Development')
-            print('Beginning Model Development')
+            # self.log.info('ML modelling is required. Beginning model development')
+            print('ML modelling is required. Beginning model development')
+
+            # There's probably a smarter way to do this
+            token_count_ml = num_tokens_from_messages(
+                    (
+                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+                        {"role": "user", "content": f"memory: {memory_dict}"}
+                    )
+            )
+
+            if token_count_ml > 8192:
+                trimmed_message = trim_messages_to_fit_token_limit(
+                    (
+                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+                        {"role": "user", "content": f"memory: {memory_dict}"}
+                    )
+            )
+                self.log.info(f'Trimmed message: {trimmed_message}')
+                print(trimmed_message)
+
             suggestion_text = self.generate_suggestion_text(n_suggestions)
             self.suggestion_preprompt = f"""
                 As a machine learning assistant, your task is to help users decide which machine learning approach is best suited for accomplishing their goal given some information about their data.
@@ -519,43 +538,51 @@ class Reach:
                 )
 
             for model in suggestions:
-                preprocess_context = self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
-                            role_preprompt=self.preprocess_preprompt, 
-                            context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
-                            prompt="Generate preprocessing code for my dataset"
-                        )
-                    )
-        
+
+                # # This might be unnecessary with the validation agent.
+                # # Deprecating.
+                # preprocess_context = self.extract_content_from_gpt_response(
+                #         self.send_request_to_gpt(
+                #             role_preprompt=self.preprocess_preprompt, 
+                #             context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
+                #             prompt="Generate preprocessing code for my dataset"
+                #         )
+                #     )
+
+                # print(f"preprocess context: {preprocess_context}")
                 feature_engineering_context = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
                             context=[
+                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                                {"role": "user", "content": f"model_selection: {model}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
-                                {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
                             ], 
-                            prompt="Create new features for my dataset"
+                            prompt="Create new features for my dataset based on my user_goal, model_selection, and data_summary available in context."
                         )
                     )
+                print(f"feature engineering context: {feature_engineering_context}")
+
                 model_context = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
                             context=[
+                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
-                                {"role": "user", "content": f"preprocess_context: {preprocess_context}"},
-                                {"role": "user", "content": f"feature_engineering_context: {feature_engineering_context}"},
+                                {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+                                {"role": "user", "content": f"memory: {memory_dict}"}
                             ], 
-                            prompt="Based on my model_selection, data_summary, and raw_feature_output. Output the machine learning model code"
+                            prompt="Based on my user_goal, data_summary, and feature_engineering_code. Generate the machine learning model code."
                         )
                     )
                 model_context_performance_metric_additions = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
                             role_preprompt=self.performance_eval_preprompt, 
                             context=[
-                                # {"role": "user", "content": f"goal: {self.goal_prompt}"},
+                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
                             ], 
-                            prompt=f"""Based on my data_summary, and the following code: {self.extract_code(model_context)}, 
+                            prompt=f"""Based on my data_summary, user_goal, and the following code: {self.extract_code(model_context)}, 
                             update the code to include model performance evaluations to help me understand the insights the model is generating.
                             Training data can be found at {self.train_set_path}.
                             You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
@@ -651,14 +678,38 @@ class Reach:
             #that will require some level of artifact cleaning or garbage collection.    
             self.launch_mlflow_ui(port = 5000)
         else:
+            # self.log.info('No modelling is required. Beginning analysis')
+
+            # There's probably a smarter way to do this
+            token_count_ml = num_tokens_from_messages(
+                    (
+                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"memory: {memory_dict}"}
+                    )
+            )
+
+            if token_count_ml > 8192:
+                trimmed_message = trim_messages_to_fit_token_limit(
+                    (
+                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                        {"role": "user", "content": f"memory: {memory_dict}"}
+                    )
+            )
+                self.log.info(f'Trimmed message: {trimmed_message}')
+                print(trimmed_message)
+
+            print('No modelling is required. Beginning analysis')
             analysis_response_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
                         role_preprompt=self.data_analyst_preprompt, 
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                             {"role": "user", "content": f"data_summary: {df_context}"},
+                            {"role": "user", "content": f"memory: {memory_dict}"}
                             ], 
-                        prompt="Analyze the supplied user_goal and data_summary in the context and generate python code that, when run, answers my question provided in user_goal in the context."
+                        prompt="Analyze the supplied user_goal, data_summary, and memory in the context and generate python code that, when run, answers my question provided in user_goal in the context."
                     )
                 )
             
@@ -680,7 +731,16 @@ class Reach:
                         ],
                         validated_model_code=validated_code
                     )
+
                 
             #TODO so_what return type is str | unbound, need to investigate this
             print(so_what)
-            
+
+        if os.path.exists("memory.txt"):
+            write_json_to_file(
+                filename='memory.txt',
+                data = {
+                    "user_goal": self.goal_prompt, #TODO something abt self.goal_prompt is causing problems with the write
+                    "solution": validated_code,
+                },
+            )            
