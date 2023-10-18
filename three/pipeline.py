@@ -323,7 +323,7 @@ class Reach:
                 f"A sample of the data ({sample_rows}x{sample_columns}):\n"
                 f"{sampled.to_string()}"
             )
-            
+
         return output
     
     def generate_suggestion_text(self, n_suggestions: int) -> str:
@@ -517,27 +517,27 @@ class Reach:
             # self.log.info('ML modelling is required. Beginning model development')
             print('ML modelling is required. Beginning model development')
 
-            # There's probably a smarter way to do this
-            token_count_ml = num_tokens_from_messages(
-                    (
-                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                        {"role": "user", "content": f"data_summary: {df_context}"},
-                        {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
-                        {"role": "user", "content": f"memory: {memory_dict}"}
-                    )
-            )
+            # # There's probably a smarter way to do this
+            # token_count_ml = num_tokens_from_messages(
+            #         (
+            #             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+            #             {"role": "user", "content": f"data_summary: {df_context}"},
+            #             {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+            #             {"role": "user", "content": f"memory: {memory_dict}"}
+            #         )
+            # )
 
-            if token_count_ml > 8192:
-                trimmed_message = trim_messages_to_fit_token_limit(
-                    (
-                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                        {"role": "user", "content": f"data_summary: {df_context}"},
-                        {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
-                        {"role": "user", "content": f"memory: {memory_dict}"}
-                    )
-            )
-                self.log.info(f'Trimmed message: {trimmed_message}')
-                print(trimmed_message)
+            # if token_count_ml > 8192:
+            #     trimmed_message = trim_messages_to_fit_token_limit(
+            #         (
+            #             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+            #             {"role": "user", "content": f"data_summary: {df_context}"},
+            #             {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+            #             {"role": "user", "content": f"memory: {memory_dict}"}
+            #         )
+            # )
+            #     self.log.info(f'Trimmed message: {trimmed_message}')
+            #     print(trimmed_message)
 
             suggestion_text = self.generate_suggestion_text(n_suggestions)
             self.suggestion_preprompt = f"""
