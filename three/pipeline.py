@@ -252,7 +252,7 @@ class Reach:
     def dataframe_summary(
             self, 
             df: pd.DataFrame, 
-            dataset_description: str, 
+            dataset_description: str = None, 
             sample_rows: int = 5, 
             sample_columns: int = 14
             ) -> str:
@@ -289,24 +289,41 @@ class Reach:
         sampled = df.sample(min(sample_columns, df.shape[1]), axis=1).sample(min(sample_rows, df.shape[0]), axis=0)
 
         # Constructing a GPT-friendly output:
-        output = (
-            f"Here's a summary of the dataframe:\n"
-            f"- Rows: {num_rows:,}\n"
-            f"- Columns: {num_cols:,}\n\n"
+        if dataset_description is not None:
+            output = (
+                f"Here's a summary of the dataframe:\n"
+                f"- Rows: {num_rows:,}\n"
+                f"- Columns: {num_cols:,}\n\n"
 
-            f"Column names and their descriptions:\n"
-            f"{dataset_description}"
+                f"Column names and their descriptions:\n"
+                f"{dataset_description}"
 
-            f"Top columns with missing values:\n"
-            f"{missing_values.to_string()}\n\n"
+                f"Top columns with missing values:\n"
+                f"{missing_values.to_string()}\n\n"
 
-            f"Numerical summary:\n"
-            f"{numerical_summary.to_string()}\n\n"
+                f"Numerical summary:\n"
+                f"{numerical_summary.to_string()}\n\n"
 
-            f"A sample of the data ({sample_rows}x{sample_columns}):\n"
-            f"{sampled.to_string()}"
-        )
+                f"A sample of the data ({sample_rows}x{sample_columns}):\n"
+                f"{sampled.to_string()}"
+            )
         
+        else: 
+            output = (
+                f"Here's a summary of the dataframe:\n"
+                f"- Rows: {num_rows:,}\n"
+                f"- Columns: {num_cols:,}\n\n"
+
+                f"Top columns with missing values:\n"
+                f"{missing_values.to_string()}\n\n"
+
+                f"Numerical summary:\n"
+                f"{numerical_summary.to_string()}\n\n"
+
+                f"A sample of the data ({sample_rows}x{sample_columns}):\n"
+                f"{sampled.to_string()}"
+            )
+            
         return output
     
     def generate_suggestion_text(self, n_suggestions: int) -> str:
