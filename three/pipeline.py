@@ -70,20 +70,21 @@ class Reach:
             ```
             """.strip()
         
-        # # Deprecating.
-        # self.preprocess_preprompt = f"""
-        #     As a python coding assistant, your task is to help users preprocess their data given some contextual information about the data and the suggested machine learning modeling approach.
-        #     Preprocessing will require you to analyze the column descriptions and values within the columns to build logic that prescribes datatypes among other data quality fixes.
-        #     Training data can be found at {self.train_set_path}.
-        #     Your response must be valid python code.
-        #     Format your response as:
+        # Deprecating.
+        self.preprocess_for_llm_preprompt = f"""
+            As a python coding assistant, your task is to use statistics and simple descriptive outputs to generate some understanding of a dataset given a light description.
+            Leverage common exploratory data analysis and statistics packages such as numpy, pandas, etc, to output information about the dataset.              
+            Data can be found at {self.train_set_path}.
+            Your response must be valid python code.
+            Format your response as:
 
-        #     ```python
-        #     # code
-        #     ```
-        #     """.strip()
+            ```python
+            # code
+            ```
+            """.strip()
         self.feature_engineering_preprompt = """
             As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
+            Utilize the preprocessing_context in context for information about the dataset.
             You will respond with valid python code that generates new features for the dataset that are appropriate for the model_selection and the user_goal provided in the context.
             Generate as many features as possible, generate AT LEAST 3 new features.
             Format your response as:
@@ -103,7 +104,7 @@ class Reach:
         self.model_development_preprompt = f"""
             As a machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
-            Data information can be found in the context: data_summary. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
+            Data information can be found in the context: data_summary, and preprocessing_context. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
             Training data can be found at {self.train_set_path}.
             Use the feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
@@ -556,17 +557,32 @@ class Reach:
 
             for model in suggestions:
 
-                # # This might be unnecessary with the validation agent.
-                # # Deprecating.
-                # preprocess_context = self.extract_content_from_gpt_response(
-                #         self.send_request_to_gpt(
-                #             role_preprompt=self.preprocess_preprompt, 
-                #             context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
-                #             prompt="Generate preprocessing code for my dataset"
-                #         )
-                #     )
+                preprocessing_code = self.extract_code(
+                    self.extract_content_from_gpt_response(
+                        self.send_request_to_gpt(
+                            role_preprompt=self.preprocess_for_llm_preprompt, 
+                            context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
+                            prompt="Help me understand the information contained in the dataset."
+                        )
+                    )
+                )
 
-                # print(f"preprocess context: {preprocess_context}")
+                validated_preprocessing_code = self.code_validation_agent(
+                    preprocessing_code,
+                    context=[
+                        {"role": "user", "content": f"data_summary: {df_context}"},
+                    ],
+                    max_attempts=10,
+                )
+
+                #This is a hacky solution
+                old_stdout = sys.stdout
+                sys.stdout = buffer = io.StringIO()
+                #TODO marking exec statement
+                exec(validated_preprocessing_code)
+                preprocessing_context = buffer.getvalue()
+                sys.stdout = old_stdout
+                
                 feature_engineering_context = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
@@ -574,6 +590,8 @@ class Reach:
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"model_selection: {model}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
+                                {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+
                             ], 
                             prompt="Create new features for my dataset based on my user_goal, model_selection, and data_summary available in context."
                         )
@@ -586,10 +604,11 @@ class Reach:
                             context=[
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
-                                {"role": "user", "content": f"feature_engineering_code: {self.extract_code(feature_engineering_context)}"},
+                                {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+                                {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
                                 {"role": "user", "content": f"memory: {memory_dict}"}
                             ], 
-                            prompt="Based on my user_goal, data_summary, and feature_engineering_code. Generate the machine learning model code."
+                            prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code, be sure to utilize the feature engineering code provided in the context."
                         )
                     )
                 model_context_performance_metric_additions = self.extract_content_from_gpt_response(
@@ -681,7 +700,7 @@ class Reach:
                     so_what = self.so_what_description(
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                            {"role": "user", "content": f"data_summary: {df_context}"},
+                            # {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"analysis_code: {validated_code}"},
                         ],
                         validated_model_code=validated_code
@@ -697,25 +716,25 @@ class Reach:
         else:
             # self.log.info('No modelling is required. Beginning analysis')
 
-            # There's probably a smarter way to do this
-            token_count_ml = num_tokens_from_messages(
-                    (
-                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                        {"role": "user", "content": f"data_summary: {df_context}"},
-                        {"role": "user", "content": f"memory: {memory_dict}"}
-                    )
-            )
+            # # There's probably a smarter way to do this
+            # token_count_ml = num_tokens_from_messages(
+            #         (
+            #             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+            #             {"role": "user", "content": f"data_summary: {df_context}"},
+            #             {"role": "user", "content": f"memory: {memory_dict}"}
+            #         )
+            # )
 
-            if token_count_ml > 8192:
-                trimmed_message = trim_messages_to_fit_token_limit(
-                    (
-                        {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                        {"role": "user", "content": f"data_summary: {df_context}"},
-                        {"role": "user", "content": f"memory: {memory_dict}"}
-                    )
-            )
-                self.log.info(f'Trimmed message: {trimmed_message}')
-                print(trimmed_message)
+            # if token_count_ml > 8192:
+            #     trimmed_message = trim_messages_to_fit_token_limit(
+            #         (
+            #             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+            #             {"role": "user", "content": f"data_summary: {df_context}"},
+            #             {"role": "user", "content": f"memory: {memory_dict}"}
+            #         )
+            # )
+            #     self.log.info(f'Trimmed message: {trimmed_message}')
+            #     print(trimmed_message)
 
             print('No modelling is required. Beginning analysis')
             analysis_response_context = self.extract_content_from_gpt_response(
