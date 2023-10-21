@@ -507,8 +507,9 @@ class Reach:
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                             {"role": "user", "content": f"data_summary: {df_context}"},
+                            {"role": "user", "content": f"memory: {memory_dict}"},
                             ], 
-                        prompt="Analyze the supplied user_goal and data_summary in the context and decide if machine learning is necessary to answer the question. Only return a single word respone, yes or no."
+                        prompt="Analyze the supplied user_goal, data_summary, and memory in the context and decide if machine learning is necessary to answer the question. Only return a single word respone, yes or no. Always check the memory for relevant information."
                     )
                 )
         
@@ -582,7 +583,9 @@ class Reach:
                 exec(validated_preprocessing_code)
                 preprocessing_context = buffer.getvalue()
                 sys.stdout = old_stdout
-                
+
+                print(f"preprocess context: {preprocessing_context}")
+
                 feature_engineering_context = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
@@ -700,7 +703,6 @@ class Reach:
                     so_what = self.so_what_description(
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                            # {"role": "user", "content": f"data_summary: {df_context}"},
                             {"role": "user", "content": f"analysis_code: {validated_code}"},
                         ],
                         validated_model_code=validated_code
@@ -737,15 +739,45 @@ class Reach:
             #     print(trimmed_message)
 
             print('No modelling is required. Beginning analysis')
+
+            preprocessing_code = self.extract_code(
+                    self.extract_content_from_gpt_response(
+                        self.send_request_to_gpt(
+                            role_preprompt=self.preprocess_for_llm_preprompt, 
+                            context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
+                            prompt="Help me understand the information contained in the dataset."
+                        )
+                    )
+                )
+
+            validated_preprocessing_code = self.code_validation_agent(
+                preprocessing_code,
+                context=[
+                    {"role": "user", "content": f"data_summary: {df_context}"},
+                ],
+                max_attempts=10,
+            )
+
+            #This is a hacky solution
+            old_stdout = sys.stdout
+            sys.stdout = buffer = io.StringIO()
+            #TODO marking exec statement
+            exec(validated_preprocessing_code)
+            preprocessing_context = buffer.getvalue()
+            sys.stdout = old_stdout
+
+            print(f"preprocess context: {preprocessing_context}")
+        
             analysis_response_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
                         role_preprompt=self.data_analyst_preprompt, 
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                             {"role": "user", "content": f"data_summary: {df_context}"},
+                            {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
                             {"role": "user", "content": f"memory: {memory_dict}"}
                             ], 
-                        prompt="Analyze the supplied user_goal, data_summary, and memory in the context and generate python code that, when run, answers my question provided in user_goal in the context."
+                        prompt="Analyze the supplied user_goal, data_summary, preprocessing_context, and memory in the context and generate python code that, when run, answers my question provided in user_goal in the context. Be sure to always check in the memory section of the context for relevant information."
                     )
                 )
             
@@ -772,11 +804,20 @@ class Reach:
             #TODO so_what return type is str | unbound, need to investigate this
             print(so_what)
 
+        #TODO cleaning: below can be packed into a store_code_output function
+        old_stdout = sys.stdout
+        sys.stdout = buffer = io.StringIO()
+        #TODO marking exec statement
+        exec(validated_code)
+        code_output = buffer.getvalue()
+        sys.stdout = old_stdout
+
         if os.path.exists("memory.txt"):
             write_json_to_file(
                 filename='memory.txt',
                 data = {
-                    "user_goal": self.goal_prompt, #TODO something abt self.goal_prompt is causing problems with the write
+                    "user_goal": self.goal_prompt,
                     "solution": validated_code,
+                    "output": code_output,
                 },
             )            
