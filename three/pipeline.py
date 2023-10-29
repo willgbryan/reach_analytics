@@ -21,8 +21,10 @@ from docker_runtime import(
     docker_runtime,
 )
 from context import(
-    write_json_to_file,
-    read_json_from_file
+    read_json_from_file,
+    append_data_to_file,
+    store_data_context,
+    load_data_context
 )
 from tokens import (
     num_tokens_from_messages, 
@@ -494,10 +496,46 @@ class Reach:
 
         processed_train_data = self.preprocess_dataframe()  
 
-        df_context = self.dataframe_summary(
-            processed_train_data, 
-            self.dataset_description
-        )
+        if os.path.exists("data_context.txt"):
+
+            print("Loading data context")
+            preprocessing_context, df_context = load_data_context()
+        
+        else:
+
+            df_context = self.dataframe_summary(
+                processed_train_data, 
+                self.dataset_description
+            )
+            
+            preprocessing_code = self.extract_code(
+                        self.extract_content_from_gpt_response(
+                            self.send_request_to_gpt(
+                                role_preprompt=self.preprocess_for_llm_preprompt, 
+                                context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
+                                prompt="Help me understand the information contained in the dataset."
+                            )
+                        )
+                    )
+
+            validated_preprocessing_code = self.code_validation_agent(
+                preprocessing_code,
+                context=[
+                    {"role": "user", "content": f"data_summary: {df_context}"},
+                ],
+                max_attempts=10,
+            )
+
+            #This is a hacky solution
+            old_stdout = sys.stdout
+            sys.stdout = buffer = io.StringIO()
+            #TODO marking exec statement
+            exec(validated_preprocessing_code)
+            preprocessing_context = buffer.getvalue()
+            sys.stdout = old_stdout
+
+            print("Storing data context")
+            store_data_context(preprocessing_context, df_context)
 
         memory_dict = read_json_from_file('memory.txt')
 
@@ -557,34 +595,6 @@ class Reach:
                 )
 
             for model in suggestions:
-
-                preprocessing_code = self.extract_code(
-                    self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
-                            role_preprompt=self.preprocess_for_llm_preprompt, 
-                            context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
-                            prompt="Help me understand the information contained in the dataset."
-                        )
-                    )
-                )
-
-                validated_preprocessing_code = self.code_validation_agent(
-                    preprocessing_code,
-                    context=[
-                        {"role": "user", "content": f"data_summary: {df_context}"},
-                    ],
-                    max_attempts=10,
-                )
-
-                #This is a hacky solution
-                old_stdout = sys.stdout
-                sys.stdout = buffer = io.StringIO()
-                #TODO marking exec statement
-                exec(validated_preprocessing_code)
-                preprocessing_context = buffer.getvalue()
-                sys.stdout = old_stdout
-
-                print(f"preprocess context: {preprocessing_context}")
 
                 feature_engineering_context = self.extract_content_from_gpt_response(
                         self.send_request_to_gpt(
@@ -739,34 +749,6 @@ class Reach:
             #     print(trimmed_message)
 
             print('No modelling is required. Beginning analysis')
-
-            preprocessing_code = self.extract_code(
-                    self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
-                            role_preprompt=self.preprocess_for_llm_preprompt, 
-                            context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
-                            prompt="Help me understand the information contained in the dataset."
-                        )
-                    )
-                )
-
-            validated_preprocessing_code = self.code_validation_agent(
-                preprocessing_code,
-                context=[
-                    {"role": "user", "content": f"data_summary: {df_context}"},
-                ],
-                max_attempts=10,
-            )
-
-            #This is a hacky solution
-            old_stdout = sys.stdout
-            sys.stdout = buffer = io.StringIO()
-            #TODO marking exec statement
-            exec(validated_preprocessing_code)
-            preprocessing_context = buffer.getvalue()
-            sys.stdout = old_stdout
-
-            print(f"preprocess context: {preprocessing_context}")
         
             analysis_response_context = self.extract_content_from_gpt_response(
                     self.send_request_to_gpt(
@@ -808,16 +790,17 @@ class Reach:
         old_stdout = sys.stdout
         sys.stdout = buffer = io.StringIO()
         #TODO marking exec statement
+        # if the only code output is an image, nothing will be added to output
         exec(validated_code)
         code_output = buffer.getvalue()
         sys.stdout = old_stdout
 
-        if os.path.exists("memory.txt"):
-            write_json_to_file(
+        if os.path.exists("memory.txt") or not os.path.exists("memory.txt"):
+            append_data_to_file(
                 filename='memory.txt',
-                data = {
+                data={
                     "user_goal": self.goal_prompt,
                     "solution": validated_code,
                     "output": code_output,
-                },
-            )            
+                }
+            )       
