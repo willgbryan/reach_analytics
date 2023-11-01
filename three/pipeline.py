@@ -494,20 +494,22 @@ class Reach:
     def main(self, n_suggestions: int, index_name: str) -> None:
         # workflow = Workflow()
 
-        processed_train_data = self.preprocess_dataframe()  
-
         if os.path.exists("data_context.txt"):
 
+            # self.log.info("Loading data context")
             print("Loading data context")
             preprocessing_context, df_context = load_data_context()
         
         else:
 
+            # self.log.info("Interpreting the provided data")
+            print("Interpreting the provided data")
+            processed_train_data = self.preprocess_dataframe()  
+
             df_context = self.dataframe_summary(
                 processed_train_data, 
                 self.dataset_description
             )
-            
             preprocessing_code = self.extract_code(
                         self.extract_content_from_gpt_response(
                             self.send_request_to_gpt(
@@ -534,6 +536,7 @@ class Reach:
             preprocessing_context = buffer.getvalue()
             sys.stdout = old_stdout
 
+            # self.log.info("Storing data context")
             print("Storing data context")
             store_data_context(preprocessing_context, df_context)
 

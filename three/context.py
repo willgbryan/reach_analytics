@@ -20,9 +20,10 @@ def read_json_from_file(filename):
 
     Args:
         filename (str): The name of the JSON file to read.
+        root_node (float, optional): The root node up to which the memory should be retrieved.
 
     Returns:
-        dict: A dictionary containing the parsed JSON data.
+        dict: A dictionary containing the parsed JSON data up to the specified root node.
         None: If the file does not exist or cannot be parsed as JSON.
     """
     if not os.path.exists(filename):
@@ -32,6 +33,16 @@ def read_json_from_file(filename):
     try:
         with open(filename, 'r') as file:
             data = json.load(file)
+            
+            # If a root_node is specified, filter the data based on it
+            if root_node is not None:
+                filtered_data = []
+                for entry in data:
+                    # Append data to the filtered list if the step is less than or equal to the root_node
+                    if float(entry["step"]) <= root_node:
+                        filtered_data.append(entry)
+                data = filtered_data
+
             return data
     except json.JSONDecodeError as e:
         print(f"Error parsing JSON in '{filename}': {str(e)}")
