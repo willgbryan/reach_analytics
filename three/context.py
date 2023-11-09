@@ -30,6 +30,7 @@ def read_json_from_file(filename):
         print(f"The file '{filename}' does not exist.")
         return None
 
+    root_node = None
     try:
         with open(filename, 'r') as file:
             data = json.load(file)
