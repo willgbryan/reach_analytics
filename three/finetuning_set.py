@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-def dict_to_dataframe_and_save(data_dict, file_path):
+def dict_to_dataframe(data_dict, file_path):
     """
     Converts a dictionary to a DataFrame and saves or appends it to a CSV file.
 
@@ -12,7 +12,7 @@ def dict_to_dataframe_and_save(data_dict, file_path):
     Returns:
     None
     """
-    df_new = pd.DataFrame.from_dict(data_dict)
+    df_new = pd.DataFrame.from_dict([data_dict])
 
     if os.path.exists(file_path):
         df_existing = pd.read_csv(file_path)

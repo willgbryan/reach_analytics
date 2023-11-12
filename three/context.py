@@ -65,7 +65,7 @@ def append_data_to_file(filename, data):
     with open(filename, 'w') as f:
         json.dump(content, f)
 
-def store_data_context(preprocessing_context: str, df_context: str):
+def store_data_context(preprocessing_context: str, df_context: str, code: str):
     file_path = "data_context.txt"
     
     if not os.path.exists(file_path):
@@ -73,6 +73,7 @@ def store_data_context(preprocessing_context: str, df_context: str):
             pass
 
     data_to_write = {
+        "preprocessing_code": code,
         "preprocessing_context": preprocessing_context,
         "dataframe_summary": df_context
     }
@@ -90,5 +91,6 @@ def load_data_context():
     
     df_context = data_dict["dataframe_summary"]
     preprocessing_context = data_dict["preprocessing_context"]
+    validated_preprocessing_code = data_dict["preprocessing_code"]
     
-    return preprocessing_context, df_context
+    return preprocessing_context, df_context, validated_preprocessing_code

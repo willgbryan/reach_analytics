@@ -498,7 +498,7 @@ class Reach:
 
             # self.log.info("Loading data context")
             print("Loading data context")
-            preprocessing_context, df_context = load_data_context()
+            preprocessing_context, df_context, validated_preprocessing_code = load_data_context()
         
         else:
 
@@ -538,7 +538,7 @@ class Reach:
 
             # self.log.info("Storing data context")
             print("Storing data context")
-            store_data_context(preprocessing_context, df_context)
+            store_data_context(preprocessing_context, df_context, validated_preprocessing_code)
 
         memory_dict = read_json_from_file('memory.txt')
 
@@ -730,7 +730,7 @@ class Reach:
             self.launch_mlflow_ui(port = 5000)
 
             dict_to_dataframe(
-                data = {
+                data_dict = {
                     'goal': self.goal_prompt,
                     'data_summary': df_context,
                     'preprocessing_code': validated_preprocessing_code,
@@ -813,7 +813,7 @@ class Reach:
         sys.stdout = old_stdout
 
         dict_to_dataframe(
-                data = {
+                data_dict = {
                     'goal': self.goal_prompt,
                     'data_summary': df_context,
                     'preprocessing_code': validated_preprocessing_code,
