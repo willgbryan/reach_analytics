@@ -30,6 +30,7 @@ from tokens import (
     num_tokens_from_messages, 
     trim_messages_to_fit_token_limit,
 )
+from finetuning_set import dict_to_dataframe
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
 # log level output is commented out for notebook debugging (replace by print statements)
@@ -72,7 +73,6 @@ class Reach:
             ```
             """.strip()
         
-        # Deprecating.
         self.preprocess_for_llm_preprompt = f"""
             As a python coding assistant, your task is to use statistics and simple descriptive outputs to generate some understanding of a dataset given a light description.
             Leverage common exploratory data analysis and statistics packages such as numpy, pandas, etc, to output information about the dataset.              
@@ -728,6 +728,19 @@ class Reach:
             #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
             #that will require some level of artifact cleaning or garbage collection.    
             self.launch_mlflow_ui(port = 5000)
+
+            dict_to_dataframe(
+                data = {
+                    'goal': self.goal_prompt,
+                    'data_summary': df_context,
+                    'preprocessing_code': validated_preprocessing_code,
+                    'feature_engineering_code': feature_engineering_context,
+                    'model_code': validated_code,
+                    'analysis_code': None,
+                    'ml_model': 1
+                    },
+                file_path = 'finetuning_set.csv'
+                )
         else:
             # self.log.info('No modelling is required. Beginning analysis')
 
@@ -795,8 +808,22 @@ class Reach:
         #TODO marking exec statement
         # if the only code output is an image, nothing will be added to output
         exec(validated_code)
+        print(validated_code)
         code_output = buffer.getvalue()
         sys.stdout = old_stdout
+
+        dict_to_dataframe(
+                data = {
+                    'goal': self.goal_prompt,
+                    'data_summary': df_context,
+                    'preprocessing_code': validated_preprocessing_code,
+                    'feature_engineering_code': None,
+                    'model_code': None,
+                    'analysis_code': validated_code,
+                    'ml_model': 0,
+                    },
+                file_path = 'finetuning_set.csv'
+        )
 
         if os.path.exists("memory.txt") or not os.path.exists("memory.txt"):
             append_data_to_file(
