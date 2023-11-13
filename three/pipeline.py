@@ -296,7 +296,8 @@ class Reach:
             output = (
                 f"Here's a summary of the dataframe:\n"
                 f"- Rows: {num_rows:,}\n"
-                f"- Columns: {num_cols:,}\n\n"
+                f"- Columns: {num_cols:,}\n"
+                f"- All columns: {df.columns:,}\n\n"
 
                 f"Column names and their descriptions:\n"
                 f"{dataset_description}"
