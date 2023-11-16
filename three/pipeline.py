@@ -20,7 +20,7 @@ from docker_runtime import(
     build_docker_image, 
     docker_runtime,
 )
-from context import(
+from context import (
     read_json_from_file,
     append_data_to_file,
     store_data_context,
@@ -30,7 +30,13 @@ from tokens import (
     num_tokens_from_messages, 
     trim_messages_to_fit_token_limit,
 )
-from finetuning_set import dict_to_dataframe
+from reusable_utils import (
+    dict_to_dataframe,
+    extract_code,
+    send_request_to_gpt,
+    dataframe_summary,
+    extract_content_from_gpt_response
+)
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
 # log level output is commented out for notebook debugging (replace by print statements)
@@ -186,37 +192,6 @@ class Reach:
 
         return query
     
-    def send_request_to_gpt(
-            self,
-            role_preprompt: str, 
-            prompt: str,
-            context: Dict[str, str],  
-            stream: bool = False
-            ) -> (Any | List | Dict):
-
-        # Handle string input for context
-        if isinstance(context, str):
-            context = [{"role": "user", "content": context}]
-
-        response = openai.ChatCompletion.create(
-            model="gpt-4",
-            messages=[
-                # Establish the context of the conversation
-                {
-                    "role": "system",
-                    "content": role_preprompt,
-                },
-                # Previous interactions
-                *context,
-                # The user's code or request
-                {
-                    "role": "user",
-                    "content": prompt,
-                },
-            ],
-            stream=stream,
-        )
-        return response
     
     def preprocess_dataframe(self, unique_value_ratio: float = 0.05) -> pd.DataFrame:
         """
@@ -250,85 +225,6 @@ class Reach:
         # self.log.info(f"Anomaly Detection Summary: {anomalies}")
         
         return df
-
-
-    def dataframe_summary(
-            self, 
-            df: pd.DataFrame, 
-            dataset_description: str = None, 
-            sample_rows: int = 5, 
-            sample_columns: int = 14
-            ) -> str:
-        """
-        Create a GPT-friendly summary of a Pandas DataFrame.
-
-        Parameters:
-            df (Pandas DataFrame): The dataframe to be summarized.
-            sample_rows (int): The number of rows to sample.
-            sample_columns (int): The number of columns to sample.
-
-        Returns:
-            A markdown string with a GPT-friendly summary of the dataframe.
-        """
-        num_rows, num_cols = df.shape
-
-        # Column Summary
-        missing_values = pd.DataFrame(df.isnull().sum(), columns=['Missing Values'])
-        missing_values['% Missing'] = missing_values['Missing Values'] / num_rows * 100
-        missing_values = missing_values.sort_values(by='% Missing', ascending=False).head(5)
-
-        # Basic data typing support could go here but it may not be necessary
-
-        # Basic summary statistics for numerical and categorical columns
-        numerical_summary = df.describe(include=[np.number])
-        
-        has_categoricals = any(df.select_dtypes(include=['category', 'datetime', 'timedelta']).columns)
-
-        if has_categoricals:
-            categorical_summary = df.describe(include=['category', 'datetime', 'timedelta'])
-        else:
-            categorical_summary = pd.DataFrame(columns=df.columns)
-
-        sampled = df.sample(min(sample_columns, df.shape[1]), axis=1).sample(min(sample_rows, df.shape[0]), axis=0)
-
-        # Constructing a GPT-friendly output:
-        if dataset_description is not None:
-            output = (
-                f"Here's a summary of the dataframe:\n"
-                f"- Rows: {num_rows:,}\n"
-                f"- Columns: {num_cols:,}\n"
-                f"- All columns: {df.columns:,}\n\n"
-
-                f"Column names and their descriptions:\n"
-                f"{dataset_description}"
-
-                f"Top columns with missing values:\n"
-                f"{missing_values.to_string()}\n\n"
-
-                f"Numerical summary:\n"
-                f"{numerical_summary.to_string()}\n\n"
-
-                f"A sample of the data ({sample_rows}x{sample_columns}):\n"
-                f"{sampled.to_string()}"
-            )
-        
-        else: 
-            output = (
-                f"Here's a summary of the dataframe:\n"
-                f"- Rows: {num_rows:,}\n"
-                f"- Columns: {num_cols:,}\n\n"
-
-                f"Top columns with missing values:\n"
-                f"{missing_values.to_string()}\n\n"
-
-                f"Numerical summary:\n"
-                f"{numerical_summary.to_string()}\n\n"
-
-                f"A sample of the data ({sample_rows}x{sample_columns}):\n"
-                f"{sampled.to_string()}"
-            )
-
-        return output
     
     def generate_suggestion_text(self, n_suggestions: int) -> str:
 
@@ -343,20 +239,6 @@ class Reach:
         suggestions = content.strip('()').split(', ')
 
         return suggestions
-    
-    def extract_code(self, message: str) -> str:
-        substr = message.find('```python')
-        incomplete_code = message[substr + 9 : len(message)]
-        substr = incomplete_code.find('```')
-        code = incomplete_code[0:substr]
-        return code
-
-    def extract_content_from_gpt_response(
-            self,
-            response: (Any | List | Dict)
-            ) -> str:
-        return response['choices'][0]['message']['content']
-    
     
     def code_validation_agent(
             self, 
@@ -381,7 +263,7 @@ class Reach:
                 # self.log.info(error_message)
 
                 # Debugging via GPT-4
-                response = self.send_request_to_gpt(
+                response = send_request_to_gpt(
                     role_preprompt=self.validation_preprompt,
                     context=context,
                     prompt=f"""
@@ -391,8 +273,8 @@ class Reach:
                     """,
                 )
 
-                suggestion = self.extract_code(
-                    (self.extract_content_from_gpt_response(
+                suggestion = extract_code(
+                    (extract_content_from_gpt_response(
                         response
                         )
                     )
@@ -481,8 +363,8 @@ class Reach:
 
         captured_out = buffer.getvalue()
 
-        insight = self.extract_content_from_gpt_response(
-            self.send_request_to_gpt(
+        insight = extract_content_from_gpt_response(
+            send_request_to_gpt(
                 role_preprompt=self.so_what_description_preprompt,
                 prompt=f"Given the output of the following code: {validated_model_code}. Output: {captured_out}. What insights can you extract from the model's analysis",
                 context=context,
@@ -507,13 +389,13 @@ class Reach:
             print("Interpreting the provided data")
             processed_train_data = self.preprocess_dataframe()  
 
-            df_context = self.dataframe_summary(
+            df_context = dataframe_summary(
                 processed_train_data, 
                 self.dataset_description
             )
-            preprocessing_code = self.extract_code(
-                        self.extract_content_from_gpt_response(
-                            self.send_request_to_gpt(
+            preprocessing_code = extract_code(
+                        extract_content_from_gpt_response(
+                            send_request_to_gpt(
                                 role_preprompt=self.preprocess_for_llm_preprompt, 
                                 context=[{"role": "user", "content": f"data_summary: {df_context}"}], 
                                 prompt="Help me understand the information contained in the dataset."
@@ -543,8 +425,8 @@ class Reach:
 
         memory_dict = read_json_from_file('memory.txt')
 
-        decision = self.extract_content_from_gpt_response(
-                    self.send_request_to_gpt(
+        decision = extract_content_from_gpt_response(
+                    send_request_to_gpt(
                         role_preprompt=self.decision_preprompt, 
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
@@ -591,7 +473,7 @@ class Reach:
                 """.strip()
 
             suggestions = self.extract_suggestions(
-                    self.send_request_to_gpt(
+                    send_request_to_gpt(
                         role_preprompt=self.suggestion_preprompt, 
                         context=df_context, 
                         prompt=self.goal_prompt
@@ -600,8 +482,8 @@ class Reach:
 
             for model in suggestions:
 
-                feature_engineering_context = self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
+                feature_engineering_context = extract_content_from_gpt_response(
+                        send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
                             context=[
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
@@ -615,8 +497,8 @@ class Reach:
                     )
                 print(f"feature engineering context: {feature_engineering_context}")
 
-                model_context = self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
+                model_context = extract_content_from_gpt_response(
+                        send_request_to_gpt(
                             role_preprompt=self.feature_engineering_preprompt, 
                             context=[
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
@@ -628,8 +510,8 @@ class Reach:
                             prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code, be sure to utilize the feature engineering code provided in the context."
                         )
                     )
-                model_context_performance_metric_additions = self.extract_content_from_gpt_response(
-                        self.send_request_to_gpt(
+                model_context_performance_metric_additions = extract_content_from_gpt_response(
+                        send_request_to_gpt(
                             role_preprompt=self.performance_eval_preprompt, 
                             context=[
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
@@ -645,7 +527,7 @@ class Reach:
                 
                 if self.attempt_validation == True:
                     validated_code = self.code_validation_agent(
-                        code_to_validate=self.extract_code(model_context_performance_metric_additions),
+                        code_to_validate=extract_code(model_context_performance_metric_additions),
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                         ],
@@ -767,8 +649,8 @@ class Reach:
 
             print('No modelling is required. Beginning analysis')
         
-            analysis_response_context = self.extract_content_from_gpt_response(
-                    self.send_request_to_gpt(
+            analysis_response_context = extract_content_from_gpt_response(
+                    send_request_to_gpt(
                         role_preprompt=self.data_analyst_preprompt, 
                         context=[
                             {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
@@ -782,7 +664,7 @@ class Reach:
             
             if self.attempt_validation == True:
                     validated_code = self.code_validation_agent(
-                        code_to_validate=self.extract_code(analysis_response_context),
+                        code_to_validate=extract_code(analysis_response_context),
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
                         ],
