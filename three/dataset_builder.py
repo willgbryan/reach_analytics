@@ -1,18 +1,28 @@
 import tkinter as tk
 from tkinter import filedialog
+import traceback
+import warnings
 import openai
 import pandas as pd
 import numpy as np
 from typing import List, Any, Dict
 from reusable_utils import (
     dataframe_summary,
+    dict_to_dataframe,
     send_request_to_gpt,
     extract_code,
     extract_content_from_gpt_response
 )
 
+from log_module import logger
+
+
 class GPTRequestHandler:
-    def __init__(self):
+    def __init__(
+        self,
+        openai_api_key: str,
+    ):
+        self.openai_api_key = openai_api_key
         pass
 
     def upload_files(self, web: bool = False):
@@ -54,12 +64,15 @@ class GPTRequestHandler:
 
             Data can be found at {file_paths_str}.
 
-            The final output of the code should be an aggregated dataset written to a csv.
+            The final output of the code should be all data in an aggregated dataset written to a csv.
             
             Format all code in a single block like below:
 
             ```python
+
             # code
+
+            aggregated_data.to_csv('aggregated_data.csv')
             ```
             """.strip()
 
@@ -79,6 +92,84 @@ class GPTRequestHandler:
                 summaries.append(summary)
 
         return {'dataframe_summaries': summaries, 'file_paths': file_paths}
+    
+    def code_validation_agent(
+            self, 
+            code_to_validate: str, 
+            context: List[Dict[str, str]], 
+            max_attempts: int = 10,
+            file_paths: List[str] = None,
+            web: bool = False,
+        ) -> str:
+
+        warnings.filterwarnings("ignore")  # Ignore warnings
+        attempts = 0
+
+        while attempts < max_attempts:
+            try:
+                exec(code_to_validate)
+                print("Code executed without errors.")
+                # self.log.info("Code executed without errors.")
+                return code_to_validate
+
+            except Exception as e:
+                error_message = str(e)
+                error_traceback = traceback.format_exc()
+                print(error_message)
+                # self.log.info(error_message)
+
+                file_paths = file_paths
+                file_paths_str = ", ".join(file_paths)
+
+
+                # Debugging via GPT-4
+                response = send_request_to_gpt(
+                    role_preprompt=f"""
+                    As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
+                    Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
+                    Data can be found at {file_paths_str}.
+                    You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
+                    Format your response as:
+
+                    ```python
+                    # code
+                    ```
+                    """.strip(),
+                    context=context,
+                    prompt=f"""
+                    Debug the following python code: {code_to_validate}. \n\nError:\n{error_message}\n\nTraceback:\n{error_traceback}\n\n.
+                    Training data can be found at {file_paths_str} 
+                    You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
+                    """,
+                )
+
+                suggestion = extract_code(
+                    (extract_content_from_gpt_response(
+                        response
+                        )
+                    )
+                )
+
+                print(f"Updated Code: \n{suggestion}")
+                # self.log.info(f"Updated Code: \n{suggestion}")
+
+                dict_to_dataframe(
+                        data_dict = {
+                            'goal': self.goal_prompt,
+                            'code_to_validate': code_to_validate,
+                            'error_message': error_message,
+                            'traceback': traceback,
+                            'updated_code': suggestion,
+                            },
+                        file_path = 'dataset_builder_validation_finetuning_set.csv',
+                    )
+
+                code_to_validate = suggestion
+                attempts += 1
+
+        print("Max attempts reached. Code is still broken.")
+        # self.log.info("Max attempts reached. Code is still broken.")
+        return None
 
     def handle_files_and_send_request(
             self, 
@@ -94,8 +185,6 @@ class GPTRequestHandler:
         summary_dict = file_processing_result['dataframe_summaries']
 
         role_preprompt = self.get_data_engineer_preprompt(file_paths)
-
-        print(f"Preprompt: {role_preprompt}")
         
         code = send_request_to_gpt(
             role_preprompt=role_preprompt,
@@ -104,18 +193,4 @@ class GPTRequestHandler:
             stream=stream,
         )
         
-        return code
-
-
-
-openai.api_key = 'redacted'
-handler = GPTRequestHandler()
-
-response = handler.handle_files_and_send_request(
-    prompt="Aggregate these datasets"
-)
-
-extracted_response = extract_content_from_gpt_response(response)
-print(extract_code(extracted_response))
-
-
+        return code, file_paths, summary_dict

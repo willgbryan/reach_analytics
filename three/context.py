@@ -58,9 +58,14 @@ def append_data_to_file(filename, data):
 
     highest_step = max([entry.get("step", 0.0) for entry in content], default=0)
 
+    data["prev_step"] = highest_step if content else None
     data["step"] = highest_step + 1.0
 
     content.append(data)
+
+    with open(filename, 'w') as f:
+        json.dump(content, f)
+
 
     with open(filename, 'w') as f:
         json.dump(content, f)

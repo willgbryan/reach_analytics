@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from typing import List, Dict, Any
 
-def dict_to_dataframe(data_dict, file_path):
+def dict_to_dataframe(data_dict: Dict, file_path: str):
     """
     Converts a dictionary to a DataFrame and saves or appends it to a CSV file.
 

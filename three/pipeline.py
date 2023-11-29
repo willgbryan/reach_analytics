@@ -1,6 +1,7 @@
 import io
 import os
 import sys
+import warnings
 import marqo
 import mlflow
 import openai
@@ -37,6 +38,7 @@ from reusable_utils import (
     dataframe_summary,
     extract_content_from_gpt_response
 )
+from dataset_builder import GPTRequestHandler
 
 # for locally hosted marqo client, vectorstore.py needs to be run and the container needs to be active
 # log level output is commented out for notebook debugging (replace by print statements)
@@ -47,7 +49,6 @@ class Reach:
             openai_api_key: str, 
             marqo_index: str, 
             train_set_path: str, 
-            test_set_path: str, 
             dataset_description: str, 
             goal_prompt: str,
             attempt_validation: bool,
@@ -58,7 +59,6 @@ class Reach:
         self.marqo_index = marqo_index
         self.context_file_name = "memory.txt"
         self.train_set_path = train_set_path
-        self.test_set_path = test_set_path
         self.dataset_description = dataset_description
         self.goal_prompt = goal_prompt
         self.attempt_validation = attempt_validation
@@ -72,6 +72,13 @@ class Reach:
         self.data_analyst_preprompt = f"""
             As a data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
             Generate the necessary python code to answer the supplied prompt.
+
+            You must always use print statements to output the results of the code.
+
+            Always ensure to generate plots and visuals to communicate the code's results.
+
+            If a plot is requested, be sure to print the dataframe for the plot as well.
+
             Data can be found at {self.train_set_path}.
 
             ```python
@@ -113,10 +120,15 @@ class Reach:
             As a machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
             Data information can be found in the context: data_summary, and preprocessing_context. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
-            Training data can be found at {self.train_set_path}.
+            Data can be found at {self.train_set_path}.
             Use the feature engineering code provided.
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
             Always return an accuracy score and a model results dataframe with descriptive columns.
+
+            Always ensure to address the user_goal. Often this means using print() statements to communicate model results.
+
+            Always ensure to generate plots and visuals to communicate the model's results.
+
             Format your response as:
 
             ```python
@@ -247,6 +259,7 @@ class Reach:
             max_attempts: int = 10,
         ) -> str:
 
+        warnings.filterwarnings("ignore")  # Ignore warnings
         attempts = 0
 
         while attempts < max_attempts:
@@ -282,6 +295,17 @@ class Reach:
 
                 print(f"Updated Code: \n{suggestion}")
                 # self.log.info(f"Updated Code: \n{suggestion}")
+
+                dict_to_dataframe(
+                        data_dict = {
+                            'goal': self.goal_prompt,
+                            'code_to_validate': code_to_validate,
+                            'error_message': error_message,
+                            'traceback': traceback,
+                            'updated_code': suggestion,
+                            },
+                        file_path = 'code_validation_finetuning_set.csv',
+                    )
 
                 code_to_validate = suggestion
                 attempts += 1
@@ -441,7 +465,7 @@ class Reach:
 
         if decision == 'yes':
             # self.log.info('ML modelling is required. Beginning model development')
-            print('ML modelling is required. Beginning model development')
+            print('ML modelling is required. Beginning model development. This will take a few minutes.')
 
             # # There's probably a smarter way to do this
             # token_count_ml = num_tokens_from_messages(
@@ -507,7 +531,7 @@ class Reach:
                                 {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
                                 {"role": "user", "content": f"memory: {memory_dict}"}
                             ], 
-                            prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code, be sure to utilize the feature engineering code provided in the context."
+                            prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code with plots to display the results, be sure to utilize the feature engineering code provided in the context."
                         )
                     )
                 model_context_performance_metric_additions = extract_content_from_gpt_response(
@@ -517,7 +541,7 @@ class Reach:
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
                             ], 
-                            prompt=f"""Based on my data_summary, user_goal, and the following code: {self.extract_code(model_context)}, 
+                            prompt=f"""Based on my data_summary, user_goal, and the following code: {extract_code(model_context)}, 
                             update the code to include model performance evaluations to help me understand the insights the model is generating.
                             Training data can be found at {self.train_set_path}.
                             You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
@@ -530,6 +554,8 @@ class Reach:
                         code_to_validate=extract_code(model_context_performance_metric_additions),
                         context=[
                             {"role": "user", "content": f"data_summary: {df_context}"},
+                            {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+                            {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
                         ],
                         max_attempts=10,
                     )
@@ -590,10 +616,10 @@ class Reach:
 
                 #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
                 #that will require some level of artifact cleaning or garbage collection.
-                self.mlflow_integration(
-                    model_name=model,
-                    validated_model_code=validated_code,
-                )
+                # self.mlflow_integration(
+                #     model_name=model,
+                #     validated_model_code=validated_code,
+                # )
                 
                 if self.attempt_validation == True:
                     so_what = self.so_what_description(
@@ -610,7 +636,7 @@ class Reach:
 
             #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
             #that will require some level of artifact cleaning or garbage collection.    
-            self.launch_mlflow_ui(port = 5000)
+            # self.launch_mlflow_ui(port = 5000)
 
             dict_to_dataframe(
                 data_dict = {
@@ -691,7 +717,6 @@ class Reach:
         #TODO marking exec statement
         # if the only code output is an image, nothing will be added to output
         exec(validated_code)
-        print(validated_code)
         code_output = buffer.getvalue()
         sys.stdout = old_stdout
 
@@ -705,7 +730,7 @@ class Reach:
                     'analysis_code': validated_code,
                     'ml_model': 0,
                     },
-                file_path = 'finetuning_set.csv'
+                file_path = 'finetuning_set.csv',
         )
 
         if os.path.exists("memory.txt") or not os.path.exists("memory.txt"):
