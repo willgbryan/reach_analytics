@@ -15,44 +15,19 @@ from reusable_utils import (
 )
 
 from log_module import logger
-
+from flask import Flask, app, request, jsonify
+from flask_cors import CORS
+import os
 
 class GPTRequestHandler:
-    def __init__(
-        self,
-        openai_api_key: str,
-    ):
+    def __init__(self, openai_api_key: str):
         self.openai_api_key = openai_api_key
-        pass
 
-    def upload_files(self, web: bool = False):
-        """
-        File upload function for both local and web environments.
-        Set `web` to True when using in a web environment with Flask.
-        """
-        file_paths = []
-
-        if web:
-            from flask import request
-            if request.method == 'POST':
-                files = request.files.getlist('file')
-                file_paths = [f.filename for f in files]  # Example: just getting file names
-        else:
-            # Local environment using tkinter
-            root = tk.Tk()
-            root.withdraw()
-            file_paths = filedialog.askopenfilenames()
-
-        self.dataset_path = ", ".join(file_paths)
-
-        return file_paths
-    
-    def get_data_engineer_preprompt(self, file_paths: str):
+    def get_data_engineer_preprompt(self, file_paths: list):
         """
         Generates a dynamic preprompt for a data engineer with the file paths.
         """
         file_paths_str = ", ".join(file_paths)
-
         return f"""
             You are a professional data engineer and your role is to find ways to aggregate disparate datasets using python code.
             You will be provided with summary information about the incoming data including available columns.
@@ -61,46 +36,36 @@ class GPTRequestHandler:
             If there are no like keys to join on, you must create new columns or make assumptions to create joins.
             Using 'Unnamed: X' is not allowed as a column name.
             The output .csv must be titled 'aggregated_data.csv'
-
             Data can be found at {file_paths_str}.
-
             The final output of the code should be all data in an aggregated dataset written to a csv.
-            
             Format all code in a single block like below:
-
             ```python
-
             # code
-
             aggregated_data.to_csv('aggregated_data.csv')
             ```
-            """.strip()
+        """.strip()
 
-    def process_files(self, files):
+    def process_files(self, file_paths: list):
         """
         Process the uploaded files and preserve file paths.
         """
         summaries = []
-        file_paths = []  # List to store file paths
-
-        for file_path in files:
-            file_paths.append(file_path)  # Store the file path
-
+        for file_path in file_paths:
             if file_path.endswith('.xlsx') or file_path.endswith('.csv'):
                 df = pd.read_excel(file_path) if file_path.endswith('.xlsx') else pd.read_csv(file_path)
                 summary = dataframe_summary(df)
                 summaries.append(summary)
 
         return {'dataframe_summaries': summaries, 'file_paths': file_paths}
-    
+
     def code_validation_agent(
-            self, 
-            code_to_validate: str, 
-            context: List[Dict[str, str]], 
-            max_attempts: int = 10,
-            file_paths: List[str] = None,
-            web: bool = False,
-        ) -> str:
+        self, 
+        code_to_validate: str, 
+        context: List[Dict[str, str]], 
+        max_attempts: int = 10,
+        file_paths: List[str] = None,
+        web: bool = False,
+    ) -> str:
 
         warnings.filterwarnings("ignore")  # Ignore warnings
         attempts = 0
@@ -172,25 +137,23 @@ class GPTRequestHandler:
         return None
 
     def handle_files_and_send_request(
-            self, 
-            prompt: str, 
-            stream: bool = False, 
-            web: bool = False,
-        ):
-        file_processing_result = self.process_files(
-            self.upload_files(web=web)
-        )
-        
+        self, 
+        prompt: str, 
+        file_paths: list,
+        stream: bool = False,
+    ):
+        file_processing_result = self.process_files(file_paths)
         file_paths = file_processing_result['file_paths']
         summary_dict = file_processing_result['dataframe_summaries']
 
         role_preprompt = self.get_data_engineer_preprompt(file_paths)
-        
+
         code = send_request_to_gpt(
             role_preprompt=role_preprompt,
             prompt=prompt,
             context=[{"role": "user", "content": f"Dataframe Summaries: {summary_dict}"}],
             stream=stream,
         )
-        
+
         return code, file_paths, summary_dict
+

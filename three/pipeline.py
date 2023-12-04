@@ -741,4 +741,5 @@ class Reach:
                     "solution": validated_code,
                     "output": code_output,
                 }
-            )       
+            )
+        return code_output       
