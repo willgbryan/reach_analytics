@@ -1,0 +1,501 @@
+,Location,Provider,Server_Count,Graphics_Cards_Used,Total_Storage_TB,Average_Uptime_Percentage
+0,Asia,Provider B,10,"GX500-7, AX900-13, GX500-14, RT300-16, Pro1000-6",725,98.73
+1,Asia,Provider B,10,Pro1000-10,1000,99.61
+2,Europe,Provider D,500,"Pro1000-1, Elite4K-16, GX500-12, Pro1000-16, Elite4K-8",646,99.14
+3,Europe,Provider C,10,GX500-20,857,98.16
+4,North America,Provider A,100,"AX900-4, RT300-20, RT300-5, Pro1000-17",314,98.5
+5,South America,Provider E,10,"AX900-9, AX900-10, GX500-20",112,99.79
+6,Europe,Provider D,50,"Pro1000-9, RT300-7, RT300-18, Pro1000-13, AX900-15",885,99.41
+7,North America,Provider A,200,GX500-19,237,98.35
+8,South America,Provider E,200,"AX900-16, Elite4K-4",387,99.7
+9,North America,Provider C,10,"AX900-3, Elite4K-7, Pro1000-15, AX900-12",345,98.55
+10,Australia,Provider A,50,GX500-16,485,98.32
+11,North America,Provider B,50,GX500-9,771,99.38
+12,South America,Provider C,500,"RT300-13, GX500-20, Elite4K-6, Elite4K-19",656,98.52
+13,South America,Provider E,10,"GX500-14, Pro1000-10, RT300-11",158,98.72
+14,South America,Provider E,500,"RT300-4, AX900-14",929,98.57
+15,Australia,Provider E,200,"Pro1000-8, Pro1000-15, Elite4K-18",919,99.83
+16,North America,Provider A,500,Elite4K-9,923,98.73
+17,Asia,Provider D,500,Elite4K-4,106,99.25
+18,Europe,Provider B,100,"RT300-18, RT300-3, Pro1000-5",161,99.74
+19,North America,Provider A,500,"RT300-8, RT300-9, GX500-13, AX900-15",819,98.53
+20,Europe,Provider B,500,"Pro1000-5, Pro1000-12",107,98.22
+21,South America,Provider B,100,"Elite4K-7, RT300-12, GX500-10, RT300-2, Pro1000-17",173,99.9
+22,South America,Provider A,10,"GX500-17, GX500-15, RT300-12",843,99.23
+23,Asia,Provider D,500,"AX900-13, Elite4K-7, Elite4K-1",442,99.25
+24,North America,Provider C,500,AX900-14,324,99.79
+25,Europe,Provider A,200,"GX500-14, AX900-9, GX500-13",838,98.35
+26,Australia,Provider B,500,"GX500-9, RT300-10, GX500-6, Pro1000-7",233,99.35
+27,South America,Provider B,100,"RT300-11, RT300-9, Elite4K-6",263,99.16
+28,South America,Provider D,100,"RT300-7, Elite4K-2, RT300-17, GX500-20",241,99.22
+29,Asia,Provider B,10,"Elite4K-8, GX500-13",141,98.74
+30,Europe,Provider B,10,Elite4K-3,790,99.03
+31,Australia,Provider D,200,"RT300-3, Pro1000-5, RT300-20, GX500-15",309,99.03
+32,North America,Provider A,500,"Pro1000-9, RT300-7, RT300-6, AX900-10",972,99.87
+33,Europe,Provider B,200,"GX500-1, Elite4K-5, Pro1000-6, AX900-6, Elite4K-14",202,98.79
+34,Europe,Provider B,50,"AX900-3, Elite4K-18, Elite4K-17, Pro1000-7, RT300-4",298,98.72
+35,North America,Provider B,500,"Pro1000-1, RT300-1",472,99.68
+36,Asia,Provider E,100,Elite4K-15,596,98.0
+37,North America,Provider E,500,"AX900-1, RT300-7, RT300-4, RT300-12",241,98.56
+38,Europe,Provider E,10,"GX500-18, Pro1000-6, AX900-14",479,99.72
+39,North America,Provider B,50,"GX500-5, RT300-8, Pro1000-4, RT300-10, GX500-19",718,99.95
+40,South America,Provider D,50,"RT300-18, Elite4K-2",142,98.69
+41,Asia,Provider A,100,"Pro1000-14, Elite4K-3, Pro1000-2",865,98.19
+42,Asia,Provider D,50,"AX900-18, RT300-2",175,99.41
+43,Australia,Provider B,50,"Pro1000-3, Pro1000-15, Pro1000-8, AX900-12",410,98.15
+44,Asia,Provider D,100,"RT300-14, GX500-11, Elite4K-3",807,99.38
+45,Australia,Provider C,100,"Pro1000-20, RT300-18, GX500-2, Pro1000-11, AX900-7",362,99.28
+46,Asia,Provider E,10,"Elite4K-11, RT300-13, GX500-9, Elite4K-1",276,99.99
+47,Europe,Provider C,10,"AX900-20, GX500-10, GX500-5, Pro1000-1, Pro1000-14",528,98.85
+48,North America,Provider C,200,"GX500-4, GX500-20, Elite4K-15, Elite4K-16",172,98.42
+49,Australia,Provider A,10,Pro1000-18,951,99.58
+50,Australia,Provider C,10,"GX500-4, RT300-17, Elite4K-9, Elite4K-2, GX500-8",862,98.68
+51,North America,Provider B,500,"GX500-14, Elite4K-7, AX900-16, AX900-7, RT300-10",429,99.7
+52,South America,Provider A,200,AX900-5,451,98.15
+53,North America,Provider A,100,"Pro1000-2, Pro1000-10, RT300-20, AX900-10, AX900-6",147,99.11
+54,Australia,Provider B,10,"Elite4K-17, GX500-6, Elite4K-16, Elite4K-2, RT300-16",379,98.15
+55,Europe,Provider C,100,"RT300-1, Pro1000-12",434,98.27
+56,North America,Provider A,200,"RT300-17, Elite4K-3",412,99.88
+57,South America,Provider E,100,"RT300-17, Pro1000-8, GX500-17, Elite4K-3, Elite4K-10",970,99.71
+58,South America,Provider A,200,"AX900-13, GX500-17",144,98.32
+59,Australia,Provider A,200,"GX500-11, Pro1000-11, Elite4K-10, GX500-15",379,99.09
+60,Asia,Provider E,10,"GX500-1, RT300-18, Pro1000-9, AX900-8, GX500-7",370,99.43
+61,Asia,Provider D,50,"AX900-8, GX500-20, AX900-16",385,98.42
+62,Asia,Provider A,200,"AX900-1, Elite4K-13, RT300-3, RT300-19, GX500-4",813,98.61
+63,South America,Provider D,100,"Pro1000-5, AX900-17, Elite4K-6",233,98.42
+64,Europe,Provider B,100,"RT300-13, AX900-12, GX500-12, AX900-2",666,99.9
+65,North America,Provider C,10,"GX500-5, RT300-18, Pro1000-4, RT300-19",209,99.16
+66,Europe,Provider A,100,"Elite4K-1, Pro1000-17",356,98.2
+67,South America,Provider E,500,"Pro1000-17, GX500-8, AX900-6, Elite4K-9",307,99.85
+68,Asia,Provider B,200,"Pro1000-7, Elite4K-13, Pro1000-3",317,98.51
+69,South America,Provider D,100,GX500-11,715,99.69
+70,South America,Provider C,50,"Elite4K-6, Pro1000-10, GX500-17, GX500-19",192,99.55
+71,South America,Provider B,10,"Pro1000-1, Elite4K-15, RT300-6",492,99.73
+72,North America,Provider A,100,"Elite4K-14, RT300-4",624,98.32
+73,Asia,Provider A,200,"GX500-7, RT300-14",729,98.34
+74,Australia,Provider B,100,"GX500-15, Elite4K-7, GX500-2",265,98.05
+75,Europe,Provider E,10,Pro1000-16,973,98.86
+76,Asia,Provider D,10,"RT300-3, RT300-15, Pro1000-7, Pro1000-19, Elite4K-2",926,99.45
+77,Australia,Provider B,500,"Pro1000-4, GX500-18",544,98.56
+78,Australia,Provider D,10,"GX500-9, Elite4K-15, RT300-1, Pro1000-7, Elite4K-12",635,99.83
+79,Australia,Provider C,200,AX900-13,225,98.14
+80,Europe,Provider B,10,Elite4K-12,881,99.92
+81,North America,Provider D,10,"AX900-14, GX500-8",127,99.8
+82,Asia,Provider E,50,"Pro1000-13, AX900-8, Pro1000-8",872,99.26
+83,South America,Provider A,100,GX500-2,378,99.1
+84,Europe,Provider D,10,"Pro1000-16, GX500-3",468,99.13
+85,North America,Provider E,50,"Elite4K-17, Pro1000-11, Pro1000-10, AX900-13",448,99.37
+86,Australia,Provider D,500,"RT300-20, Pro1000-3, Elite4K-12, Elite4K-15",762,99.91
+87,Australia,Provider B,10,"AX900-15, Elite4K-12, RT300-4, RT300-9",387,98.02
+88,North America,Provider D,500,"RT300-16, Pro1000-10, AX900-12, Elite4K-19",210,98.97
+89,Australia,Provider C,500,"Elite4K-15, Elite4K-2, RT300-8, GX500-13",973,99.52
+90,Australia,Provider B,500,"RT300-4, AX900-5, RT300-18",189,98.79
+91,North America,Provider E,10,"Pro1000-14, Elite4K-5, Elite4K-20, Elite4K-8",429,98.45
+92,Europe,Provider C,200,"AX900-9, AX900-6",867,99.17
+93,Asia,Provider B,50,"GX500-15, GX500-9",913,98.22
+94,South America,Provider D,200,"Elite4K-10, GX500-16, Elite4K-7",829,99.52
+95,South America,Provider D,50,"Elite4K-4, Elite4K-9, RT300-16",233,99.85
+96,North America,Provider D,10,"Elite4K-20, Pro1000-7, GX500-20",670,98.63
+97,North America,Provider B,50,"RT300-14, AX900-17",217,99.78
+98,Asia,Provider C,100,Elite4K-7,599,98.87
+99,South America,Provider C,100,Pro1000-5,140,98.53
+100,Asia,Provider C,500,"RT300-16, RT300-15, GX500-7",428,98.21
+101,South America,Provider E,10,"GX500-17, Elite4K-5",970,99.71
+102,North America,Provider E,50,"Pro1000-6, RT300-18",176,99.26
+103,Europe,Provider A,50,"RT300-6, Elite4K-5, Pro1000-13, RT300-20, GX500-14",953,99.28
+104,Europe,Provider A,50,"Pro1000-6, Elite4K-16",757,99.57
+105,Europe,Provider C,200,"Pro1000-13, Elite4K-7",419,98.69
+106,South America,Provider D,500,"RT300-10, Pro1000-8, GX500-18",623,99.89
+107,Europe,Provider B,200,"AX900-15, Pro1000-16",162,98.29
+108,North America,Provider A,50,"GX500-15, Elite4K-10, Elite4K-14, Pro1000-8",714,98.7
+109,Europe,Provider A,500,"RT300-8, Elite4K-18, RT300-10, AX900-2, Pro1000-10",722,98.39
+110,Australia,Provider E,10,"Elite4K-1, RT300-1, Pro1000-15, Pro1000-2, Elite4K-15",803,99.91
+111,Asia,Provider E,50,"Elite4K-9, GX500-19",361,98.02
+112,Australia,Provider D,500,"RT300-19, AX900-5, AX900-4, Pro1000-5, Elite4K-5",741,98.1
+113,Europe,Provider B,500,AX900-19,509,98.16
+114,North America,Provider C,10,"AX900-17, Pro1000-6",122,99.96
+115,Europe,Provider C,50,"RT300-12, AX900-1",356,99.46
+116,South America,Provider D,200,"Elite4K-11, RT300-5, Elite4K-4",718,98.37
+117,Asia,Provider A,500,"Elite4K-7, Pro1000-6, AX900-18, AX900-13",946,99.37
+118,Asia,Provider D,200,"Pro1000-12, AX900-4, Pro1000-20",304,98.76
+119,North America,Provider A,50,"RT300-18, Pro1000-9, RT300-12",685,99.94
+120,North America,Provider A,500,"RT300-9, AX900-14, Elite4K-7, Elite4K-18",777,99.4
+121,North America,Provider D,200,"RT300-6, Pro1000-5, AX900-9",338,99.35
+122,Australia,Provider D,500,Elite4K-4,434,98.77
+123,Asia,Provider E,50,"GX500-18, Elite4K-6, GX500-16",646,98.65
+124,Asia,Provider C,50,RT300-8,988,99.73
+125,South America,Provider B,100,"AX900-4, Elite4K-3, Elite4K-20",460,99.8
+126,South America,Provider B,500,Elite4K-14,783,98.31
+127,Australia,Provider B,200,"Elite4K-2, AX900-1, RT300-12, Pro1000-19, GX500-3",588,99.31
+128,South America,Provider D,50,"RT300-17, GX500-4, AX900-20",605,98.89
+129,South America,Provider A,200,"RT300-5, Pro1000-18, AX900-1, Elite4K-13, RT300-1",383,98.94
+130,Asia,Provider E,10,RT300-17,689,98.84
+131,South America,Provider B,50,"Pro1000-16, Elite4K-3, GX500-16, GX500-11",157,98.18
+132,North America,Provider B,10,RT300-9,128,99.58
+133,North America,Provider E,500,"Pro1000-1, AX900-6",467,98.31
+134,North America,Provider B,10,"RT300-8, RT300-3, Elite4K-19, GX500-4, RT300-14",322,99.56
+135,Asia,Provider D,100,"Pro1000-19, RT300-11, AX900-18",730,99.18
+136,North America,Provider A,200,Pro1000-13,648,98.39
+137,Asia,Provider B,200,"GX500-12, Pro1000-20, RT300-3, RT300-20",933,99.29
+138,South America,Provider C,200,"Elite4K-19, Pro1000-18",278,98.67
+139,North America,Provider A,10,"Elite4K-6, Elite4K-8, Pro1000-19",114,99.15
+140,Europe,Provider E,50,"Pro1000-5, Pro1000-3, GX500-12",564,98.71
+141,Asia,Provider C,100,"RT300-14, GX500-11, GX500-9",247,99.9
+142,Australia,Provider D,50,"RT300-9, RT300-1, Pro1000-20, Elite4K-1, Pro1000-3",372,98.18
+143,North America,Provider E,200,"Pro1000-20, Elite4K-11, RT300-19, Pro1000-2, Pro1000-5",981,98.54
+144,Europe,Provider A,100,"GX500-3, Elite4K-2, RT300-9, RT300-15, GX500-5",375,100.0
+145,Australia,Provider D,100,"Pro1000-10, Elite4K-1",692,99.77
+146,Asia,Provider C,50,"AX900-10, RT300-7, Pro1000-3",240,99.96
+147,Europe,Provider A,100,"RT300-13, AX900-11",623,98.83
+148,South America,Provider E,200,"Elite4K-19, Elite4K-15, GX500-6, GX500-2, RT300-20",326,99.71
+149,South America,Provider E,200,"GX500-1, Elite4K-20",616,99.59
+150,North America,Provider E,10,"RT300-1, Elite4K-4, GX500-19, Pro1000-19, Pro1000-17",238,99.03
+151,Australia,Provider B,100,"AX900-8, Elite4K-14",253,99.13
+152,Europe,Provider B,10,Elite4K-15,572,99.01
+153,Australia,Provider C,200,"AX900-7, Elite4K-4",677,99.65
+154,Asia,Provider A,500,"GX500-3, Pro1000-5, Pro1000-1, RT300-4",531,99.1
+155,South America,Provider C,50,"GX500-12, GX500-10, AX900-3, GX500-14",552,99.44
+156,Asia,Provider B,200,Elite4K-15,136,98.99
+157,Australia,Provider B,500,"Pro1000-3, RT300-5, RT300-12, Elite4K-2, GX500-5",220,98.2
+158,Europe,Provider C,50,AX900-6,903,98.48
+159,Europe,Provider A,500,RT300-11,177,98.98
+160,Europe,Provider D,50,"AX900-4, RT300-6, RT300-14, Pro1000-7, AX900-10",760,98.98
+161,North America,Provider D,200,"GX500-14, GX500-5, RT300-18, AX900-7, AX900-11",298,98.1
+162,South America,Provider C,50,"Pro1000-13, AX900-2, AX900-15, RT300-16",974,98.08
+163,Europe,Provider A,50,"Elite4K-9, Pro1000-6, Elite4K-7, Elite4K-18, RT300-13",461,99.65
+164,North America,Provider E,10,"Elite4K-6, Elite4K-7",637,99.02
+165,Europe,Provider C,10,"Elite4K-18, RT300-15, GX500-10",491,98.15
+166,Australia,Provider D,100,"Pro1000-5, Pro1000-15, Pro1000-16, AX900-20, GX500-3",334,99.06
+167,South America,Provider D,10,"GX500-13, Pro1000-2",491,99.45
+168,Asia,Provider C,200,GX500-6,822,99.56
+169,Asia,Provider B,10,"RT300-5, RT300-18, GX500-6",330,99.22
+170,Australia,Provider C,500,"Elite4K-1, Elite4K-12",411,99.14
+171,Europe,Provider E,100,Pro1000-4,634,99.6
+172,South America,Provider A,200,"RT300-18, RT300-16, RT300-15, AX900-5, AX900-2",837,99.2
+173,Australia,Provider B,10,"AX900-7, Elite4K-14, AX900-3, GX500-16, Elite4K-9",660,98.34
+174,Asia,Provider B,500,"Elite4K-17, Elite4K-8, Pro1000-15, AX900-17",451,99.93
+175,Europe,Provider D,200,"GX500-13, RT300-1, Elite4K-3",454,98.69
+176,Europe,Provider D,100,RT300-16,612,99.3
+177,South America,Provider B,200,"Pro1000-19, AX900-11",296,99.2
+178,Australia,Provider C,50,"AX900-19, Elite4K-17, Pro1000-16",562,98.65
+179,South America,Provider B,50,"Pro1000-18, RT300-17",671,98.78
+180,Asia,Provider D,100,"Pro1000-1, GX500-19, Pro1000-15, RT300-3",434,98.06
+181,Europe,Provider A,500,"GX500-12, Pro1000-17, RT300-10",712,99.61
+182,Australia,Provider A,500,"RT300-18, Elite4K-8, Pro1000-8, AX900-11, RT300-7",260,99.48
+183,Europe,Provider B,500,"Elite4K-9, Pro1000-1, Pro1000-11, GX500-16",763,98.91
+184,North America,Provider B,200,"GX500-18, AX900-17, RT300-5, Pro1000-13, AX900-12",728,99.36
+185,Europe,Provider B,500,"GX500-3, Pro1000-1, Pro1000-17, Pro1000-11",445,98.04
+186,Asia,Provider E,200,"Pro1000-17, GX500-12",402,98.5
+187,South America,Provider A,500,"Elite4K-19, Elite4K-6, AX900-14, AX900-17, Elite4K-12",161,98.19
+188,Australia,Provider E,50,"RT300-14, GX500-11",823,98.74
+189,Asia,Provider D,200,RT300-11,326,98.5
+190,South America,Provider D,500,"Elite4K-19, RT300-3, GX500-13",891,99.18
+191,Europe,Provider C,500,"Pro1000-15, Elite4K-9",415,98.3
+192,Europe,Provider E,10,"GX500-7, GX500-11, AX900-4, RT300-13, Elite4K-1",115,98.39
+193,North America,Provider A,200,Pro1000-16,347,99.38
+194,Australia,Provider E,500,"RT300-15, AX900-13",770,99.93
+195,South America,Provider B,500,RT300-16,128,98.11
+196,Europe,Provider B,50,"Pro1000-12, GX500-5, AX900-10, GX500-4",805,99.49
+197,South America,Provider B,100,Pro1000-20,419,99.4
+198,North America,Provider A,500,"RT300-10, RT300-3, Pro1000-1, AX900-4, AX900-17",866,99.71
+199,Australia,Provider C,200,"RT300-15, Elite4K-20",637,99.82
+200,Australia,Provider C,500,"GX500-11, GX500-6, AX900-5, Pro1000-9",483,98.67
+201,Europe,Provider E,10,"Pro1000-6, Pro1000-3, Elite4K-17",691,98.91
+202,South America,Provider E,100,"RT300-7, Pro1000-2, RT300-12, Elite4K-13",329,98.73
+203,Europe,Provider B,100,"GX500-1, Elite4K-10, Pro1000-5, AX900-15, GX500-15",559,98.29
+204,Australia,Provider C,10,"RT300-14, Pro1000-7, GX500-4, Elite4K-11, Pro1000-5",114,98.5
+205,Australia,Provider A,500,"AX900-8, GX500-5, AX900-11, Pro1000-15, AX900-1",872,99.26
+206,South America,Provider E,100,GX500-4,680,99.1
+207,Asia,Provider B,500,"Elite4K-4, RT300-15",191,99.03
+208,South America,Provider A,10,"AX900-12, GX500-3, GX500-5, Elite4K-16, RT300-12",939,98.09
+209,North America,Provider A,10,"AX900-8, AX900-5, AX900-4, Pro1000-6",520,99.43
+210,Europe,Provider C,500,"Pro1000-7, Pro1000-13, Pro1000-18, RT300-4, GX500-14",754,99.87
+211,North America,Provider E,50,"AX900-6, GX500-6, RT300-7, GX500-18",265,99.31
+212,South America,Provider D,50,"Elite4K-20, Elite4K-4, GX500-7, Pro1000-7",828,100.0
+213,Asia,Provider A,50,"Elite4K-20, Pro1000-4, RT300-5",468,98.11
+214,North America,Provider D,500,"Pro1000-12, GX500-10, Pro1000-3, Pro1000-5",701,99.3
+215,Europe,Provider A,500,"RT300-10, Elite4K-19",762,98.47
+216,North America,Provider B,500,"RT300-3, GX500-12, Pro1000-1, GX500-18, Elite4K-10",279,99.26
+217,Australia,Provider E,10,"AX900-9, AX900-4, Elite4K-17",750,99.87
+218,Europe,Provider A,200,GX500-11,321,99.4
+219,Asia,Provider C,200,"RT300-11, AX900-17",538,98.11
+220,North America,Provider C,50,"GX500-17, AX900-7, Elite4K-7",688,99.36
+221,Asia,Provider B,200,GX500-10,186,98.44
+222,North America,Provider D,50,"RT300-10, AX900-3",580,98.57
+223,North America,Provider C,50,"GX500-13, Pro1000-11, AX900-1, Pro1000-17",798,98.4
+224,Europe,Provider C,100,"Pro1000-1, RT300-4, GX500-4, Pro1000-6, Pro1000-14",381,98.18
+225,Asia,Provider A,50,"Elite4K-16, Elite4K-19, Elite4K-10, AX900-1",135,98.61
+226,Europe,Provider C,100,"Pro1000-5, AX900-16, Pro1000-10, Elite4K-7",791,99.81
+227,Europe,Provider D,100,"Elite4K-15, Elite4K-17, Pro1000-17, AX900-8",779,98.06
+228,Asia,Provider E,200,"AX900-20, RT300-2, Elite4K-9",627,99.22
+229,Europe,Provider D,500,"RT300-1, RT300-5, Pro1000-19",230,99.44
+230,South America,Provider C,10,"GX500-1, Pro1000-20, RT300-19, Elite4K-17",742,98.11
+231,Asia,Provider D,500,"Pro1000-15, AX900-8, Pro1000-4, Pro1000-7, Pro1000-8",579,99.23
+232,Asia,Provider D,10,AX900-1,865,99.72
+233,North America,Provider A,200,"RT300-2, Elite4K-18, Elite4K-13",849,99.4
+234,North America,Provider D,10,Elite4K-5,784,98.19
+235,North America,Provider A,500,"AX900-8, Pro1000-7, Elite4K-10, RT300-15, Pro1000-5",341,98.7
+236,North America,Provider B,500,"RT300-19, AX900-13, Pro1000-12",788,98.93
+237,South America,Provider E,100,"GX500-16, Elite4K-5, AX900-9, AX900-3, Pro1000-8",883,99.82
+238,Australia,Provider D,500,Pro1000-3,633,98.99
+239,Europe,Provider C,200,"Pro1000-16, RT300-1, AX900-6",141,99.31
+240,North America,Provider C,200,"AX900-12, Elite4K-9",113,99.1
+241,Europe,Provider B,50,"AX900-17, GX500-9, RT300-12, AX900-4",372,99.92
+242,South America,Provider B,10,"Elite4K-14, Elite4K-10, GX500-1",616,98.97
+243,North America,Provider E,500,"AX900-15, Elite4K-8, RT300-12, Pro1000-18",279,98.14
+244,Europe,Provider A,200,"GX500-4, RT300-1, AX900-3, AX900-19, AX900-1",667,99.46
+245,North America,Provider E,10,"GX500-16, Elite4K-16",152,99.72
+246,South America,Provider B,100,"AX900-18, GX500-9, GX500-18, AX900-12, AX900-6",289,98.03
+247,South America,Provider E,200,"RT300-10, RT300-6, AX900-6, Elite4K-5, AX900-2",926,99.84
+248,Europe,Provider C,500,"AX900-6, GX500-15, RT300-7, Elite4K-2, AX900-2",857,98.0
+249,Australia,Provider E,100,AX900-7,165,99.3
+250,South America,Provider A,50,"RT300-12, Pro1000-11, RT300-1, GX500-15, RT300-5",957,98.86
+251,South America,Provider D,200,AX900-3,369,99.91
+252,Australia,Provider D,10,Pro1000-17,694,99.86
+253,Europe,Provider A,50,RT300-9,341,98.17
+254,Europe,Provider E,100,"RT300-16, Elite4K-9, Pro1000-19",236,98.39
+255,South America,Provider B,500,"AX900-7, RT300-17, RT300-12, Pro1000-15, GX500-8",553,98.4
+256,North America,Provider B,100,"GX500-1, AX900-10, Pro1000-5, Elite4K-4, RT300-3",305,98.68
+257,South America,Provider D,50,Pro1000-4,185,99.76
+258,North America,Provider C,10,"Elite4K-4, Pro1000-3, Pro1000-12",941,99.07
+259,Australia,Provider A,50,"AX900-8, Pro1000-9",902,98.68
+260,North America,Provider C,500,"RT300-20, GX500-10",841,98.9
+261,Europe,Provider B,500,"GX500-14, AX900-18, RT300-13, RT300-2, Elite4K-5",192,99.77
+262,South America,Provider B,500,"AX900-15, RT300-19, Pro1000-10, GX500-2",476,99.97
+263,Asia,Provider E,100,"GX500-14, Elite4K-3, GX500-18, RT300-16",966,99.08
+264,South America,Provider B,500,Pro1000-19,576,99.07
+265,Asia,Provider A,200,"RT300-2, Elite4K-20, GX500-5, Elite4K-3, Pro1000-15",117,98.82
+266,Europe,Provider A,200,"RT300-20, AX900-16, AX900-14, GX500-19",320,98.72
+267,Asia,Provider D,500,"AX900-18, AX900-7, Elite4K-20",890,99.39
+268,North America,Provider D,200,"AX900-12, Pro1000-19, GX500-18",987,98.66
+269,South America,Provider B,500,"RT300-6, Elite4K-8, Pro1000-6, AX900-9",636,99.83
+270,Australia,Provider A,10,"GX500-4, Pro1000-4, GX500-6",226,99.63
+271,North America,Provider D,500,"GX500-10, RT300-19, AX900-16",754,98.95
+272,South America,Provider D,200,"RT300-20, Pro1000-6",864,99.37
+273,Australia,Provider A,200,"GX500-4, GX500-11",681,98.17
+274,Australia,Provider D,10,"Elite4K-3, Elite4K-20",124,98.22
+275,South America,Provider D,50,"GX500-1, Pro1000-15, AX900-7, Pro1000-19",786,99.08
+276,Australia,Provider D,200,Pro1000-7,386,99.92
+277,South America,Provider E,100,"AX900-2, Pro1000-16, GX500-14, RT300-5, Elite4K-11",526,99.37
+278,North America,Provider A,10,"RT300-1, Elite4K-14, Elite4K-8",428,99.0
+279,North America,Provider D,10,"GX500-5, RT300-6",728,99.65
+280,Europe,Provider C,50,"Elite4K-17, RT300-13, Pro1000-19, AX900-17",616,99.74
+281,South America,Provider B,100,"AX900-6, GX500-9, GX500-7",446,99.22
+282,South America,Provider A,100,"RT300-12, RT300-10, Elite4K-20, RT300-13",886,98.3
+283,Europe,Provider A,100,"GX500-11, AX900-15, Elite4K-20, AX900-6, AX900-2",424,98.44
+284,Asia,Provider E,200,Pro1000-16,936,99.67
+285,Australia,Provider B,200,Pro1000-5,988,98.22
+286,Australia,Provider C,10,"Pro1000-9, AX900-19",795,99.03
+287,Asia,Provider A,50,"AX900-8, AX900-11, AX900-3",642,98.03
+288,Asia,Provider E,50,"RT300-18, AX900-11, GX500-12, GX500-9",219,98.39
+289,South America,Provider D,200,"Elite4K-4, RT300-19, Elite4K-13, GX500-15",912,98.53
+290,Australia,Provider D,100,"GX500-13, GX500-5",830,99.79
+291,North America,Provider C,100,"GX500-16, Elite4K-17, GX500-6, Pro1000-6",197,98.92
+292,North America,Provider D,100,"RT300-2, RT300-14, GX500-2, Pro1000-17, RT300-6",101,98.57
+293,Australia,Provider E,10,"RT300-3, GX500-4, AX900-17",371,98.13
+294,South America,Provider D,200,"RT300-12, RT300-14, AX900-15, RT300-8, Pro1000-13",843,99.74
+295,Asia,Provider E,10,"AX900-12, Pro1000-5, Pro1000-20, RT300-9",842,99.51
+296,Asia,Provider D,10,"GX500-6, GX500-5",577,98.27
+297,South America,Provider A,200,"RT300-17, AX900-15, AX900-18, AX900-10, RT300-1",862,99.54
+298,South America,Provider C,200,"GX500-15, Elite4K-4",276,98.86
+299,South America,Provider B,200,"RT300-4, AX900-2, Pro1000-14",693,98.19
+300,North America,Provider B,10,"GX500-1, AX900-8",593,98.02
+301,Australia,Provider C,100,Elite4K-3,264,98.04
+302,Europe,Provider B,50,"Pro1000-7, AX900-8, GX500-9",620,99.89
+303,Australia,Provider C,50,"GX500-12, GX500-2, AX900-19",784,99.96
+304,Europe,Provider A,200,"Elite4K-2, Elite4K-3",430,98.53
+305,Asia,Provider A,200,"Elite4K-16, Elite4K-12, RT300-6",167,99.37
+306,Europe,Provider C,50,GX500-15,356,99.9
+307,Europe,Provider C,100,"Elite4K-10, Pro1000-17, Elite4K-15",913,98.47
+308,Australia,Provider D,10,RT300-13,692,99.06
+309,North America,Provider D,50,"Pro1000-9, Elite4K-11",466,98.63
+310,Asia,Provider E,200,"AX900-19, Elite4K-6, GX500-9",140,99.08
+311,Europe,Provider D,50,RT300-15,773,98.56
+312,Australia,Provider C,200,"GX500-4, RT300-16, Elite4K-14, AX900-1, GX500-11",567,99.72
+313,North America,Provider D,50,"Pro1000-9, Pro1000-3, GX500-10, GX500-20",852,98.14
+314,Australia,Provider E,10,"GX500-8, AX900-19",188,98.82
+315,South America,Provider E,100,"AX900-8, Elite4K-9",786,99.18
+316,Asia,Provider A,500,"Pro1000-8, GX500-3, Elite4K-13",715,99.74
+317,Asia,Provider B,500,"AX900-11, AX900-12",612,98.65
+318,Europe,Provider E,50,"AX900-10, Pro1000-4, RT300-13, AX900-14",974,99.98
+319,North America,Provider C,100,RT300-15,369,99.79
+320,Asia,Provider D,10,"GX500-6, Pro1000-8, Elite4K-10",951,99.39
+321,Australia,Provider E,500,"Elite4K-4, AX900-6, Pro1000-12",423,98.41
+322,North America,Provider D,50,"AX900-8, AX900-3, AX900-7",452,98.85
+323,South America,Provider A,100,"RT300-6, Pro1000-5",968,98.13
+324,South America,Provider D,200,"GX500-14, Pro1000-4, GX500-11, RT300-4",169,99.21
+325,South America,Provider D,200,"RT300-9, Elite4K-1, AX900-17",425,98.95
+326,North America,Provider B,10,"GX500-14, Elite4K-16",478,98.62
+327,Asia,Provider B,500,"AX900-20, RT300-15, GX500-9, Pro1000-11",691,99.17
+328,Europe,Provider E,500,"RT300-5, Pro1000-14, RT300-19, RT300-9, Elite4K-8",879,98.78
+329,Asia,Provider B,100,"GX500-8, Elite4K-4, Elite4K-18",465,99.22
+330,Asia,Provider A,10,"Pro1000-10, Elite4K-3",285,99.33
+331,Europe,Provider A,500,"RT300-20, GX500-17, GX500-14",877,98.86
+332,Europe,Provider C,100,"RT300-11, AX900-4, AX900-7",277,99.65
+333,South America,Provider D,10,"GX500-15, Pro1000-3, AX900-6, Elite4K-20",341,98.18
+334,Europe,Provider D,200,"AX900-14, Pro1000-18, RT300-6, AX900-8",645,99.9
+335,South America,Provider E,200,"RT300-17, AX900-9, Elite4K-16, Elite4K-10",415,99.91
+336,Australia,Provider E,200,"RT300-7, Pro1000-1",232,99.26
+337,South America,Provider D,100,"RT300-8, AX900-20, Elite4K-11",894,98.89
+338,Australia,Provider B,100,"AX900-20, GX500-5, RT300-19, RT300-15, RT300-11",513,98.81
+339,North America,Provider D,200,Pro1000-12,621,99.09
+340,Asia,Provider D,50,Elite4K-5,105,99.43
+341,South America,Provider C,100,"Pro1000-18, Elite4K-8, GX500-17, GX500-4",409,99.22
+342,North America,Provider B,500,GX500-16,850,98.65
+343,North America,Provider A,50,GX500-17,795,99.46
+344,South America,Provider C,10,"GX500-4, RT300-5, RT300-19, AX900-1, RT300-6",492,98.93
+345,North America,Provider E,100,GX500-8,684,99.51
+346,North America,Provider A,100,Elite4K-7,506,99.16
+347,Europe,Provider E,50,Elite4K-18,540,99.02
+348,North America,Provider E,200,"GX500-10, Pro1000-7, GX500-20, RT300-13, AX900-12",928,99.54
+349,South America,Provider A,10,RT300-1,710,98.81
+350,Asia,Provider B,10,"RT300-11, GX500-6",549,98.56
+351,North America,Provider D,200,"Pro1000-12, AX900-3, GX500-10, Elite4K-4",820,98.21
+352,South America,Provider E,50,"Elite4K-16, GX500-7, Pro1000-1",656,99.45
+353,Asia,Provider C,500,"AX900-9, AX900-5, Elite4K-14, RT300-18, RT300-8",374,98.92
+354,North America,Provider A,100,"RT300-16, RT300-6, RT300-5, AX900-1, AX900-10",771,98.72
+355,Australia,Provider B,50,"Pro1000-17, Elite4K-20, AX900-16, RT300-14",162,98.74
+356,North America,Provider D,200,"AX900-5, GX500-11, RT300-1",993,98.58
+357,South America,Provider A,500,"GX500-15, AX900-9, GX500-9, GX500-14, Elite4K-8",810,98.32
+358,Europe,Provider B,200,"GX500-14, GX500-20, Pro1000-10",114,99.54
+359,Australia,Provider D,100,"Pro1000-4, RT300-17, Elite4K-18",720,98.14
+360,Asia,Provider D,50,RT300-6,983,98.18
+361,North America,Provider B,10,"Elite4K-4, Pro1000-19, AX900-20",670,99.4
+362,Australia,Provider A,100,"AX900-14, RT300-12",731,99.57
+363,Europe,Provider B,50,"Elite4K-1, Elite4K-3, Pro1000-19, RT300-4",496,98.14
+364,South America,Provider B,50,"RT300-2, Pro1000-18, RT300-13, Pro1000-13",320,99.87
+365,North America,Provider A,50,"Elite4K-18, AX900-11, RT300-4, Elite4K-5",548,98.63
+366,Asia,Provider D,200,Pro1000-5,874,99.56
+367,Europe,Provider D,100,"GX500-12, AX900-13, Pro1000-16, GX500-14, AX900-3",760,99.46
+368,Europe,Provider B,100,"Pro1000-15, Elite4K-4, RT300-8, Pro1000-14",113,98.05
+369,South America,Provider D,10,Pro1000-4,581,99.06
+370,North America,Provider E,10,"Elite4K-14, GX500-14, Pro1000-1",760,99.07
+371,Australia,Provider E,10,"Elite4K-4, GX500-19, RT300-1",504,99.28
+372,South America,Provider E,200,"AX900-4, AX900-17, Elite4K-7, GX500-6",347,98.45
+373,North America,Provider A,10,Pro1000-19,423,99.23
+374,North America,Provider E,100,"Elite4K-9, Elite4K-17, RT300-18, AX900-4, RT300-16",682,99.97
+375,North America,Provider B,200,"Pro1000-10, GX500-17, AX900-11",760,99.57
+376,North America,Provider C,500,GX500-20,687,98.66
+377,Australia,Provider D,10,"Pro1000-17, Pro1000-15, AX900-7",519,98.65
+378,North America,Provider A,50,"GX500-17, RT300-3",648,98.9
+379,South America,Provider B,100,RT300-5,207,99.24
+380,Europe,Provider D,500,"Pro1000-8, RT300-7, AX900-17",791,99.36
+381,North America,Provider A,10,AX900-3,573,98.74
+382,Europe,Provider E,10,"AX900-9, RT300-7",108,98.55
+383,Asia,Provider E,50,"GX500-14, Pro1000-16",706,99.25
+384,Asia,Provider D,50,"Elite4K-5, Elite4K-3, GX500-20, RT300-2",915,98.41
+385,South America,Provider D,100,AX900-3,780,98.11
+386,North America,Provider B,100,"AX900-6, RT300-4, Elite4K-20, AX900-17",462,99.78
+387,Asia,Provider E,50,"Pro1000-4, Elite4K-14, Elite4K-3",251,99.87
+388,South America,Provider C,10,"AX900-5, RT300-16, Pro1000-1, RT300-2",137,98.2
+389,Australia,Provider B,10,"RT300-16, GX500-18, Elite4K-8, Elite4K-13, Elite4K-14",368,98.63
+390,Australia,Provider E,500,Pro1000-16,709,99.6
+391,Australia,Provider C,10,"GX500-6, GX500-7, AX900-15",899,99.5
+392,Australia,Provider C,500,"AX900-8, RT300-5, AX900-3, Pro1000-8",938,99.84
+393,Australia,Provider D,100,Pro1000-4,166,99.51
+394,North America,Provider A,100,"RT300-4, Pro1000-19, GX500-19",451,98.2
+395,Asia,Provider C,200,"RT300-2, Pro1000-14",933,99.38
+396,South America,Provider C,100,"Elite4K-5, Elite4K-8, AX900-20, GX500-18",703,99.73
+397,Asia,Provider D,500,"GX500-9, GX500-1, GX500-12",250,99.15
+398,Europe,Provider E,100,"Elite4K-8, RT300-15, Elite4K-20, AX900-13",147,98.19
+399,Asia,Provider D,50,"RT300-11, AX900-14, GX500-4, AX900-19, AX900-6",422,98.52
+400,Asia,Provider E,10,AX900-2,692,98.4
+401,Europe,Provider B,100,GX500-8,559,99.38
+402,Australia,Provider D,100,"AX900-7, RT300-12, Pro1000-7, Pro1000-4, Elite4K-11",618,98.23
+403,North America,Provider D,10,"RT300-13, GX500-19, AX900-10",544,98.59
+404,North America,Provider D,10,"GX500-20, Pro1000-8",546,99.6
+405,North America,Provider B,100,GX500-5,157,98.92
+406,North America,Provider E,100,"RT300-18, GX500-8, Elite4K-19, GX500-14",325,99.32
+407,North America,Provider E,100,"RT300-2, Elite4K-10, GX500-10, RT300-3, Elite4K-17",475,99.37
+408,Australia,Provider A,200,AX900-7,345,98.35
+409,South America,Provider B,200,"Pro1000-1, GX500-9, GX500-13, RT300-19, AX900-7",561,98.76
+410,Australia,Provider E,100,"AX900-14, Elite4K-14",471,99.87
+411,Asia,Provider D,500,RT300-15,260,98.55
+412,North America,Provider E,200,"Elite4K-14, AX900-4, AX900-1",231,98.08
+413,Europe,Provider D,200,"RT300-8, GX500-13",169,99.48
+414,Europe,Provider B,100,"Pro1000-14, Pro1000-4, RT300-11, Pro1000-12, RT300-10",576,98.69
+415,South America,Provider E,100,Elite4K-20,861,99.82
+416,South America,Provider C,50,"AX900-8, GX500-5, Pro1000-20",820,98.14
+417,South America,Provider E,200,"Pro1000-6, Elite4K-20",926,98.56
+418,Asia,Provider A,10,"RT300-15, Elite4K-8, Pro1000-16, Elite4K-9, Elite4K-14",717,99.22
+419,Asia,Provider A,200,"RT300-18, RT300-2",862,98.65
+420,Europe,Provider E,100,"Elite4K-8, Elite4K-3",707,98.67
+421,Europe,Provider D,100,"Pro1000-19, Elite4K-10, GX500-10",753,98.35
+422,Asia,Provider B,200,"RT300-11, AX900-20, AX900-16",412,98.09
+423,South America,Provider A,10,"Pro1000-12, RT300-7, Elite4K-5",250,99.69
+424,Europe,Provider A,10,"Elite4K-7, AX900-8, AX900-4, GX500-3",866,98.43
+425,Australia,Provider A,50,"GX500-10, Pro1000-2, GX500-11, Elite4K-4",226,99.53
+426,Europe,Provider E,100,"AX900-10, AX900-11",599,99.97
+427,South America,Provider D,200,"Elite4K-2, Pro1000-18, Pro1000-2, Elite4K-9, AX900-11",326,98.91
+428,Australia,Provider D,200,"RT300-15, RT300-6",544,99.04
+429,Australia,Provider B,200,Pro1000-8,643,98.23
+430,Asia,Provider A,10,"Pro1000-17, Elite4K-13",850,99.48
+431,Asia,Provider D,10,"RT300-20, RT300-16, Elite4K-17, Elite4K-19, Pro1000-6",458,99.19
+432,Europe,Provider C,50,AX900-18,434,98.41
+433,Asia,Provider C,100,"AX900-6, AX900-5, GX500-15, AX900-9, RT300-13",750,99.8
+434,Asia,Provider C,100,"RT300-2, GX500-20, AX900-8, AX900-5, Pro1000-1",275,98.24
+435,South America,Provider C,100,"AX900-2, Pro1000-8, Pro1000-17, Pro1000-9, RT300-19",103,99.9
+436,Australia,Provider B,50,"Elite4K-3, AX900-19, GX500-14, AX900-13, Pro1000-17",910,99.35
+437,South America,Provider E,100,Elite4K-11,897,98.87
+438,Asia,Provider A,500,"AX900-3, Elite4K-17, RT300-16",505,99.42
+439,North America,Provider C,200,"Elite4K-3, RT300-7",706,98.26
+440,South America,Provider B,500,AX900-9,317,98.5
+441,South America,Provider C,50,"RT300-6, Pro1000-12, Pro1000-14, AX900-14",661,98.28
+442,Australia,Provider E,10,"GX500-13, AX900-9, AX900-3, Elite4K-8, RT300-10",325,98.84
+443,Europe,Provider B,200,"RT300-12, Pro1000-6, AX900-12, Pro1000-1, GX500-20",207,98.53
+444,South America,Provider C,100,Pro1000-16,317,98.38
+445,Asia,Provider E,500,RT300-19,449,99.02
+446,Europe,Provider A,10,"GX500-12, GX500-1, RT300-5, RT300-9",172,99.7
+447,Europe,Provider E,500,"Elite4K-13, Elite4K-10, AX900-19, Elite4K-18, GX500-7",441,98.18
+448,North America,Provider D,10,AX900-16,722,99.41
+449,Australia,Provider A,200,"Pro1000-8, RT300-6",899,98.11
+450,South America,Provider A,10,"RT300-8, GX500-2, RT300-17",307,98.83
+451,Europe,Provider A,200,"Elite4K-9, Elite4K-17, Pro1000-5, Pro1000-6",581,99.77
+452,Europe,Provider D,200,GX500-17,895,99.33
+453,Europe,Provider A,50,RT300-11,644,99.84
+454,Europe,Provider E,50,"Elite4K-15, AX900-11, Elite4K-17, RT300-17",353,99.02
+455,South America,Provider A,100,"AX900-13, RT300-14, AX900-6",421,98.97
+456,Europe,Provider B,50,"Elite4K-15, GX500-3, AX900-8",602,98.38
+457,North America,Provider B,500,"AX900-19, RT300-19, RT300-9",390,99.34
+458,Europe,Provider D,50,RT300-7,536,99.94
+459,South America,Provider B,200,"RT300-9, Pro1000-13, Pro1000-1",153,98.76
+460,Europe,Provider D,50,"AX900-13, RT300-20, GX500-18, Pro1000-9, RT300-8",117,99.95
+461,Asia,Provider C,10,GX500-10,964,98.94
+462,Asia,Provider D,10,Pro1000-14,852,98.6
+463,Asia,Provider D,500,"GX500-3, GX500-8, RT300-13, RT300-2",684,98.74
+464,Asia,Provider A,200,"AX900-9, Elite4K-2",381,99.32
+465,South America,Provider B,100,"GX500-13, Pro1000-3, Elite4K-13, RT300-9, AX900-11",663,98.17
+466,Europe,Provider E,200,Elite4K-3,542,98.3
+467,Asia,Provider C,50,"RT300-20, Pro1000-19",827,98.07
+468,Asia,Provider C,50,RT300-20,825,98.66
+469,Asia,Provider C,500,"RT300-8, Elite4K-15, GX500-12, Elite4K-9",866,99.91
+470,South America,Provider E,200,"RT300-10, GX500-20, GX500-12, Elite4K-2",380,99.29
+471,South America,Provider D,200,"AX900-1, AX900-9, RT300-13, Elite4K-20",389,99.11
+472,Australia,Provider C,100,Pro1000-19,149,99.42
+473,Australia,Provider B,10,"RT300-18, RT300-13, GX500-12",237,98.78
+474,Asia,Provider B,50,Pro1000-1,487,98.97
+475,North America,Provider A,200,"Elite4K-10, Elite4K-19, GX500-16, Elite4K-18",800,98.28
+476,South America,Provider A,200,"GX500-16, RT300-13, AX900-1, GX500-7, Elite4K-12",510,99.98
+477,South America,Provider E,100,"GX500-16, RT300-11",926,98.36
+478,North America,Provider E,200,"RT300-6, GX500-16, GX500-20, GX500-19, Pro1000-4",186,98.0
+479,Europe,Provider D,50,RT300-16,143,98.49
+480,Australia,Provider C,100,"GX500-10, GX500-7",565,98.69
+481,South America,Provider A,50,"GX500-2, Pro1000-19, RT300-13",565,99.97
+482,South America,Provider E,100,"AX900-4, RT300-8, RT300-10, GX500-16, AX900-12",884,99.04
+483,Australia,Provider B,50,"GX500-2, Pro1000-20, Pro1000-16",712,98.97
+484,Asia,Provider A,10,"Pro1000-11, AX900-12, Pro1000-15",362,98.49
+485,South America,Provider C,200,"Elite4K-5, Elite4K-11, Pro1000-4, Elite4K-10, Pro1000-1",857,99.53
+486,Australia,Provider B,50,"Elite4K-3, Pro1000-11, Elite4K-5, GX500-9, Pro1000-15",156,98.92
+487,Asia,Provider C,200,"RT300-13, GX500-6",483,98.05
+488,Europe,Provider B,200,"AX900-3, RT300-18, RT300-13",102,98.39
+489,Asia,Provider B,10,"RT300-18, GX500-14, Elite4K-3, Pro1000-4, RT300-14",412,99.96
+490,South America,Provider C,200,"GX500-3, RT300-14",526,98.24
+491,Australia,Provider E,10,"AX900-5, Pro1000-15, AX900-10, RT300-3",619,99.01
+492,Australia,Provider E,200,"Elite4K-13, Elite4K-15",584,98.03
+493,Europe,Provider A,100,"GX500-19, Elite4K-6",740,99.92
+494,Europe,Provider B,10,"Pro1000-6, GX500-8, Pro1000-2",447,99.11
+495,North America,Provider E,200,AX900-3,177,99.75
+496,South America,Provider A,50,"Elite4K-13, GX500-17",282,99.08
+497,Australia,Provider D,10,"Pro1000-17, RT300-3",627,99.29
+498,South America,Provider B,200,"AX900-16, Pro1000-11, GX500-14, Pro1000-3, AX900-6",954,98.76
+499,North America,Provider B,200,"AX900-14, RT300-17, Elite4K-18",441,98.53

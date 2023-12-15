@@ -20,8 +20,6 @@ from flask_cors import CORS
 import os
 
 class GPTRequestHandler:
-    def __init__(self, openai_api_key: str):
-        self.openai_api_key = openai_api_key
 
     def get_data_engineer_preprompt(self, file_paths: list):
         """
@@ -41,7 +39,7 @@ class GPTRequestHandler:
             Format all code in a single block like below:
             ```python
             # code
-            aggregated_data.to_csv('aggregated_data.csv')
+            aggregated_data.to_csv('web_upload/datasets/aggregated_data.csv')
             ```
         """.strip()
 
@@ -106,6 +104,7 @@ class GPTRequestHandler:
                     Training data can be found at {file_paths_str} 
                     You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
                     """,
+                    stream=False
                 )
 
                 suggestion = extract_code(
@@ -120,7 +119,6 @@ class GPTRequestHandler:
 
                 dict_to_dataframe(
                         data_dict = {
-                            'goal': self.goal_prompt,
                             'code_to_validate': code_to_validate,
                             'error_message': error_message,
                             'traceback': traceback,

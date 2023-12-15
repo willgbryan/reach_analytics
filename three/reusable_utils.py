@@ -2,7 +2,10 @@ import os
 import openai
 import numpy as np
 import pandas as pd
+from openai import OpenAI
 from typing import List, Dict, Any
+
+client = OpenAI(api_key='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')
 
 def dict_to_dataframe(data_dict: Dict, file_path: str):
     """
@@ -46,7 +49,7 @@ def send_request_to_gpt(
         if isinstance(context, str):
             context = [{"role": "user", "content": context}]
 
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-4",
             messages=[
                 # Establish the context of the conversation
@@ -143,7 +146,14 @@ def dataframe_summary(
 
         return output
 
-def extract_content_from_gpt_response(
-            response: (Any | List | Dict)
-            ) -> str:
-        return response['choices'][0]['message']['content']
+def extract_content_from_gpt_response(response: Any) -> str:
+    """
+    Extracts content from a GPT response.
+
+    Parameters:
+    response (Any): The GPT response to extract content from.
+
+    Returns:
+    str: Extracted content.
+    """
+    return response.choices[0].message.content

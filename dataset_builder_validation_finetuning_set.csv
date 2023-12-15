@@ -1,0 +1,700 @@
+code_to_validate,error_message,traceback,updated_code
+"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Server_Count', 'Location'], right_on=['Server_Type', 'Power_Usage_Watts', 'Location'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+",'Location',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Server_Type'], right_on=['Server_Type', 'Power_Usage_Watts'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Server_Type'], right_on=['Server_Type', 'Power_Usage_Watts'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+",'Server_Type',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+# Correcting the KeyError by using the correct column names in the electricity_cost dataframe for the merge
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Location'], right_on=['Server_Type', 'Location'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+# Correcting the KeyError by using the correct column names in the electricity_cost dataframe for the merge
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Location'], right_on=['Server_Type', 'Location'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+",'Location',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+# Assuming that dataframe electricity_cost has columns 'Server_Type' and 'Location' for the merge
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Location'], right_on=['Server_Type', 'Location'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Join the dataframes
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+# Assuming that dataframe electricity_cost has columns 'Server_Type' and 'Location' for the merge
+merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Location'], right_on=['Server_Type', 'Location'])
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+",'Location',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load datasets
+company_info = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Drop some unnecessary columns
+company_info.drop(columns='Unnamed: 0', inplace=True)
+datacenter_set.drop(columns='Unnamed: 0', inplace=True)
+electricity_cost.drop(columns='Unnamed: 0', inplace=True)
+graphics_card_spec.drop(columns='Unnamed: 0', inplace=True)
+
+# Split the 'Graphics_Cards_Used' column into multiple rows
+datacenter_set = datacenter_set.assign(Graphics_Cards_Used=datacenter_set.Graphics_Cards_Used.str.split(',')).explode('Graphics_Cards_Used').reset_index(drop=True)
+
+# Remove leading/trailing whitespace from 'Graphics_Cards_Used' column
+datacenter_set['Graphics_Cards_Used'] = datacenter_set['Graphics_Cards_Used'].str.strip()
+
+# Check the existence of the column before proceeding with merge operation
+required_columns = ['Graphics_Cards_Used', 'Provider', 'Location']
+dataframes = [datacenter_set, graphics_card_spec, company_info, electricity_cost]
+
+for column in required_columns:
+    for df in dataframes:
+        if column not in df.columns:
+            print(f'{column} does not exist in dataframe')
+            break
+
+# Perform merge operation    
+merged_df = pd.merge(datacenter_set, graphics_card_spec, how='left', left_on='Graphics_Cards_Used', right_on='Model')
+merged_df = pd.merge(merged_df, company_info, how='left', left_on='Provider', right_on='Company_Name')
+
+# Confirm that electricity_cost has columns 'Server_Type' and 'Location' before merge
+if 'Location' in electricity_cost.columns and 'Server_Type' in electricity_cost.columns:
+    merged_df = pd.merge(merged_df, electricity_cost, how='left', left_on=['Provider', 'Location'], right_on=['Server_Type', 'Location'])
+else:
+    print(""'Server_Type' and/or 'Location' columns not found in electricity_cost dataframe."")
+
+# Write to csv
+merged_df.to_csv('aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Joining the datasets again
+joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model')
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model')
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+",'Model',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Joining the datasets again
+joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Joining the datasets again
+joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+",'Model',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+# Let's be sure that 'Server_Type' exists in the dataframe before renaming
+if 'Server_Type' in electricity_cost_df.columns:
+    electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Joining the datasets again
+# Before joining, let's check if 'Model' exists in both dataframes
+if 'Model' in joined_df1.columns and 'Model' in electricity_cost_df.columns:
+    joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+# Let's check 'Model' exists in both dataframes before the merge
+if 'Model' in joined_df2.columns and 'Model' in graphics_card_spec_df.columns:
+    aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+# Let's be sure that 'Server_Type' exists in the dataframe before renaming
+if 'Server_Type' in electricity_cost_df.columns:
+    electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Joining the datasets again
+# Before joining, let's check if 'Model' exists in both dataframes
+if 'Model' in joined_df1.columns and 'Model' in electricity_cost_df.columns:
+    joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+# Let's check 'Model' exists in both dataframes before the merge
+if 'Model' in joined_df2.columns and 'Model' in graphics_card_spec_df.columns:
+    aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+",name 'joined_df2' is not defined,<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+# Let's be sure that 'Server_Type' exists in the dataframe before renaming
+if 'Server_Type' in electricity_cost_df.columns:
+    electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Declare joined_df2 before if statement to ensure it always exists
+joined_df2 = pd.DataFrame()
+
+# Joining the datasets again
+# Before joining, let's check if 'Model' exists in both dataframes
+if 'Model' in joined_df1.columns and 'Model' in electricity_cost_df.columns:
+    joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+# Let's check 'Model' exists in both dataframes before the merge
+if 'Model' in joined_df2.columns and 'Model' in graphics_card_spec_df.columns:
+    aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+"
+"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+# Let's be sure that 'Server_Type' exists in the dataframe before renaming
+if 'Server_Type' in electricity_cost_df.columns:
+    electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Declare joined_df2 before if statement to ensure it always exists
+joined_df2 = pd.DataFrame()
+
+# Joining the datasets again
+# Before joining, let's check if 'Model' exists in both dataframes
+if 'Model' in joined_df1.columns and 'Model' in electricity_cost_df.columns:
+    joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+# Let's check 'Model' exists in both dataframes before the merge
+if 'Model' in joined_df2.columns and 'Model' in graphics_card_spec_df.columns:
+    aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+",'Graphics_Card',<module 'traceback' from 'C:\\Program Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.11_3.11.1776.0_x64__qbz5n2kfra8p0\\Lib\\traceback.py'>,"
+import pandas as pd
+
+# Load the CSV dataframes
+company_info_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\company_info.csv')
+datacenter_set_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\datacenter_set.csv')
+electricity_cost_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\electricity_cost.csv')
+graphics_card_spec_df = pd.read_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\graphics_card_spec.csv')
+
+# Check the columns of all dataframes
+print(""company_info_df columns:"", company_info_df.columns)
+print(""datacenter_set_df columns:"", datacenter_set_df.columns)
+print(""electricity_cost_df columns:"", electricity_cost_df.columns)
+print(""graphics_card_spec_df columns:"", graphics_card_spec_df.columns)
+
+# Rename the 'Provider' column name to 'Company_Name' to join on like keys
+datacenter_set_df = datacenter_set_df.rename(columns={'Provider':'Company_Name'})
+
+# Join dataframes
+joined_df1 = pd.merge(company_info_df, datacenter_set_df, on='Company_Name')
+
+# Check columns after join
+print(""Columns after first join:"", joined_df1.columns)
+
+# Renaming 'Server_Type' column name to 'Model' to utilize it as similar key to join
+# Let's be sure that 'Server_Type' exists in the dataframe before renaming
+if 'Server_Type' in electricity_cost_df.columns:
+    electricity_cost_df = electricity_cost_df.rename(columns={'Server_Type':'Model'})
+
+# Declare joined_df2 before if statement to ensure it always exists
+joined_df2 = pd.DataFrame()
+
+# Joining the datasets again
+# Before joining, let's check if 'Model' exists in both dataframes
+if 'Model' in joined_df1.columns and 'Model' in electricity_cost_df.columns:
+    joined_df2 = pd.merge(joined_df1, electricity_cost_df, on='Model', how='left')  # Use a left join if 'Model' key might not be in all rows
+
+# Check columns after second join
+print(""Columns after second join:"", joined_df2.columns)
+
+# Splitting the 'Graphics_Cards_Used' into different rows
+if 'Graphics_Cards_Used' in joined_df2.columns:
+    graphics_card_df = joined_df2['Graphics_Cards_Used'].str.split(',', expand=True).stack()
+    graphics_card_df = graphics_card_df.reset_index(level=1, drop=True).rename('Graphics_Card')
+    joined_df2 = joined_df2.drop('Graphics_Cards_Used', axis=1).join(graphics_card_df)
+
+# Stripping any leading/trailing white spaces
+if 'Graphics_Card' in joined_df2.columns: # Checking if 'Graphics_Card' exists in the columns before trying to modify it.
+    joined_df2['Graphics_Card'] = joined_df2['Graphics_Card'].str.strip()
+
+# Renaming this column to 'Model' again for the final join
+joined_df2 = joined_df2.rename(columns={'Graphics_Card':'Model'})
+
+# Final merge
+# Let's check 'Model' exists in both dataframes before the merge
+if 'Model' in joined_df2.columns and 'Model' in graphics_card_spec_df.columns:
+    aggregated_data = pd.merge(joined_df2, graphics_card_spec_df, on='Model', how='left')  # Use a left join again
+
+# Check columns after final join
+print(""Columns after final join:"", aggregated_data.columns)
+
+# Writing the final dataframe to csv
+aggregated_data.to_csv('C:\\Users\\willb\\OneDrive\\Documents\\GitHub\\placeholder1\\web_upload/datasets\\aggregated_data.csv', index=False)
+"

@@ -46,7 +46,6 @@ from dataset_builder import GPTRequestHandler
 class Reach:
     def __init__(
             self,
-            openai_api_key: str, 
             marqo_index: str, 
             train_set_path: str, 
             dataset_description: str, 
@@ -54,7 +53,6 @@ class Reach:
             attempt_validation: bool,
             **kwargs,
             ) -> None:
-        self.openai_api_key = openai_api_key
         self.marqo_client = marqo.Client(url="http://localhost:8882")
         self.marqo_index = marqo_index
         self.context_file_name = "memory.txt"
@@ -125,9 +123,9 @@ class Reach:
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
             Always return an accuracy score and a model results dataframe with descriptive columns.
 
-            Always ensure to address the user_goal. Often this means using print() statements to communicate model results.
-
             Always ensure to generate plots and visuals to communicate the model's results.
+
+            Always 'print()' the model outputs to address the user_goal
 
             Format your response as:
 
@@ -170,7 +168,6 @@ class Reach:
             Reference the supplied user_goal, data_summary, and analysis_code in the context.
             Ideally these insights are actionable, that is to say, the user can leverage generated outputs to answer their question or accomplish their goal.
             """.strip()
-        self.openai_api_key = openai_api_key
 
         self.log = logger()
 
@@ -247,7 +244,7 @@ class Reach:
             response: (Any | List | Dict),
             ) -> List[str]:
         
-        content = response["choices"][0]["message"]["content"]
+        content = response.choices[0].message.content
         suggestions = content.strip('()').split(', ')
 
         return suggestions
@@ -406,7 +403,7 @@ class Reach:
             # self.log.info("Loading data context")
             print("Loading data context")
             preprocessing_context, df_context, validated_preprocessing_code = load_data_context()
-        
+
         else:
 
             # self.log.info("Interpreting the provided data")
@@ -519,7 +516,6 @@ class Reach:
                             prompt="Create new features for my dataset based on my user_goal, model_selection, and data_summary available in context."
                         )
                     )
-                print(f"feature engineering context: {feature_engineering_context}")
 
                 model_context = extract_content_from_gpt_response(
                         send_request_to_gpt(
@@ -534,6 +530,7 @@ class Reach:
                             prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code with plots to display the results, be sure to utilize the feature engineering code provided in the context."
                         )
                     )
+                
                 model_context_performance_metric_additions = extract_content_from_gpt_response(
                         send_request_to_gpt(
                             role_preprompt=self.performance_eval_preprompt, 
@@ -548,7 +545,7 @@ class Reach:
                             """
                         )
                     )
-                
+
                 if self.attempt_validation == True:
                     validated_code = self.code_validation_agent(
                         code_to_validate=extract_code(model_context_performance_metric_additions),
@@ -611,7 +608,6 @@ class Reach:
                 #         text_to_store=self.extract_code(model_context)
                 #     )
                 
-                print(f"Validated model code for {model}: {validated_code}")
                 # self.log.info(f"Validated model code for {model}: {validated_code}")
 
                 #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
@@ -631,7 +627,6 @@ class Reach:
                     )
                 
                 #TODO so_what return type is str | unbound, need to investigate this
-                print(so_what)
                 # self.log.info(so_what)
 
             #TODO weird things happening with MLFlow bogging runs, likely a local caching issue
@@ -709,7 +704,6 @@ class Reach:
 
                 
             #TODO so_what return type is str | unbound, need to investigate this
-            print(so_what)
 
         #TODO cleaning: below can be packed into a store_code_output function
         old_stdout = sys.stdout
@@ -742,4 +736,4 @@ class Reach:
                     "output": code_output,
                 }
             )
-        return code_output       
+        return code_output, validated_code   
