@@ -65,10 +65,22 @@ class Reach:
             As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
             Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.
             Otherwise return an explanation as to why a machine learning solution is not a good approach.
+
+            Example 1:
+
+            prompt: "Forecast the projected delivery of "X" product"
+
+            response: yes
+
+            Example 2:
+
+            prompt: "Plot web traffic overtime"
+
+            response: no
             """
 
         self.data_analyst_preprompt = f"""
-            As a data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
+            As the worlds leading data analyst and python coding assistant, your task is to develop python code to help users answer their question or accomplish their goal.
             Generate the necessary python code to answer the supplied prompt.
 
             You must always use print statements to output the results of the code.
@@ -79,84 +91,129 @@ class Reach:
 
             Data can be found at {self.train_set_path}.
 
+            Example:
+
+            prompt: "Plot my daily active users over the course of 2021"
+
+            response:
+
             ```python
-            # code
+            import pandas as pd
+            import seaborn as sns
+
+            # processing code for features to plot
+
+            # seaborn code
+
+            # display the plot
+
+            print("Your average for daily active users during 2021 was: <average_value>. The full plot has been displayed.)
+
             ```
             """.strip()
         
         self.preprocess_for_llm_preprompt = f"""
-            As a python coding assistant, your task is to use statistics and simple descriptive outputs to generate some understanding of a dataset given a light description.
+            As a world leading python coding assistant, your task is to use statistics and simple descriptive outputs to generate some understanding of a dataset given a light description.
             Leverage common exploratory data analysis and statistics packages such as numpy, pandas, etc, to output information about the dataset.              
             Data can be found at {self.train_set_path}.
             Your response must be valid python code.
-            Format your response as:
+
+            Example output:
 
             ```python
+            import pandas as pd
+            import numpy as np
+
             # code
             ```
             """.strip()
         self.feature_engineering_preprompt = """
-            As a machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
+            As a the worlds best machine learning assistant, your task is to help users build feature engineering python code to support their machine learning model selection and provided data information.
             Utilize the preprocessing_context in context for information about the dataset.
             You will respond with valid python code that generates new features for the dataset that are appropriate for the model_selection and the user_goal provided in the context.
             Generate as many features as possible, generate AT LEAST 3 new features.
-            Format your response as:
+
+            IMPORTANT: Think through the process for generating new features. Often, the quality of features heavily influence future model performance.
+            
+            Example output:
 
             ```python
-            # code
-            ```
-            All code should lie within a single: 
-            ```python
-            # code
-            ```
-            Do not return more than one:
-            ```python
-            # code
+            import pandas as pd
+            import numpy as np
+
+            # feature number 1 code
+
+            # feature number 2 code
+
+            # feature number 3 code
+
+            # more feature code if deemed appropriate
             ``` 
             """.strip()
+        
         self.model_development_preprompt = f"""
-            As a machine learning assistant, your task is to help users write machine learning model code.
+            As the worlds best machine learning assistant, your task is to help users write machine learning model code.
             You will respond with valid python code that defines a machine learning solution.
             Data information can be found in the context: data_summary, and preprocessing_context. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
             Data can be found at {self.train_set_path}.
-            Use the feature engineering code provided.
+
             Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
+
             Always return an accuracy score and a model results dataframe with descriptive columns.
 
             Always ensure to generate plots and visuals to communicate the model's results.
 
             Always 'print()' the model outputs to address the user_goal
 
-            Format your response as:
+            IMPORTANT: Think through your process when generating model code. Use the context provided to you in the form of feature_engineering_code, the data_summary, and preprocessing_context to influence the direction you take for model development.
+            IMPORTANT: Ensure the model addresses the user_goal and communicate findings using 'print()' statements.
+
+            Example output:
 
             ```python
-            # code
+            # necessary imports
+
+            # necessary preprocessing code from preprocessing_context
+
+            # features from feature_engineering_code
+
+            # machine learning model code
+
+            # communicate results
+            
             ```
-            All code should lie within a single: 
-            ```python
-            # code
-            ```
-            Do not return more than one:
-            ```python
-            # code
-            ``` 
             """.strip()
         self.performance_eval_preprompt = f"""
-            As a python coding assistant, your task is to help users add additional outputs to their machine learning model code to improve their understanding of the performed analysis.
+            As the worlds best python coding assistant, your task is to help users add additional outputs to their machine learning model code to improve their understanding of the performed analysis.
             Update the supplied machine learning model code with model performance evaluation logic such as, but not limited to, feature importance, ROC curves, etc.
             Prioritze generating new outputs as dataframes or strings and not visualizations.
-            Format your response as:
+            
+            Example output:
 
             ```python
-            # code
+            # necessary imports
+
+            # necessary preprocessing code from preprocessing_context
+
+            # features from feature_engineering_code
+
+            # machine learning model code
+
+            # performance metrics
+
+            # communicate model results
+            
             ```
             """.strip()
+
         self.validation_preprompt = f"""
-            As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
+            As the worlds best python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
             Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
             Training data can be found at {self.train_set_path}.
-            You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
-            Format your response as:
+
+            IMPORTANT: You must return all code, including lines changed for error fixes, and including unchanged lines.
+
+            Example output:
 
             ```python
             # code
@@ -519,7 +576,7 @@ class Reach:
 
                 model_context = extract_content_from_gpt_response(
                         send_request_to_gpt(
-                            role_preprompt=self.feature_engineering_preprompt, 
+                            role_preprompt=self.model_development_preprompt, 
                             context=[
                                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
