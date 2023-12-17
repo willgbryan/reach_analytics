@@ -29,7 +29,13 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-Within the app, defined in [testing.py](three/testing.py), @app.route('/process_prompt', methods=['POST']), @app.route('/upload_files', methods=['POST']), and @app.route('/datasets/<path:filename>', methods=['GET']) define 3 possible request bodies that can be sent to the app via the frontend: [main_page.js](reach-frontend/src/main_page.js). The return
+Within the app, defined in [testing.py](three/testing.py), the following define 3 possible request bodies that can be sent to the app via the frontend: [main_page.js](reach-frontend/src/main_page.js) in its current state.
+
+```python
+@app.route('/process_prompt', methods=['POST']) 
+@app.route('/upload_files', methods=['POST'])
+@app.route('/datasets/<path:filename>', methods=['GET']) 
+```
 
 In [main_page.js](reach-frontend/src/main_page.js), the following handles sending the user input value within the text box to the flask app as a POST request:
 
