@@ -8,8 +8,6 @@ Open and run the testing.py file. This will start up the flask app. The flask ap
 
 ## Connecting the backend using Flask
 
-This section will provide a detailed guide on how to connect the backend using Flask. The main files involved in this process are [testing.py](three/testing.py) and [main_page.js](reach-frontend/src/main_page.js).
-
 Flask enables defined methods or classes to act as API's with defined input request formats. In [testing.py](three/testing.py), the following code is used to configure the flask app and declare necessary file paths for functions such as uploading documents:
 
 ```python
