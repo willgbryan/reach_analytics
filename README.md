@@ -47,6 +47,24 @@ cd placeholder1
 
 ## Building the Docker Image
 
+Before running the container, you need to build the Docker image from the Dockerfile. Navigate to the root directory of the project where the Dockerfile is located and run the following command:
+
+```bash
+docker build -t reach-analytics
+```
+
+This command will build the Docker image with the tag `reach-analytics` from the Dockerfile in the current directory (denoted by the `.`).
+
+- `docker build` is the command to build the image.
+- `-t reach-analytics` tags the built image with the name `reach-analytics` for easy reference.
+- The `.` specifies the build context to the current directory.
+
+After the image has been successfully built, you can proceed to run the container as described in the "Running the Container" section.
+
+Make sure to replace `reach-analytics` with your preferred image name if you wish to use a different tag.
+
+## Running the Container
+
 To build the Docker image, run the following command:
 
 ```bash
