@@ -1,4 +1,4 @@
-![Banner Image](C:\Users\willb\OneDrive\Documents\GitHub\placeholder1\three\readme_banner.png)
+![Banner Image](./three/readme_banner.png)
 
 
 Reach analytics is an AI automated development program intended to tackle heavy analytics
