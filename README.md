@@ -112,7 +112,7 @@ Open and run the reach_main.py file. This will start up the flask app. The flask
 
 ## Connecting the backend using Flask
 
-Flask enables defined methods or classes to act as API's with defined input request formats. In [testing.py](three/testing.py), the following code is used to configure the flask app and declare necessary file paths for functions such as uploading documents:
+Flask enables defined methods or classes to act as API's with defined input request formats. In [reach_main.py](three/reach_main.py), the following code is used to configure the flask app and declare necessary file paths for functions such as uploading documents:
 
 ```python
 app = Flask(__name__)
@@ -133,7 +133,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 ```
 
-Within the app, defined in [testing.py](three/testing.py), the following define 3 possible request bodies that can be sent to the app via the frontend: [main_page.js](reach-frontend/src/main_page.js) in its current state.
+Within the app, defined in [reach_main.py](three/reach_main.py), the following define 3 possible request bodies that can be sent to the app via the frontend: [main_page.js](reach-frontend/src/main_page.js) in its current state.
 
 ```python
 @app.route('/process_prompt', methods=['POST']) 
