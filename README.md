@@ -1,12 +1,13 @@
 ![Banner Image](<Banner Image URL>)
 
-#   ____                  __       ___                __      __  _          
+```text
+    ____                  __       ___                __      __  _          
    / __ \___  ____ ______/ /_     /   |  ____  ____ _/ /_  __/ /_(_)_________
   / /_/ / _ \/ __ `/ ___/ __ \   / /| | / __ \/ __ `/ / / / / __/ / ___/ ___/
  / _, _/  __/ /_/ / /__/ / / /  / ___ |/ / / / /_/ / / /_/ / /_/ / /__(__  ) 
 /_/ |_|\___/\__,_/\___/_/ /_/  /_/  |_/_/ /_/\__,_/_/\__, /\__/_/\___/____/  
                                                     /____/    
-
+```
 <Functionality Description>
 
 ## Table of Contents
@@ -30,6 +31,7 @@ Before you begin, ensure you have met the following requirements:
 ## Building the Docker Image
 
 To build the Docker image, run the following command:
+
 bash
 docker run -e OPENAI_API_KEY='your_api_key' -p 5000:5000 <your-image-name>
 
