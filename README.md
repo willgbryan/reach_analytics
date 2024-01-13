@@ -1,14 +1,21 @@
 ![Banner Image](<Banner Image URL>)
 
 ```text
-\033[38;2;199;254;0m    ____                  __       ___                __      __  _          
+    ____                  __       ___                __      __  _          
    / __ \___  ____ ______/ /_     /   |  ____  ____ _/ /_  __/ /_(_)_________
   / /_/ / _ \/ __ `/ ___/ __ \   / /| | / __ \/ __ `/ / / / / __/ / ___/ ___/
  / _, _/  __/ /_/ / /__/ / / /  / ___ |/ / / / /_/ / / /_/ / /_/ / /__(__  ) 
 /_/ |_|\___/\__,_/\___/_/ /_/  /_/  |_/_/ /_/\__,_/_/\__, /\__/_/\___/____/  
-                                                    /____/    \033[0m
+                                                    /____/
 ```
-<Functionality Description>
+Reach analytics is an AI automated development program intended to tackle heavy analytics
+workloads such as machine learning model development, validation, and testing.
+
+Example use cases include but are not limited to:
+- Demand forecasting
+- Cluster modeling and regressions
+- Neural network classification
+- Recommendation systems
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
@@ -16,7 +23,7 @@
 - [Building the Docker Image](#building-the-docker-image)
 - [Running the Container](#running-the-container)
 - [Environment Variables](#environment-variables)
-- [Contributing](#contributing)
+- [Runtime Options](#runtime-options)
 - [License](#license)
 
 ## Prerequisites
@@ -34,17 +41,14 @@ To install reach analytics, you need to clone the repository and build the Docke
 1. Clone the repository:
 
 ```bash
-git clone <repository_url>
+gh repo clone willgbryan/placeholder1
 ```
-Replace `<repository_url>` with the URL of the repository.
 
 2. Navigate to the directory where the repository is cloned:
 
 ```bash
-cd <repository_name>
+cd placeholder1
 ```
-
-Replace `<repository_name>` with the name of the local repository directory.
 
 3. Proceed to the "Building the Docker Image" section to build your Docker image.
 
@@ -63,6 +67,20 @@ Replace `'your_api_key'` with your actual OpenAI API key.
 To run this project, you need to add the following environment variables to your Docker container:
 
 - `OPENAI_API_KEY`: Your OpenAI API key for accessing the OpenAI API.
+
+## Runtime Options
+
+Currently reach analytics supports two inputs:
+
+```bash
+file-upload
+```
+For uploading new data to the program.
+
+```bash
+process-prompt
+```
+For prompting the program to generate results.
 
 ## License
 
