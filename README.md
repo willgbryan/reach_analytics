@@ -24,7 +24,7 @@ Example use cases include but are not limited to:
 Before you begin, ensure you have met the following requirements:
 
 - You have installed the latest version of [Docker](https://docs.docker.com/get-docker/).
-- You have a Windows, Linux, or Mac machine. (Please state if other OS are supported.)
+- You have a Windows, Linux, or Mac machine.
 - You have read the related documentation or sections.
 
 ## Installation
