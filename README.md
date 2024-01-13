@@ -108,7 +108,7 @@ For license inquiries, please contact Will Bryan: will.bryan421@gmail.com.
 
 Route to /placeholder1/reach-frontend and run `npm start`. This will launch the main page on port 3000.
 
-Open and run the testing.py file. This will start up the flask app. The flask app will remaining running until it is stopped or a significant error causes a program exit.
+Open and run the reach_main.py file. This will start up the flask app. The flask app will remaining running until it is stopped or a significant error causes a program exit.
 
 ## Connecting the backend using Flask
 

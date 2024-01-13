@@ -5,7 +5,7 @@ import pandas as pd
 from openai import OpenAI
 from typing import List, Dict, Any
 
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='redact')
 
 def dict_to_dataframe(data_dict: Dict, file_path: str):
     """
@@ -50,7 +50,7 @@ def send_request_to_gpt(
             context = [{"role": "user", "content": context}]
 
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4-1106-preview",
             messages=[
                 # Establish the context of the conversation
                 {

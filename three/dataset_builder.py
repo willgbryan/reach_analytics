@@ -39,7 +39,7 @@ class GPTRequestHandler:
             Format all code in a single block like below:
             ```python
             # code
-            aggregated_data.to_csv('web_upload/datasets/aggregated_data.csv')
+            aggregated_data.to_csv('aggregated_data.csv')
             ```
         """.strip()
 

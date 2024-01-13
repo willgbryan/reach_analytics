@@ -4,7 +4,7 @@ import sys
 import warnings
 import marqo
 import mlflow
-import openai
+import time
 import requests
 import traceback
 import subprocess
@@ -12,6 +12,7 @@ import webbrowser
 import numpy as np
 import pandas as pd
 import mlflow.sklearn
+from tqdm import tqdm
 from log_module import logger
 from typing import Dict, List, Any
 # from griptape.structures import Workflow
@@ -179,7 +180,7 @@ class Reach:
 
             # machine learning model code
 
-            # communicate results
+            # print() statements to communicate model results addressing the user_goal.
             
             ```
             """.strip()
@@ -317,9 +318,12 @@ class Reach:
         attempts = 0
 
         while attempts < max_attempts:
+            print(f'Validation attempt: {attempts}')
+
             try:
                 exec(code_to_validate)
-                print("Code executed without errors.")
+                print('\033[38;2;199;254;0m' + 'Code executed without errors...' + '\033[0m')
+
                 # self.log.info("Code executed without errors.")
                 return code_to_validate
 
@@ -560,59 +564,69 @@ class Reach:
 
             for model in suggestions:
 
-                feature_engineering_context = extract_content_from_gpt_response(
-                        send_request_to_gpt(
-                            role_preprompt=self.feature_engineering_preprompt, 
-                            context=[
-                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                                {"role": "user", "content": f"model_selection: {model}"},
-                                {"role": "user", "content": f"data_summary: {df_context}"},
-                                {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+                with tqdm(total=100, desc="Generating model features...") as pbar:
+                    feature_engineering_context = extract_content_from_gpt_response(
+                            send_request_to_gpt(
+                                role_preprompt=self.feature_engineering_preprompt, 
+                                context=[
+                                    {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                                    {"role": "user", "content": f"model_selection: {model}"},
+                                    {"role": "user", "content": f"data_summary: {df_context}"},
+                                    {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
 
-                            ], 
-                            prompt="Create new features for my dataset based on my user_goal, model_selection, and data_summary available in context."
+                                ], 
+                                prompt="Create new features for my dataset based on my user_goal, model_selection, and data_summary available in context."
+                            )
                         )
-                    )
+                    pbar.update(100)
+                print('\033[38;2;199;254;0m' + 'Model features generated...' + '\033[0m')
 
-                model_context = extract_content_from_gpt_response(
-                        send_request_to_gpt(
-                            role_preprompt=self.model_development_preprompt, 
+                with tqdm(total=100, desc="Developing model...") as pbar:
+                    model_context = extract_content_from_gpt_response(
+                            send_request_to_gpt(
+                                role_preprompt=self.model_development_preprompt, 
+                                context=[
+                                    {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                                    {"role": "user", "content": f"data_summary: {df_context}"},
+                                    {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+                                    {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
+                                    {"role": "user", "content": f"memory: {memory_dict}"}
+                                ], 
+                                prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code with plots to display the results, be sure to utilize the feature engineering code provided in the context."
+                            )
+                        )
+                    pbar.update(100)
+                print('\033[38;2;199;254;0m' + 'Model development complete...' + '\033[0m')
+                # print('Identifying performance metrics...')
+                # model_context_performance_metric_additions = extract_content_from_gpt_response(
+                #         send_request_to_gpt(
+                #             role_preprompt=self.performance_eval_preprompt, 
+                #             context=[
+                #                 {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                #                 {"role": "user", "content": f"data_summary: {df_context}"},
+                #             ], 
+                #             prompt=f"""Based on my data_summary, user_goal, and the following code: {extract_code(model_context)}, 
+                #             update the code to include model performance evaluations to help me understand the insights the model is generating.
+                #             Training data can be found at {self.train_set_path}.
+                #             You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
+                #             """
+                #         )
+                #     )
+                # print('Model code updated to include performance metrics...')
+
+                with tqdm(total=100, desc='Validating all developed code. This can take some time...') as pbar:
+                    if self.attempt_validation == True:
+                        validated_code = self.code_validation_agent(
+                            code_to_validate=extract_code(model_context),
                             context=[
-                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
                                 {"role": "user", "content": f"data_summary: {df_context}"},
                                 {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
                                 {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
-                                {"role": "user", "content": f"memory: {memory_dict}"}
-                            ], 
-                            prompt="Based on my user_goal, data_summary, preprocessing_context, and feature_engineering_code. Generate the machine learning model code with plots to display the results, be sure to utilize the feature engineering code provided in the context."
+                            ],
+                            max_attempts=10,
                         )
-                    )
-                
-                model_context_performance_metric_additions = extract_content_from_gpt_response(
-                        send_request_to_gpt(
-                            role_preprompt=self.performance_eval_preprompt, 
-                            context=[
-                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                                {"role": "user", "content": f"data_summary: {df_context}"},
-                            ], 
-                            prompt=f"""Based on my data_summary, user_goal, and the following code: {extract_code(model_context)}, 
-                            update the code to include model performance evaluations to help me understand the insights the model is generating.
-                            Training data can be found at {self.train_set_path}.
-                            You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE ADDITIONS.
-                            """
-                        )
-                    )
+                    pbar.update(100)
 
-                if self.attempt_validation == True:
-                    validated_code = self.code_validation_agent(
-                        code_to_validate=extract_code(model_context_performance_metric_additions),
-                        context=[
-                            {"role": "user", "content": f"data_summary: {df_context}"},
-                            {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
-                            {"role": "user", "content": f"feature_engineering_code: {feature_engineering_context}"},
-                        ],
-                        max_attempts=10,
-                    )
 
                 # self.add_index(index_name=index_name)
 
@@ -727,27 +741,33 @@ class Reach:
 
             print('No modelling is required. Beginning analysis')
         
-            analysis_response_context = extract_content_from_gpt_response(
-                    send_request_to_gpt(
-                        role_preprompt=self.data_analyst_preprompt, 
-                        context=[
-                            {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
-                            {"role": "user", "content": f"data_summary: {df_context}"},
-                            {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
-                            {"role": "user", "content": f"memory: {memory_dict}"}
-                            ], 
-                        prompt="Analyze the supplied user_goal, data_summary, preprocessing_context, and memory in the context and generate python code that, when run, answers my question provided in user_goal in the context. Be sure to always check in the memory section of the context for relevant information."
+            with tqdm(total=100, desc="Developing code...") as pbar:
+
+                analysis_response_context = extract_content_from_gpt_response(
+                        send_request_to_gpt(
+                            role_preprompt=self.data_analyst_preprompt, 
+                            context=[
+                                {"role": "user", "content": f"user_goal: {self.goal_prompt}"},
+                                {"role": "user", "content": f"data_summary: {df_context}"},
+                                {"role": "user", "content": f"preprocessing_context: {preprocessing_context}"},
+                                {"role": "user", "content": f"memory: {memory_dict}"}
+                                ], 
+                            prompt="Analyze the supplied user_goal, data_summary, preprocessing_context, and memory in the context and generate python code that, when run, answers my question provided in user_goal in the context. Be sure to always check in the memory section of the context for relevant information."
+                        )
                     )
-                )
-            
-            if self.attempt_validation == True:
-                    validated_code = self.code_validation_agent(
-                        code_to_validate=extract_code(analysis_response_context),
-                        context=[
-                            {"role": "user", "content": f"data_summary: {df_context}"},
-                        ],
-                        max_attempts=10,
-                    )
+                pbar.update(100)
+            print('\033[38;2;199;254;0m' + 'Development complete...' + '\033[0m')
+
+            with tqdm(total=100, desc='Validating all developed code. This can take some time...') as pbar:
+                if self.attempt_validation == True:
+                        validated_code = self.code_validation_agent(
+                            code_to_validate=extract_code(analysis_response_context),
+                            context=[
+                                {"role": "user", "content": f"data_summary: {df_context}"},
+                            ],
+                            max_attempts=10,
+                        )
+                pbar.update(100)
 
             if self.attempt_validation == True:
                     so_what = self.so_what_description(

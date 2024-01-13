@@ -1,29 +1,24 @@
-FROM python:3.10
+FROM python:3.11.7-slim
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    libopenblas-dev \
-    liblapack-dev \
-    libxslt-dev \
-    libxml2-dev \
-    libffi-dev \
-    zlib1g-dev \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+COPY . /usr/src/app
 
-RUN pip install --no-cache-dir \
-    torch torchvision torchaudio \
-    tensorflow \
-    sklearn \
-    xgboost \
-    matplotlib \
-    seaborn \
-    pandas \
-    mlflow \ 
-    openai \
-    marqo \ 
-    numpy
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "script_runner.py"]
+EXPOSE 5000
+
+ENV NAME World
+
+COPY entrypoint.sh /usr/src/app/entrypoint.sh
+
+RUN chmod +x /usr/src/app/entrypoint.sh
+
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+
+# terminal mode
+CMD ["python", "./three/testing.py"]
+
+# # ui mode
+# CMD ["python", "./three/testing.py", "ui"]
