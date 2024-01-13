@@ -1,13 +1,6 @@
-![Banner Image](<Banner Image URL>)
+![Banner Image](C:\Users\willb\OneDrive\Documents\GitHub\placeholder1\three\readme_banner.png)
 
-```text
-    ____                  __       ___                __      __  _          
-   / __ \___  ____ ______/ /_     /   |  ____  ____ _/ /_  __/ /_(_)_________
-  / /_/ / _ \/ __ `/ ___/ __ \   / /| | / __ \/ __ `/ / / / / __/ / ___/ ___/
- / _, _/  __/ /_/ / /__/ / / /  / ___ |/ / / / /_/ / / /_/ / /_/ / /__(__  ) 
-/_/ |_|\___/\__,_/\___/_/ /_/  /_/  |_/_/ /_/\__,_/_/\__, /\__/_/\___/____/  
-                                                    /____/
-```
+
 Reach analytics is an AI automated development program intended to tackle heavy analytics
 workloads such as machine learning model development, validation, and testing.
 
