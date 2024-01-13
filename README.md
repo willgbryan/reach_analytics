@@ -70,7 +70,7 @@ To run this project, you need to add the following environment variables to your
 
 ## Runtime Options
 
-Currently reach analytics supports two inputs:
+Currently reach analytics supports three inputs:
 
 ```bash
 file-upload
@@ -82,9 +82,16 @@ process-prompt
 ```
 For prompting the program to generate results.
 
+```bash
+clear-data
+```
+For wiping the systems conceptual understanding of provided data.
+
 ## License
 
-This project uses the following license: [<license_name>](<link_to_license>).
+This software is the property of reach. All rights reserved. No part of this software may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the owner.
+
+For license inquiries, please contact Will Bryan: will.bryan421@gmail.com.
 
 ## Starting the app in UI mode
 
