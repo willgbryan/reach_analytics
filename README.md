@@ -1,12 +1,12 @@
 ![Banner Image](<Banner Image URL>)
 
 ```text
-    ____                  __       ___                __      __  _          
+\033[38;2;199;254;0m    ____                  __       ___                __      __  _          
    / __ \___  ____ ______/ /_     /   |  ____  ____ _/ /_  __/ /_(_)_________
   / /_/ / _ \/ __ `/ ___/ __ \   / /| | / __ \/ __ `/ / / / / __/ / ___/ ___/
  / _, _/  __/ /_/ / /__/ / / /  / ___ |/ / / / /_/ / / /_/ / /_/ / /__(__  ) 
 /_/ |_|\___/\__,_/\___/_/ /_/  /_/  |_/_/ /_/\__,_/_/\__, /\__/_/\___/____/  
-                                                    /____/    
+                                                    /____/    \033[0m
 ```
 <Functionality Description>
 
@@ -24,16 +24,37 @@
 Before you begin, ensure you have met the following requirements:
 
 - You have installed the latest version of [Docker](https://docs.docker.com/get-docker/).
-- You have a `<Windows/Linux/Mac>` machine. State if other OS are supported.
-- You have read `<related documentation or sections>`.
+- You have a Windows, Linux, or Mac machine. (Please state if other OS are supported.)
+- You have read the related documentation or sections.
 
+## Installation
+
+To install reach analytics, you need to clone the repository and build the Docker image. Follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone <repository_url>
+```
+Replace `<repository_url>` with the URL of the repository.
+
+2. Navigate to the directory where the repository is cloned:
+
+```bash
+cd <repository_name>
+```
+
+Replace `<repository_name>` with the name of the local repository directory.
+
+3. Proceed to the "Building the Docker Image" section to build your Docker image.
 
 ## Building the Docker Image
 
 To build the Docker image, run the following command:
 
-bash
+```bash
 docker run -e OPENAI_API_KEY='your_api_key' -p 5000:5000 <your-image-name>
+```
 
 Replace `'your_api_key'` with your actual OpenAI API key.
 
