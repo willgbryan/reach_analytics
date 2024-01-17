@@ -12,7 +12,8 @@ Example use cases include but are not limited to:
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Installation (the easy way)](#installation-the-easy-way)
+- [Installation (the hard way)](#installation-the-hard-way)
 - [Building the Docker Image](#building-the-docker-image)
 - [Running the Container](#running-the-container)
 - [Environment Variables](#environment-variables)
@@ -27,20 +28,52 @@ Before you begin, ensure you have met the following requirements:
 - You have a Windows, Linux, or Mac machine.
 - You have read the related documentation or sections.
 
-## Installation
+## Installation (The easy way)
+
+1. Clone the repository:
+
+```bash
+gh repo clone willgbryan/reach_development
+```
+
+2. Navigate to the directory where the repository is cloned:
+
+```bash
+cd reach_development
+```
+
+3. Navigate to the 'reach_core_folder' directory:
+
+```bash
+cd reach_core_folder
+```
+
+4. Add your 'OPENAI_API_KEY' by running the following command:
+
+```bash
+export OPENAI_API_KEY='your_api_key'
+```
+
+5. Run the following command to get started (See the Runtime Options sections for valid runtime commands):
+
+```bash
+python reach_main.py
+```
+
+## Installation (The hard way)
 
 To install reach analytics, you need to clone the repository and build the Docker image. Follow these steps:
 
 1. Clone the repository:
 
 ```bash
-gh repo clone willgbryan/placeholder1
+gh repo clone willgbryan/reach_development
 ```
 
 2. Navigate to the directory where the repository is cloned:
 
 ```bash
-cd placeholder1
+cd reach_development
 ```
 
 3. Proceed to the "Building the Docker Image" section to build your Docker image.
