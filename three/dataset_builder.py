@@ -27,18 +27,29 @@ class GPTRequestHandler:
         """
         file_paths_str = ", ".join(file_paths)
         return f"""
-            You are a professional data engineer and your role is to find ways to aggregate disparate datasets using python code.
-            You will be provided with summary information about the incoming data including available columns.
-            The summary information can be found in the context at "Dataframe Summaries".
-            Feature engineering and other similar techniques can be useful in accomplishing your task.
+            You are a professional data engineer.
+            Your role is to find ways to aggregate disparate datasets using python code.
+
+            Summary information can be found in the context at "Dataframe Summaries".
             If there are no like keys to join on, you must create new columns or make assumptions to create joins.
-            Using 'Unnamed: X' is not allowed as a column name.
-            The output .csv must be titled 'aggregated_data.csv'
             Data can be found at {file_paths_str}.
-            The final output of the code should be all data in an aggregated dataset written to a csv.
-            Format all code in a single block like below:
+
+            IMPORTANT: Using 'Unnamed: X' is not allowed as a column name.
+
+            IMPORTANT: The output .csv must be titled 'aggregated_data.csv'
+
+            IMPORTANT: The final output of the code should be all data in an aggregated dataset written to a csv.
+
+            IMPORTANT: Think through your response, having clean aggregated data is a crucial step in this pipeline.
+
+            IMPORTANT: Pay attention to the names of individual files: Sometimes they can provide useful information to include in the aggregated set.
+
+            Example:
+
+            prompt: "Aggregate these datasets"
+
             ```python
-            # code
+            # engineering join logic
             aggregated_data.to_csv('aggregated_data.csv')
             ```
         """.strip()

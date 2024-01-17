@@ -66,6 +66,7 @@ class Reach:
             As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
             Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.
             Otherwise return an explanation as to why a machine learning solution is not a good approach.
+            If the user asks for a model, machine learning, or something similar, return yes.
 
             Example 1:
 
@@ -78,6 +79,12 @@ class Reach:
             prompt: "Plot web traffic overtime"
 
             response: no
+
+            Example 3:
+
+            prompt: "Develop a model to show inventory volume's effect on commodity price"
+
+            response: yes
             """
 
         self.data_analyst_preprompt = f"""
@@ -90,6 +97,8 @@ class Reach:
 
             If a plot is requested, be sure to print the dataframe for the plot as well.
 
+            IMPORTANT: You must always explain the code you develop and how it accomplishes the user's goal.
+
             Data can be found at {self.train_set_path}.
 
             Example:
@@ -99,6 +108,7 @@ class Reach:
             response:
 
             ```python
+
             import pandas as pd
             import seaborn as sns
 
@@ -109,7 +119,7 @@ class Reach:
             # display the plot
 
             print("Your average for daily active users during 2021 was: <average_value>. The full plot has been displayed.)
-
+            '''Explanation of the code and how it accomplishes the user goal'''
             ```
             """.strip()
         
@@ -158,20 +168,20 @@ class Reach:
             Data information can be found in the context: data_summary, and preprocessing_context. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
             Data can be found at {self.train_set_path}.
 
-            Use XGBoost for decision trees, PyTorch for neural networks, and sklearn.
-
             Always return an accuracy score and a model results dataframe with descriptive columns.
 
             Always ensure to generate plots and visuals to communicate the model's results.
 
-            Always 'print()' the model outputs to address the user_goal
-
             IMPORTANT: Think through your process when generating model code. Use the context provided to you in the form of feature_engineering_code, the data_summary, and preprocessing_context to influence the direction you take for model development.
             IMPORTANT: Ensure the model addresses the user_goal and communicate findings using 'print()' statements.
+            IMPORTANT: You must always explain the code you develop and how it accomplishes the user's goal.
+            IMPORTANT: Plots must always contain labels or a legend.
+
 
             Example output:
 
             ```python
+
             # necessary imports
 
             # necessary preprocessing code from preprocessing_context
@@ -181,7 +191,8 @@ class Reach:
             # machine learning model code
 
             # print() statements to communicate model results addressing the user_goal.
-            
+            '''Explanation of the code and how it accomplishes the user goal'''
+
             ```
             """.strip()
         self.performance_eval_preprompt = f"""
@@ -209,15 +220,15 @@ class Reach:
 
         self.validation_preprompt = f"""
             As the worlds best python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
-            Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
+            Return the remedied code, but try to be proactive in debugging.
             Training data can be found at {self.train_set_path}.
 
-            IMPORTANT: You must return all code, including lines changed for error fixes, and including unchanged lines.
+            IMPORTANT: Think through your changes. You must return all code, including lines changed for error fixes, and including unchanged lines.
 
             Example output:
 
             ```python
-            # code
+            # updated code
             ```
             """.strip()
         #TODO improve
@@ -330,6 +341,7 @@ class Reach:
             except Exception as e:
                 error_message = str(e)
                 error_traceback = traceback.format_exc()
+                print(error_traceback)
                 print(error_message)
                 # self.log.info(error_message)
 
@@ -704,9 +716,11 @@ class Reach:
             #that will require some level of artifact cleaning or garbage collection.    
             # self.launch_mlflow_ui(port = 5000)
 
+            # user_defined_tag = input("Tag the model")
             dict_to_dataframe(
                 data_dict = {
                     'goal': self.goal_prompt,
+                    # 'model_tag': user_defined_tag,
                     'data_summary': df_context,
                     'preprocessing_code': validated_preprocessing_code,
                     'feature_engineering_code': feature_engineering_context,
@@ -714,8 +728,9 @@ class Reach:
                     'analysis_code': None,
                     'ml_model': 1
                     },
-                file_path = 'finetuning_set.csv'
+                file_path = 'ml_finetuning_set.csv'
                 )
+            
         else:
             # self.log.info('No modelling is required. Beginning analysis')
 
@@ -801,7 +816,7 @@ class Reach:
                     'analysis_code': validated_code,
                     'ml_model': 0,
                     },
-                file_path = 'finetuning_set.csv',
+                file_path = 'analytics_finetuning_set.csv',
         )
 
         if os.path.exists("memory.txt") or not os.path.exists("memory.txt"):
