@@ -12,8 +12,8 @@ Example use cases include but are not limited to:
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
-- [Installation (the easy way)](#installation-the-easy-way)
-- [Installation (the hard way)](#installation-the-hard-way)
+- [Installation (the easy way)](#installation-preferred)
+- [Installation (the hard way)](#installation-experimental-and-kind-of-annoying-at-times)
 - [Building the Docker Image](#building-the-docker-image)
 - [Running the Container](#running-the-container)
 - [Environment Variables](#environment-variables)
