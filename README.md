@@ -104,7 +104,7 @@ This software is the property of reach. All rights reserved. No part of this sof
 
 For license inquiries, please contact Will Bryan: will.bryan421@gmail.com.
 
-## Starting the app in UI mode
+## Starting the app in UI mode (Recent changes require that 'ui' is passed as a system arg to start the ui)
 
 Route to /placeholder1/reach-frontend and run `npm start`. This will launch the main page on port 3000.
 

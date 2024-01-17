@@ -34,8 +34,8 @@ train_series_set = pd.read_parquet('C:/Users/willb/Downloads/train_series.parque
 train_events_set = pd.read_csv('cmi_sleep_states/train_events.csv')
 
 # expose the key alot
-openai.api_key = ''
-os.environ["OPENAI_API_KEY"] = ''
+openai.api_key = 'redact'
+os.environ["OPENAI_API_KEY"] = 'redact'
 
 train_test_path = "C:/Users/willb/Downloads/train_series.parquet"
 

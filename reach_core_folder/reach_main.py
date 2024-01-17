@@ -17,7 +17,7 @@ from reusable_utils import extract_code, extract_content_from_gpt_response
 
 ui_mode = True if 'ui' in sys.argv else False
 
-client = OpenAI(api_key='redact')
+client = OpenAI(api_key='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')
 
 dataset_description = None
 

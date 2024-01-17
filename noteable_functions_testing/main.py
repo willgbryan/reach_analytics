@@ -5,7 +5,7 @@ from preprompt_store import STEP_ZERO_PROMPT
 import pandas as pd
 import openai
 
-openai.api_key = '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'
+openai.api_key = 'redact'
 
 base_prompt = "I would like to improve average checkout price per cart."
 
