@@ -28,7 +28,7 @@ Before you begin, ensure you have met the following requirements:
 - You have a Windows, Linux, or Mac machine.
 - You have read the related documentation or sections.
 
-## Installation (The easy way)
+## Installation (Preferred)
 
 1. Clone the repository:
 
@@ -60,7 +60,7 @@ export OPENAI_API_KEY='your_api_key'
 python reach_main.py
 ```
 
-## Installation (The hard way)
+## Installation (Experimental and kind of annoying at times)
 
 To install reach analytics, you need to clone the repository and build the Docker image. Follow these steps:
 
