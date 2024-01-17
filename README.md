@@ -1,4 +1,4 @@
-![Banner Image](./three/readme_banner.png)
+![Banner Image](./reach_core_folder/readme_banner.png)
 
 
 Reach analytics is an AI automated development program intended to tackle heavy analytics
