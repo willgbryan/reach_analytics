@@ -1,2 +1,5 @@
 reach/
-
+analytics_finetuning_set.csv/
+code_validation_finetuning_set.csv/
+data_context.txt/
+memory.txt/
