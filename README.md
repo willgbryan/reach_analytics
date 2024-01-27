@@ -4,6 +4,8 @@
 Reach analytics is an AI automated development program intended to tackle heavy analytics
 workloads such as machine learning model development, validation, and testing.
 
+Also be sure to check out ![Reach Search](https://github.com/willgbryan/reach_search)!
+
 Example use cases include but are not limited to:
 - Demand forecasting
 - Cluster modeling and regressions
