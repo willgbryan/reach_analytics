@@ -1,10 +1,8 @@
 import os
 import pandas as pd
 import numpy as np
-from openai import OpenAI
+import openai
 from typing import Any, List, Dict, Union
-
-client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 def dataframe_summary( 
             df: pd.DataFrame, 

@@ -1,4 +1,6 @@
-from utils import enumerate_resume, make_printv, write_jsonl, resume_success_count
+# from utils import enumerate_resume, make_printv, write_jsonl, resume_success_count
+import sys
+sys.path.append('C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/reach_0.0.2/agent_core')
 from executors import executor_factory
 from generators import generator_factory, model_factory
 from typing import List, Dict, Any
@@ -129,7 +131,7 @@ def run_lats(
     
     implementations.append(cur_func_impl)
     assert isinstance(cur_func_impl, str)
-    is_passing, feedback, _ = exe.execute(cur_func_impl, tests_i)
+    is_passing, feedback, _ = exe.execute(cur_func_impl)
     test_feedback.append(feedback)
 
     # if solved, exit early

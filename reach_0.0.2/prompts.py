@@ -1,3 +1,5 @@
+# TODO include dynamic inclusion of either upload dataset path or dataframe summary from the utils function
+
 def decision_preprompt()-> str:
     decision_preprompt = f"""
         As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
@@ -37,8 +39,6 @@ def data_analyst_preprompt() -> str:
         If a plot is requested, be sure to print the dataframe for the plot as well.
 
         IMPORTANT: You must always explain the code you develop and how it accomplishes the user's goal.
-
-        Data can be found at {self.train_set_path}.
 
         Example:
 
