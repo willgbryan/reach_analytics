@@ -4,6 +4,7 @@ sys.path.append('C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/reach_0.0
 from executors import executor_factory
 from generators import generator_factory, model_factory
 from typing import List, Dict, Any
+from graphviz import Digraph
 import math
 from typing import Tuple
 import sys
@@ -46,6 +47,16 @@ class Node:
     def update(self, reward: float):
         self.visits += 1
         self.value += reward
+
+    def visualize(self, graph=None):
+        if graph is None:
+            graph = Digraph(comment='LATS Tree')
+            graph.node(str(id(self)), f'Solution: {self.solution[:10]}...\\nValue: {self.value}\\nVisits: {self.visits}')
+
+        for child in self.children:
+            graph.node(str(id(child)), f'Solution: {child.solution[:10]}...\\nValue: {child.value}\\nVisits: {child.visits}')
+            graph.edge(str(id(self)), str(id(child)))
+            child.visualize(graph)
     
 
 def prune_context_blocks(context: str, max_length: int) -> str:
@@ -93,6 +104,10 @@ def sample_n_random(items: List[str], n: int) -> List[str]:
         return items
     return random.sample(items, n)
 
+def visualize_tree(root: Node, filename: str = 'lats_tree'):
+    graph = root.visualize()
+    graph.render(filename, format='pdf', view=True)
+
 def run_lats(
     model_name: str,
     language: str,
@@ -131,7 +146,7 @@ def run_lats(
     
     implementations.append(cur_func_impl)
     assert isinstance(cur_func_impl, str)
-    is_passing, feedback, _ = exe.execute(cur_func_impl)
+    is_passing, feedback, _ = exe.execute(cur_func_impl, tests_i)
     test_feedback.append(feedback)
 
     # if solved, exit early
@@ -229,5 +244,7 @@ def run_lats(
     else:
         best_solution = root.best_child_value().solution
         item["solution"] = best_solution
+
+    visualize_tree(root, 'final_lats_tree')
 
     return best_solution

@@ -8,7 +8,7 @@ from lats_main import lats_main
 from utils import dataframe_summary
 from prompts import *
 
-openai.api_key = ""
+openai.api_key = "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"
 
 def build_args(instruction, tree_depth, tree_width, iterations):
     parser = argparse.ArgumentParser()
@@ -38,7 +38,10 @@ text_repr_dataframe = dataframe_summary(
 
 
 user_prompt = 'return statistical analysis of the dataset located at: C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/synthetic_sets/graphics_card_spec.csv'
-preprompt = data_analyst_preprompt
+preprompt = data_analyst_preprompt()
+packages = available_packages_prompt()
 
-args = build_args(instruction=f'Your role: {preprompt}. User prompt: {user_prompt}', tree_depth=8, tree_width=3, iterations=4)
+args = build_args(instruction=f'Your role: {preprompt}, {packages}. User prompt: {user_prompt}', tree_depth=3, tree_width=2, iterations=2)
 response = lats_main(args)
+
+print(f'final response: {response}')

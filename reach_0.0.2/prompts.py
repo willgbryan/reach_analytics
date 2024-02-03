@@ -1,6 +1,28 @@
 # TODO include dynamic inclusion of either upload dataset path or dataframe summary from the utils function
 
-def decision_preprompt()-> str:
+def available_packages_prompt() -> str:
+    available_packages_prompt ="""
+        If you need to import packages to answer the question, only use the following:
+
+        keras==2.15.0
+        matplotlib==3.8.2
+        matplotlib-inline==0.1.6
+        numpy==1.26.2
+        pandas==2.1.4
+        pypdf==4.0.0
+        regex==2023.10.3
+        scikit-learn==1.3.2
+        scipy==1.11.4
+        seaborn==0.13.0
+        statsmodels==0.14.1
+        torch==2.1.2
+        xgboost==2.0.3
+        lightgbm==4.2.0
+        stats==0.1.2a0
+    """.strip()
+    return available_packages_prompt
+
+def decision_preprompt() -> str:
     decision_preprompt = f"""
         As a decision making assistant, your task is to analyze the supplied user_goal and data_summary in the provided context to determine if the user_goal can be accomplished with a machine learning solution.
         Only return a single word response: 'yes' (all lowercase) if a machine learning solution is appropriate.

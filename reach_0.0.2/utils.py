@@ -1,8 +1,49 @@
 import os
+import traceback
+import warnings
 import pandas as pd
 import numpy as np
 import openai
 from typing import Any, List, Dict, Union
+
+# # TODO code validation agent implementation requires a refactor to support openai >= 1.0.0
+# def extract_content_from_gpt_response(function):
+#     def wrapper(*args, **kwargs):
+#         response_body = function(*args, **kwargs)
+#         try:
+#             return response_body.choices[0].message.content
+#         except AttributeError:
+#             return None
+#     return wrapper
+
+# @extract_content_from_gpt_response
+# def send_request_to_gpt(
+#         role_preprompt: str, 
+#         prompt: str,
+#         context: Union[str, Dict[str, str]],  
+#         stream: bool = False
+#         ) -> str:
+    
+#     if isinstance(context, str):
+#         context = [{"role": "user", "content": context}]
+
+#     response = client.chat.completions.create(
+#         model="gpt-4-1106-preview",
+#         messages=[
+#             {
+#                 "role": "system",
+#                 "content": role_preprompt,
+#             },
+#             *context,
+#             {
+#                 "role": "user",
+#                 "content": prompt,
+#             },
+#         ],
+#         stream=stream,
+#     )
+
+#     return response
 
 def dataframe_summary( 
             df: pd.DataFrame, 
@@ -94,3 +135,41 @@ def process_files(file_paths: list):
             summaries.append(summary)
 
     return {'dataframe_summaries': summaries, 'file_paths': file_paths}
+
+# def code_validation_agent(
+#             self, 
+#             code_to_validate: str, 
+#             context: List[Dict[str, str]], 
+#             max_attempts: int = 10,
+#         ) -> str:
+
+#         warnings.filterwarnings("ignore")  # Ignore warnings
+#         attempts = 0
+
+#         while attempts < max_attempts:
+#             print(f'Validation attempt: {attempts}')
+
+#             try:
+#                 exec(code_to_validate)
+#                 print('\033[38;2;199;254;0m' + 'Code executed without errors...' + '\033[0m')
+
+#                 # self.log.info("Code executed without errors.")
+#                 return code_to_validate
+
+#             except Exception as e:
+#                 error_message = str(e)
+#                 error_traceback = traceback.format_exc()
+#                 print(error_traceback)
+#                 print(error_message)
+#                 # self.log.info(error_message)
+
+#                 # Debugging via GPT-4
+#                 response = send_request_to_gpt(
+#                     role_preprompt=self.validation_preprompt,
+#                     context=context,
+#                     prompt=f"""
+#                     Debug the following python code: {code_to_validate}. \n\nError:\n{error_message}\n\nTraceback:\n{error_traceback}\n\n.
+#                     Training data can be found at {self.train_set_path} 
+#                     You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
+#                     """,
+#                 )
