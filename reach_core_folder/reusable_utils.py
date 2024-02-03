@@ -1,11 +1,13 @@
 import os
 import openai
+import shutil
 import numpy as np
 import pandas as pd
 from openai import OpenAI
 from typing import List, Dict, Any
 
-client = OpenAI(api_key='redact')
+def get_openai_client(api_key):
+    return OpenAI(api_key=api_key)
 
 def dict_to_dataframe(data_dict: Dict, file_path: str):
     """
@@ -39,6 +41,7 @@ def extract_code(message: str) -> str:
         return code
 
 def send_request_to_gpt(
+            client,
             role_preprompt: str, 
             prompt: str,
             context: Dict[str, str],  
@@ -157,3 +160,11 @@ def extract_content_from_gpt_response(response: Any) -> str:
     str: Extracted content.
     """
     return response.choices[0].message.content
+
+def clear_directory(directory_path):
+    for item in os.listdir(directory_path):
+        item_path = os.path.join(directory_path, item)
+        if os.path.isfile(item_path) or os.path.islink(item_path):
+            os.unlink(item_path)
+        elif os.path.isdir(item_path):
+            shutil.rmtree(item_path)
