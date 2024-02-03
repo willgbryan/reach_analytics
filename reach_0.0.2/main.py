@@ -8,7 +8,7 @@ from lats_main import lats_main
 from utils import dataframe_summary
 from prompts import *
 
-openai.api_key = "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"
+openai.api_key = ""
 
 def build_args(instruction, tree_depth, tree_width, iterations):
     parser = argparse.ArgumentParser()
