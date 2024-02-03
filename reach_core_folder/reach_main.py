@@ -81,6 +81,7 @@ if ui_mode:
         prompt = data['prompt']
 
         r = Reach(
+            # client,
             marqo_client=marqo.Client(url="http://localhost:8882"),
             marqo_index='validation_testing', 
             train_set_path='web_upload/datasets/aggregated_data.csv', 
@@ -115,7 +116,7 @@ def dataset_handling_terminal(file_paths):
             print('No files or empty files uploaded')
             return
 
-        handler = GPTRequestHandler()
+        handler = GPTRequestHandler()# client,
         print("Aggregating supplied data, this may take a few minutes.")
 
         response, supplied_file_paths, generated_df_summaries = handler.handle_files_and_send_request(
@@ -142,6 +143,7 @@ def process_prompt_terminal():
     prompt = input("Enter your prompt: ")
 
     r = Reach(
+        # client,
         marqo_client=marqo.Client(url="http://localhost:8882"),
         marqo_index='validation_testing',
         train_set_path='aggregated_data.csv',
