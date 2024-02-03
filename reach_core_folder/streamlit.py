@@ -15,11 +15,20 @@ from reusable_utils import (
 
 dataset_description = None
 
-uploads_dir = 'web_upload/datasets'
-plots_dir = 'web_upload/plots'
+# Deployment config
+base_dir = os.path.dirname(__file__)
+uploads_dir = os.path.join(base_dir, 'web_upload', 'datasets')
+plots_dir = os.path.join(base_dir, 'web_upload', 'plots')
 
-if not os.path.exists(uploads_dir):
-    os.makedirs(uploads_dir)
+os.makedirs(uploads_dir, exist_ok=True)
+os.makedirs(plots_dir, exist_ok=True)
+
+# # Local config
+# uploads_dir = 'web_upload/datasets'
+# plots_dir = 'web_upload/plots'
+
+# if not os.path.exists(uploads_dir):
+#     os.makedirs(uploads_dir)
 
 with st.sidebar:
     key = st.sidebar.text_input("Enter your OpenAI Api Key:", type="password")
