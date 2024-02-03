@@ -8,7 +8,7 @@ from lats_main import lats_main
 from utils import dataframe_summary
 from prompts import *
 
-openai.api_key = "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"
+openai.api_key = ""
 
 def build_args(instruction, tree_depth, tree_width, iterations):
     parser = argparse.ArgumentParser()
@@ -38,10 +38,23 @@ text_repr_dataframe = dataframe_summary(
 
 
 user_prompt = 'return statistical analysis of the dataset located at: C:/Users/willb/OneDrive/Documents/GitHub/placeholder1/synthetic_sets/graphics_card_spec.csv'
-preprompt = data_analyst_preprompt()
+analyst_preprompt = data_analyst_preprompt()
+feature_engineering_prompt = feature_engineering_preprompt()
+model_development_prompt = model_development_preprompt()
+
 packages = available_packages_prompt()
+ml = False
 
-args = build_args(instruction=f'Your role: {preprompt}, {packages}. User prompt: {user_prompt}', tree_depth=3, tree_width=2, iterations=2)
-response = lats_main(args)
+if not ml:
+    args = build_args(instruction=f'Your role: {analyst_preprompt}, {packages}. User prompt: {user_prompt}', tree_depth=3, tree_width=2, iterations=2)
+    response = lats_main(args)
 
-print(f'final response: {response}')
+    print(f'final response: {response}')
+else:
+    feature_engineering_args = build_args(instruction=f'Your role: {feature_engineering_prompt}, {packages}. User prompt: {user_prompt}', tree_depth=3, tree_width=2, iterations=2)
+    feature_engineering_response = lats_main(feature_engineering_args)
+    print(f'f_eng response: {feature_engineering_response}')
+    model_development_args = build_args(instruction=f'Your role: {model_development_prompt}, {packages}, Available feature_engineering: {feature_engineering_response}. User prompt: {user_prompt}', tree_depth=3, tree_width=2, iterations=2)
+    model_development_resposne = lats_main(model_development_args)
+
+    print(f'final response: {model_development_resposne}')
