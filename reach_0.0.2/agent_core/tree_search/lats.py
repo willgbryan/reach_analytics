@@ -10,6 +10,9 @@ from typing import Tuple
 import sys
 import random
 
+graphviz_path = 'C:/Program Files/Graphviz/bin'
+Digraph(graphviz_path)
+
 sys.set_int_max_str_digits(100000)  # Increase the limit to 10000 digits
 
 react_prompt_header = "Here are some previous solutions and the corresponding test results.\n"
@@ -48,15 +51,17 @@ class Node:
         self.visits += 1
         self.value += reward
 
-    def visualize(self, graph=None):
-        if graph is None:
-            graph = Digraph(comment='LATS Tree')
-            graph.node(str(id(self)), f'Solution: {self.solution[:10]}...\\nValue: {self.value}\\nVisits: {self.visits}')
+    # def visualize(self, graph=None):
+    #     if graph is None:
+    #         graph = Digraph(comment='LATS Tree')
+    #     graph.node(str(id(self)), f'Solution: {self.solution[:10]}...\\nValue: {self.value}\\nVisits: {self.visits}')
 
-        for child in self.children:
-            graph.node(str(id(child)), f'Solution: {child.solution[:10]}...\\nValue: {child.value}\\nVisits: {child.visits}')
-            graph.edge(str(id(self)), str(id(child)))
-            child.visualize(graph)
+    #     for child in self.children:
+    #         graph.node(str(id(child)), f'Solution: {child.solution[:10]}...\\nValue: {child.value}\\nVisits: {child.visits}')
+    #         graph.edge(str(id(self)), str(id(child)))
+    #         child.visualize(graph)
+
+    #     return graph
     
 
 def prune_context_blocks(context: str, max_length: int) -> str:
@@ -104,9 +109,9 @@ def sample_n_random(items: List[str], n: int) -> List[str]:
         return items
     return random.sample(items, n)
 
-def visualize_tree(root: Node, filename: str = 'lats_tree'):
-    graph = root.visualize()
-    graph.render(filename, format='pdf', view=True)
+# def visualize_tree(root: Node, filename: str = 'lats_tree'):
+#     graph = root.visualize() 
+#     graph.render(filename, format='dot', view=True)
 
 def run_lats(
     model_name: str,
@@ -245,6 +250,6 @@ def run_lats(
         best_solution = root.best_child_value().solution
         item["solution"] = best_solution
 
-    visualize_tree(root, 'final_lats_tree')
+    # visualize_tree(root, 'final_lats_tree')
 
     return best_solution

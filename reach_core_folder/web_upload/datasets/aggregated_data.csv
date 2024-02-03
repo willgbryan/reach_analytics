@@ -1,0 +1,504 @@
+Company_Name,Headquarters_Location,Year_Founded,Employee_Count,Annual_Revenue_Billion_USD,Market_Segment,Location,Server_Count,Graphics_Cards_Used,Total_Storage_TB,Average_Uptime_Percentage,Server_Type,Electricity_Rate_USD_per_kWh,Hours_Operated,Power_Usage_Watts,Electricity_Cost_USD,Manufacturer,Model,Memory_Size_GB,Core_Clock_MHz,Boost_Clock_MHz,Memory_Type,TDP_Watts,Price_USD
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,"AX900-4, RT300-20, RT300-5, Pro1000-17",314.0,98.5,Type E,0.2,3000.0,1250.0,750.0,AMD,GX500-1,8.0,2500.0,1500.0,GDDR6X,222.0,419.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,GX500-19,237.0,98.35,Type C,0.12,3000.0,765.0,275.4,Intel,GX500-2,12.0,2500.0,1500.0,GDDR5,95.0,916.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,50.0,GX500-16,485.0,98.32,Type E,0.1,4000.0,652.0,260.8,NVIDIA,GX500-3,8.0,1000.0,3000.0,GDDR5,196.0,1453.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,Elite4K-9,923.0,98.73,Type A,0.25,1000.0,1490.0,372.5,Intel,GX500-4,8.0,2000.0,3000.0,GDDR5,96.0,610.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,"RT300-8, RT300-9, GX500-13, AX900-15",819.0,98.53,Type B,0.12,5000.0,1407.0,844.2,AMD,GX500-5,24.0,2500.0,2500.0,GDDR5,111.0,827.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,10.0,"GX500-17, GX500-15, RT300-12",843.0,99.23,Type A,0.25,1000.0,634.0,158.5,Intel,GX500-6,4.0,2000.0,3000.0,GDDR5,61.0,786.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,"GX500-14, AX900-9, GX500-13",838.0,98.35,Type E,0.12,5000.0,1235.0,741.0,AMD,GX500-7,16.0,2500.0,2000.0,GDDR6X,93.0,1345.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,"Pro1000-9, RT300-7, RT300-6, AX900-10",972.0,99.87,Type B,0.12,5000.0,1241.0,744.6,AMD,GX500-8,12.0,2500.0,1500.0,GDDR6X,140.0,898.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,100.0,"Pro1000-14, Elite4K-3, Pro1000-2",865.0,98.19,Type E,0.12,3000.0,1180.0,424.8,AMD,GX500-9,4.0,2000.0,2000.0,GDDR5,74.0,1464.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,10.0,Pro1000-18,951.0,99.58,Type A,0.1,4000.0,999.0,399.6,Intel,GX500-10,16.0,2500.0,1500.0,GDDR6X,172.0,640.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,AX900-5,451.0,98.15,Type B,0.12,1000.0,717.0,86.04,AMD,GX500-11,16.0,1000.0,2500.0,GDDR5,160.0,211.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,"Pro1000-2, Pro1000-10, RT300-20, AX900-10, AX900-6",147.0,99.11,Type D,0.25,2000.0,589.0,294.5,Intel,GX500-12,4.0,1500.0,1500.0,GDDR5,226.0,639.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,"RT300-17, Elite4K-3",412.0,99.88,Type D,0.15,5000.0,509.0,381.75,Intel,GX500-13,4.0,2000.0,1500.0,GDDR5,284.0,241.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,"AX900-13, GX500-17",144.0,98.32,Type D,0.1,2000.0,863.0,172.6,Intel,GX500-14,8.0,2000.0,3000.0,GDDR5,79.0,362.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,200.0,"GX500-11, Pro1000-11, Elite4K-10, GX500-15",379.0,99.09,Type B,0.25,1000.0,703.0,175.75,AMD,GX500-15,12.0,1500.0,3000.0,GDDR5,285.0,339.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"AX900-1, Elite4K-13, RT300-3, RT300-19, GX500-4",813.0,98.61,Type B,0.1,5000.0,750.0,375.0,NVIDIA,GX500-16,8.0,2000.0,1500.0,GDDR6,76.0,820.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,100.0,"Elite4K-1, Pro1000-17",356.0,98.2,Type A,0.15,1000.0,1212.0,181.8,Intel,GX500-17,4.0,1000.0,1500.0,GDDR5,146.0,1412.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,"Elite4K-14, RT300-4",624.0,98.32,Type B,0.25,3000.0,559.0,419.25,Intel,GX500-18,16.0,2000.0,2000.0,GDDR5,250.0,1142.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"GX500-7, RT300-14",729.0,98.34,Type C,0.1,5000.0,1194.0,597.0,Intel,GX500-19,8.0,2000.0,1500.0,GDDR6,197.0,1057.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,100.0,GX500-2,378.0,99.1,Type C,0.1,1000.0,557.0,55.7,AMD,GX500-20,12.0,1000.0,2000.0,GDDR6,95.0,516.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,50.0,"RT300-6, Elite4K-5, Pro1000-13, RT300-20, GX500-14",953.0,99.28,Type D,0.12,1000.0,1212.0,145.44,NVIDIA,RT300-1,16.0,2000.0,2500.0,GDDR5,204.0,639.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,50.0,"Pro1000-6, Elite4K-16",757.0,99.57,Type E,0.1,2000.0,971.0,194.2,AMD,RT300-2,16.0,1500.0,1500.0,GDDR6,272.0,1409.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,50.0,"GX500-15, Elite4K-10, Elite4K-14, Pro1000-8",714.0,98.7,Type A,0.15,1000.0,1104.0,165.6,Intel,RT300-3,8.0,2000.0,2500.0,GDDR5,254.0,356.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,500.0,"RT300-8, Elite4K-18, RT300-10, AX900-2, Pro1000-10",722.0,98.39,Type C,0.25,3000.0,1190.0,892.5,NVIDIA,RT300-4,16.0,2000.0,3000.0,GDDR5,292.0,805.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,500.0,"Elite4K-7, Pro1000-6, AX900-18, AX900-13",946.0,99.37,Type E,0.2,5000.0,1488.0,1488.0,Intel,RT300-5,16.0,1000.0,1500.0,GDDR5,61.0,1095.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,50.0,"RT300-18, Pro1000-9, RT300-12",685.0,99.94,Type B,0.2,3000.0,1478.0,886.8,Intel,RT300-6,12.0,1000.0,2000.0,GDDR6X,125.0,1116.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,"RT300-9, AX900-14, Elite4K-7, Elite4K-18",777.0,99.4,Type B,0.12,1000.0,1055.0,126.6,Intel,RT300-7,16.0,2500.0,1500.0,GDDR5,238.0,330.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,"RT300-5, Pro1000-18, AX900-1, Elite4K-13, RT300-1",383.0,98.94,Type A,0.15,4000.0,1090.0,654.0,Intel,RT300-8,4.0,2000.0,3000.0,GDDR6X,101.0,1187.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,Pro1000-13,648.0,98.39,Type A,0.2,5000.0,520.0,520.0,AMD,RT300-9,12.0,2500.0,1500.0,GDDR6,75.0,1250.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,10.0,"Elite4K-6, Elite4K-8, Pro1000-19",114.0,99.15,Type C,0.25,3000.0,552.0,414.0,Intel,RT300-10,4.0,1500.0,2500.0,GDDR6,88.0,232.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,100.0,"GX500-3, Elite4K-2, RT300-9, RT300-15, GX500-5",375.0,100.0,Type B,0.15,2000.0,1158.0,347.4,Intel,RT300-11,4.0,2000.0,2500.0,GDDR6,120.0,1423.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,100.0,"RT300-13, AX900-11",623.0,98.83,Type D,0.1,2000.0,852.0,170.4,Intel,RT300-12,16.0,2000.0,3000.0,GDDR5,298.0,710.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,500.0,"GX500-3, Pro1000-5, Pro1000-1, RT300-4",531.0,99.1,Type B,0.2,2000.0,997.0,398.8,NVIDIA,RT300-13,4.0,2500.0,3000.0,GDDR6X,123.0,1109.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,500.0,RT300-11,177.0,98.98,Type B,0.15,3000.0,1104.0,496.8,AMD,RT300-14,24.0,2000.0,1500.0,GDDR6X,127.0,338.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,50.0,"Elite4K-9, Pro1000-6, Elite4K-7, Elite4K-18, RT300-13",461.0,99.65,Type E,0.12,1000.0,1022.0,122.64,Intel,RT300-15,24.0,2000.0,1500.0,GDDR5,162.0,816.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,"RT300-18, RT300-16, RT300-15, AX900-5, AX900-2",837.0,99.2,Type D,0.12,4000.0,890.0,427.2,NVIDIA,RT300-16,8.0,2500.0,3000.0,GDDR6,216.0,791.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,500.0,"GX500-12, Pro1000-17, RT300-10",712.0,99.61,Type B,0.2,3000.0,1171.0,702.6,Intel,RT300-17,4.0,1500.0,1500.0,GDDR6,154.0,1040.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,500.0,"RT300-18, Elite4K-8, Pro1000-8, AX900-11, RT300-7",260.0,99.48,Type D,0.2,5000.0,613.0,613.0,NVIDIA,RT300-18,16.0,1000.0,1500.0,GDDR5,191.0,795.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,500.0,"Elite4K-19, Elite4K-6, AX900-14, AX900-17, Elite4K-12",161.0,98.19,Type B,0.25,2000.0,689.0,344.5,Intel,RT300-19,24.0,1500.0,1500.0,GDDR5,77.0,214.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,Pro1000-16,347.0,99.38,Type E,0.25,5000.0,644.0,805.0,AMD,RT300-20,4.0,1000.0,1500.0,GDDR6X,192.0,943.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,"RT300-10, RT300-3, Pro1000-1, AX900-4, AX900-17",866.0,99.71,Type E,0.15,4000.0,1377.0,826.2,NVIDIA,AX900-1,4.0,1000.0,1500.0,GDDR5,298.0,640.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,500.0,"AX900-8, GX500-5, AX900-11, Pro1000-15, AX900-1",872.0,99.26,Type A,0.25,5000.0,996.0,1245.0,NVIDIA,AX900-2,24.0,1500.0,2500.0,GDDR6X,256.0,710.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,10.0,"AX900-12, GX500-3, GX500-5, Elite4K-16, RT300-12",939.0,98.09,Type C,0.25,2000.0,1320.0,660.0,Intel,AX900-3,16.0,2000.0,2500.0,GDDR6X,129.0,784.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,10.0,"AX900-8, AX900-5, AX900-4, Pro1000-6",520.0,99.43,Type E,0.1,4000.0,1399.0,559.6,Intel,AX900-4,4.0,1500.0,2500.0,GDDR6X,78.0,214.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,50.0,"Elite4K-20, Pro1000-4, RT300-5",468.0,98.11,Type E,0.15,1000.0,997.0,149.55,Intel,AX900-5,12.0,2500.0,1500.0,GDDR5,206.0,503.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,500.0,"RT300-10, Elite4K-19",762.0,98.47,Type A,0.2,2000.0,663.0,265.2,NVIDIA,AX900-6,4.0,1500.0,1500.0,GDDR6X,203.0,793.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,GX500-11,321.0,99.4,Type E,0.25,2000.0,693.0,346.5,Intel,AX900-7,8.0,2500.0,1500.0,GDDR6X,100.0,246.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,50.0,"Elite4K-16, Elite4K-19, Elite4K-10, AX900-1",135.0,98.61,Type C,0.15,4000.0,688.0,412.8,NVIDIA,AX900-8,24.0,2500.0,3000.0,GDDR6,219.0,725.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,"RT300-2, Elite4K-18, Elite4K-13",849.0,99.4,Type C,0.2,1000.0,700.0,140.0,NVIDIA,AX900-9,12.0,2000.0,1500.0,GDDR6,164.0,786.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,500.0,"AX900-8, Pro1000-7, Elite4K-10, RT300-15, Pro1000-5",341.0,98.7,Type A,0.2,5000.0,1237.0,1237.0,AMD,AX900-10,24.0,1000.0,2500.0,GDDR6X,219.0,982.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,"GX500-4, RT300-1, AX900-3, AX900-19, AX900-1",667.0,99.46,Type B,0.25,4000.0,1064.0,1064.0,Intel,AX900-11,24.0,1000.0,3000.0,GDDR5,239.0,374.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,50.0,"RT300-12, Pro1000-11, RT300-1, GX500-15, RT300-5",957.0,98.86,Type B,0.15,4000.0,1374.0,824.4,NVIDIA,AX900-12,4.0,2500.0,2500.0,GDDR6X,288.0,814.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,50.0,RT300-9,341.0,98.17,Type B,0.15,3000.0,538.0,242.1,NVIDIA,AX900-13,24.0,1000.0,3000.0,GDDR6,98.0,1149.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,50.0,"AX900-8, Pro1000-9",902.0,98.68,Type A,0.12,3000.0,509.0,183.24,Intel,AX900-14,4.0,1500.0,2500.0,GDDR6X,182.0,1250.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"RT300-2, Elite4K-20, GX500-5, Elite4K-3, Pro1000-15",117.0,98.82,Type B,0.12,1000.0,1188.0,142.56,Intel,AX900-15,4.0,2500.0,2500.0,GDDR6,97.0,1172.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,"RT300-20, AX900-16, AX900-14, GX500-19",320.0,98.72,Type D,0.1,5000.0,1201.0,600.5,Intel,AX900-16,4.0,2000.0,2000.0,GDDR6,266.0,718.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,10.0,"GX500-4, Pro1000-4, GX500-6",226.0,99.63,Type A,0.25,2000.0,1290.0,645.0,NVIDIA,AX900-17,12.0,1500.0,1500.0,GDDR6,57.0,620.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,200.0,"GX500-4, GX500-11",681.0,98.17,Type B,0.2,5000.0,972.0,972.0,Intel,AX900-18,4.0,2500.0,1500.0,GDDR5,287.0,422.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,10.0,"RT300-1, Elite4K-14, Elite4K-8",428.0,99.0,Type D,0.1,2000.0,1396.0,279.2,Intel,AX900-19,12.0,1000.0,1500.0,GDDR6X,226.0,609.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,100.0,"RT300-12, RT300-10, Elite4K-20, RT300-13",886.0,98.3,Type B,0.25,3000.0,1088.0,816.0,NVIDIA,AX900-20,24.0,2000.0,2000.0,GDDR5,201.0,1354.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,100.0,"GX500-11, AX900-15, Elite4K-20, AX900-6, AX900-2",424.0,98.44,Type E,0.1,1000.0,715.0,71.5,NVIDIA,Pro1000-1,16.0,2000.0,3000.0,GDDR5,241.0,279.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,50.0,"AX900-8, AX900-11, AX900-3",642.0,98.03,Type E,0.2,4000.0,655.0,524.0,AMD,Pro1000-2,8.0,1500.0,1500.0,GDDR5,256.0,1254.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,"RT300-17, AX900-15, AX900-18, AX900-10, RT300-1",862.0,99.54,Type B,0.12,3000.0,1032.0,371.52,Intel,Pro1000-3,12.0,2000.0,2000.0,GDDR6X,295.0,1307.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,"Elite4K-2, Elite4K-3",430.0,98.53,Type D,0.12,1000.0,1396.0,167.52,AMD,Pro1000-4,8.0,1000.0,3000.0,GDDR6,133.0,1220.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"Elite4K-16, Elite4K-12, RT300-6",167.0,99.37,Type C,0.2,5000.0,766.0,766.0,Intel,Pro1000-5,16.0,2000.0,3000.0,GDDR5,114.0,765.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,500.0,"Pro1000-8, GX500-3, Elite4K-13",715.0,99.74,Type B,0.1,4000.0,932.0,372.8,AMD,Pro1000-6,12.0,2500.0,2500.0,GDDR6X,226.0,1463.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,100.0,"RT300-6, Pro1000-5",968.0,98.13,Type A,0.15,3000.0,1024.0,460.8,AMD,Pro1000-7,16.0,2500.0,3000.0,GDDR6X,183.0,1085.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,10.0,"Pro1000-10, Elite4K-3",285.0,99.33,Type E,0.2,2000.0,743.0,297.2,NVIDIA,Pro1000-8,24.0,2500.0,3000.0,GDDR5,88.0,1132.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,500.0,"RT300-20, GX500-17, GX500-14",877.0,98.86,Type E,0.1,3000.0,850.0,255.0,Intel,Pro1000-9,24.0,1500.0,1500.0,GDDR6X,88.0,1314.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,50.0,GX500-17,795.0,99.46,Type A,0.1,3000.0,1367.0,410.1,NVIDIA,Pro1000-10,24.0,1000.0,1500.0,GDDR5,83.0,782.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,Elite4K-7,506.0,99.16,Type E,0.25,2000.0,770.0,385.0,AMD,Pro1000-11,8.0,1500.0,2500.0,GDDR6,100.0,1142.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,10.0,RT300-1,710.0,98.81,Type B,0.12,1000.0,726.0,87.12,AMD,Pro1000-12,12.0,1500.0,2500.0,GDDR6X,84.0,1404.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,"RT300-16, RT300-6, RT300-5, AX900-1, AX900-10",771.0,98.72,Type C,0.12,2000.0,931.0,223.44,AMD,Pro1000-13,24.0,1000.0,3000.0,GDDR6,300.0,779.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,500.0,"GX500-15, AX900-9, GX500-9, GX500-14, Elite4K-8",810.0,98.32,Type E,0.2,3000.0,1128.0,676.8,AMD,Pro1000-14,12.0,1000.0,2000.0,GDDR5,244.0,521.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,100.0,"AX900-14, RT300-12",731.0,99.57,Type B,0.12,2000.0,541.0,129.84,AMD,Pro1000-15,4.0,2500.0,1500.0,GDDR5,137.0,240.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,50.0,"Elite4K-18, AX900-11, RT300-4, Elite4K-5",548.0,98.63,Type E,0.1,1000.0,1480.0,148.0,NVIDIA,Pro1000-16,16.0,2500.0,2000.0,GDDR6,162.0,934.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,10.0,Pro1000-19,423.0,99.23,Type E,0.2,1000.0,854.0,170.8,AMD,Pro1000-17,12.0,1500.0,2500.0,GDDR5,220.0,1413.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,50.0,"GX500-17, RT300-3",648.0,98.9,Type A,0.1,1000.0,1223.0,122.3,Intel,Pro1000-18,12.0,1500.0,2500.0,GDDR6,226.0,935.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,10.0,AX900-3,573.0,98.74,Type D,0.1,4000.0,1455.0,582.0,NVIDIA,Pro1000-19,16.0,2500.0,1500.0,GDDR6X,57.0,1058.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,100.0,"RT300-4, Pro1000-19, GX500-19",451.0,98.2,Type C,0.25,3000.0,828.0,621.0,NVIDIA,Pro1000-20,16.0,1000.0,1500.0,GDDR6,205.0,975.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,200.0,AX900-7,345.0,98.35,Type C,0.25,2000.0,1387.0,693.5,Intel,Elite4K-1,4.0,1000.0,2000.0,GDDR6X,65.0,494.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,10.0,"RT300-15, Elite4K-8, Pro1000-16, Elite4K-9, Elite4K-14",717.0,99.22,Type A,0.15,5000.0,967.0,725.25,AMD,Elite4K-2,24.0,1000.0,3000.0,GDDR6X,96.0,620.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"RT300-18, RT300-2",862.0,98.65,Type C,0.2,3000.0,538.0,322.8,AMD,Elite4K-3,16.0,2000.0,1500.0,GDDR5,287.0,745.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,10.0,"Pro1000-12, RT300-7, Elite4K-5",250.0,99.69,Type A,0.12,2000.0,882.0,211.68,AMD,Elite4K-4,12.0,2000.0,3000.0,GDDR5,283.0,558.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,10.0,"Elite4K-7, AX900-8, AX900-4, GX500-3",866.0,98.43,Type A,0.12,1000.0,1497.0,179.64,NVIDIA,Elite4K-5,24.0,1000.0,1500.0,GDDR5,147.0,585.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,50.0,"GX500-10, Pro1000-2, GX500-11, Elite4K-4",226.0,99.53,Type B,0.15,5000.0,1251.0,938.25,NVIDIA,Elite4K-6,12.0,2500.0,2000.0,GDDR5,64.0,866.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,10.0,"Pro1000-17, Elite4K-13",850.0,99.48,Type B,0.1,1000.0,1204.0,120.4,Intel,Elite4K-7,16.0,1000.0,3000.0,GDDR5,219.0,220.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,500.0,"AX900-3, Elite4K-17, RT300-16",505.0,99.42,Type D,0.2,5000.0,972.0,972.0,NVIDIA,Elite4K-8,4.0,2500.0,3000.0,GDDR6,178.0,414.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,10.0,"GX500-12, GX500-1, RT300-5, RT300-9",172.0,99.7,Type D,0.25,2000.0,760.0,380.0,AMD,Elite4K-9,16.0,2500.0,3000.0,GDDR6X,244.0,651.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Australia,200.0,"Pro1000-8, RT300-6",899.0,98.11,Type E,0.12,2000.0,1169.0,280.56,Intel,Elite4K-10,16.0,2000.0,1500.0,GDDR5,238.0,1045.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,10.0,"RT300-8, GX500-2, RT300-17",307.0,98.83,Type A,0.12,3000.0,756.0,272.16,AMD,Elite4K-11,12.0,1000.0,1500.0,GDDR6X,196.0,491.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,200.0,"Elite4K-9, Elite4K-17, Pro1000-5, Pro1000-6",581.0,99.77,Type B,0.25,5000.0,1363.0,1703.75,NVIDIA,Elite4K-12,8.0,2500.0,3000.0,GDDR6,120.0,829.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,50.0,RT300-11,644.0,99.84,Type C,0.1,1000.0,780.0,78.0,NVIDIA,Elite4K-13,4.0,1000.0,3000.0,GDDR6X,107.0,601.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,100.0,"AX900-13, RT300-14, AX900-6",421.0,98.97,Type E,0.1,3000.0,553.0,165.9,Intel,Elite4K-14,8.0,2000.0,3000.0,GDDR6,133.0,516.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,200.0,"AX900-9, Elite4K-2",381.0,99.32,Type A,0.25,2000.0,860.0,430.0,AMD,Elite4K-15,4.0,2500.0,1500.0,GDDR6X,96.0,228.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,North America,200.0,"Elite4K-10, Elite4K-19, GX500-16, Elite4K-18",800.0,98.28,Type E,0.15,5000.0,1239.0,929.25,Intel,Elite4K-16,8.0,2500.0,3000.0,GDDR6X,59.0,872.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,200.0,"GX500-16, RT300-13, AX900-1, GX500-7, Elite4K-12",510.0,99.98,Type A,0.2,5000.0,627.0,627.0,Intel,Elite4K-17,8.0,1000.0,2500.0,GDDR6,57.0,417.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,50.0,"GX500-2, Pro1000-19, RT300-13",565.0,99.97,Type A,0.12,4000.0,796.0,382.08,Intel,Elite4K-18,8.0,2000.0,1500.0,GDDR6,105.0,989.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Asia,10.0,"Pro1000-11, AX900-12, Pro1000-15",362.0,98.49,Type E,0.25,2000.0,968.0,484.0,AMD,Elite4K-19,8.0,1500.0,2000.0,GDDR6,257.0,1477.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,Europe,100.0,"GX500-19, Elite4K-6",740.0,99.92,Type D,0.1,2000.0,737.0,147.4,Intel,Elite4K-20,16.0,2500.0,2000.0,GDDR5,55.0,344.0
+Provider A,USA,1962,22760,94.66,Datacenter Solutions,South America,50.0,"Elite4K-13, GX500-17",282.0,99.08,Type A,0.15,1000.0,856.0,128.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,"GX500-7, AX900-13, GX500-14, RT300-16, Pro1000-6",725.0,98.73,Type D,0.25,2000.0,665.0,332.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,Pro1000-10,1000.0,99.61,Type A,0.15,4000.0,1053.0,631.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,50.0,GX500-9,771.0,99.38,Type C,0.2,1000.0,975.0,195.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,"RT300-18, RT300-3, Pro1000-5",161.0,99.74,Type E,0.12,2000.0,1429.0,342.96,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,500.0,"Pro1000-5, Pro1000-12",107.0,98.22,Type A,0.2,5000.0,884.0,884.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"Elite4K-7, RT300-12, GX500-10, RT300-2, Pro1000-17",173.0,99.9,Type D,0.15,1000.0,1103.0,165.45,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,500.0,"GX500-9, RT300-10, GX500-6, Pro1000-7",233.0,99.35,Type D,0.1,5000.0,847.0,423.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"RT300-11, RT300-9, Elite4K-6",263.0,99.16,Type C,0.1,4000.0,709.0,283.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,"Elite4K-8, GX500-13",141.0,98.74,Type D,0.1,4000.0,608.0,243.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,10.0,Elite4K-3,790.0,99.03,Type A,0.2,5000.0,697.0,697.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,200.0,"GX500-1, Elite4K-5, Pro1000-6, AX900-6, Elite4K-14",202.0,98.79,Type B,0.15,5000.0,1191.0,893.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"AX900-3, Elite4K-18, Elite4K-17, Pro1000-7, RT300-4",298.0,98.72,Type E,0.1,5000.0,671.0,335.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,"Pro1000-1, RT300-1",472.0,99.68,Type E,0.12,3000.0,727.0,261.72,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,50.0,"GX500-5, RT300-8, Pro1000-4, RT300-10, GX500-19",718.0,99.95,Type A,0.1,3000.0,1447.0,434.1,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,50.0,"Pro1000-3, Pro1000-15, Pro1000-8, AX900-12",410.0,98.15,Type A,0.1,5000.0,1203.0,601.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,"GX500-14, Elite4K-7, AX900-16, AX900-7, RT300-10",429.0,99.7,Type B,0.12,2000.0,1223.0,293.52,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,10.0,"Elite4K-17, GX500-6, Elite4K-16, Elite4K-2, RT300-16",379.0,98.15,Type C,0.2,5000.0,1288.0,1288.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,"RT300-13, AX900-12, GX500-12, AX900-2",666.0,99.9,Type A,0.1,5000.0,1446.0,723.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,200.0,"Pro1000-7, Elite4K-13, Pro1000-3",317.0,98.51,Type A,0.15,4000.0,763.0,457.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,10.0,"Pro1000-1, Elite4K-15, RT300-6",492.0,99.73,Type E,0.12,2000.0,1109.0,266.16,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,100.0,"GX500-15, Elite4K-7, GX500-2",265.0,98.05,Type C,0.2,2000.0,760.0,304.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,500.0,"Pro1000-4, GX500-18",544.0,98.56,Type B,0.15,5000.0,843.0,632.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,10.0,Elite4K-12,881.0,99.92,Type D,0.15,4000.0,689.0,413.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,10.0,"AX900-15, Elite4K-12, RT300-4, RT300-9",387.0,98.02,Type D,0.1,3000.0,1187.0,356.1,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,500.0,"RT300-4, AX900-5, RT300-18",189.0,98.79,Type E,0.12,5000.0,844.0,506.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,50.0,"GX500-15, GX500-9",913.0,98.22,Type C,0.2,5000.0,868.0,868.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,50.0,"RT300-14, AX900-17",217.0,99.78,Type D,0.15,2000.0,1078.0,323.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,200.0,"AX900-15, Pro1000-16",162.0,98.29,Type B,0.12,5000.0,833.0,499.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,500.0,AX900-19,509.0,98.16,Type B,0.2,1000.0,572.0,114.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"AX900-4, Elite4K-3, Elite4K-20",460.0,99.8,Type B,0.12,2000.0,1080.0,259.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,Elite4K-14,783.0,98.31,Type D,0.1,2000.0,1481.0,296.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,200.0,"Elite4K-2, AX900-1, RT300-12, Pro1000-19, GX500-3",588.0,99.31,Type C,0.2,5000.0,787.0,787.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,50.0,"Pro1000-16, Elite4K-3, GX500-16, GX500-11",157.0,98.18,Type D,0.12,5000.0,1206.0,723.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,10.0,RT300-9,128.0,99.58,Type A,0.25,5000.0,628.0,785.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,10.0,"RT300-8, RT300-3, Elite4K-19, GX500-4, RT300-14",322.0,99.56,Type C,0.25,2000.0,797.0,398.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,200.0,"GX500-12, Pro1000-20, RT300-3, RT300-20",933.0,99.29,Type B,0.2,3000.0,537.0,322.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,100.0,"AX900-8, Elite4K-14",253.0,99.13,Type A,0.12,3000.0,1294.0,465.84,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,10.0,Elite4K-15,572.0,99.01,Type C,0.2,2000.0,1177.0,470.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,200.0,Elite4K-15,136.0,98.99,Type E,0.25,5000.0,605.0,756.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,500.0,"Pro1000-3, RT300-5, RT300-12, Elite4K-2, GX500-5",220.0,98.2,Type E,0.12,4000.0,1202.0,576.96,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,"RT300-5, RT300-18, GX500-6",330.0,99.22,Type C,0.2,4000.0,1038.0,830.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,10.0,"AX900-7, Elite4K-14, AX900-3, GX500-16, Elite4K-9",660.0,98.34,Type E,0.25,1000.0,696.0,174.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,500.0,"Elite4K-17, Elite4K-8, Pro1000-15, AX900-17",451.0,99.93,Type B,0.2,4000.0,1023.0,818.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,200.0,"Pro1000-19, AX900-11",296.0,99.2,Type B,0.15,5000.0,663.0,497.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,50.0,"Pro1000-18, RT300-17",671.0,98.78,Type E,0.2,5000.0,1105.0,1105.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,500.0,"Elite4K-9, Pro1000-1, Pro1000-11, GX500-16",763.0,98.91,Type E,0.2,3000.0,949.0,569.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,200.0,"GX500-18, AX900-17, RT300-5, Pro1000-13, AX900-12",728.0,99.36,Type D,0.1,2000.0,1166.0,233.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,500.0,"GX500-3, Pro1000-1, Pro1000-17, Pro1000-11",445.0,98.04,Type B,0.1,3000.0,727.0,218.1,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,RT300-16,128.0,98.11,Type C,0.1,5000.0,1295.0,647.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"Pro1000-12, GX500-5, AX900-10, GX500-4",805.0,99.49,Type D,0.25,4000.0,653.0,653.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,Pro1000-20,419.0,99.4,Type C,0.25,3000.0,1016.0,762.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,"GX500-1, Elite4K-10, Pro1000-5, AX900-15, GX500-15",559.0,98.29,Type C,0.15,5000.0,1464.0,1098.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,500.0,"Elite4K-4, RT300-15",191.0,99.03,Type B,0.12,5000.0,1017.0,610.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,"RT300-3, GX500-12, Pro1000-1, GX500-18, Elite4K-10",279.0,99.26,Type D,0.12,4000.0,597.0,286.56,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,200.0,GX500-10,186.0,98.44,Type E,0.15,2000.0,1256.0,376.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,"RT300-19, AX900-13, Pro1000-12",788.0,98.93,Type C,0.2,2000.0,569.0,227.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"AX900-17, GX500-9, RT300-12, AX900-4",372.0,99.92,Type B,0.1,2000.0,774.0,154.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,10.0,"Elite4K-14, Elite4K-10, GX500-1",616.0,98.97,Type C,0.25,1000.0,908.0,227.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"AX900-18, GX500-9, GX500-18, AX900-12, AX900-6",289.0,98.03,Type A,0.1,1000.0,1122.0,112.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,"AX900-7, RT300-17, RT300-12, Pro1000-15, GX500-8",553.0,98.4,Type D,0.12,4000.0,866.0,415.68,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,100.0,"GX500-1, AX900-10, Pro1000-5, Elite4K-4, RT300-3",305.0,98.68,Type C,0.1,2000.0,1242.0,248.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,500.0,"GX500-14, AX900-18, RT300-13, RT300-2, Elite4K-5",192.0,99.77,Type D,0.12,3000.0,1122.0,403.92,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,"AX900-15, RT300-19, Pro1000-10, GX500-2",476.0,99.97,Type C,0.15,5000.0,554.0,415.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,Pro1000-19,576.0,99.07,Type E,0.12,5000.0,928.0,556.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,"RT300-6, Elite4K-8, Pro1000-6, AX900-9",636.0,99.83,Type C,0.25,4000.0,1231.0,1231.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"AX900-6, GX500-9, GX500-7",446.0,99.22,Type B,0.1,2000.0,761.0,152.2,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,200.0,Pro1000-5,988.0,98.22,Type E,0.25,5000.0,1496.0,1870.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,200.0,"RT300-4, AX900-2, Pro1000-14",693.0,98.19,Type E,0.25,1000.0,1218.0,304.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,10.0,"GX500-1, AX900-8",593.0,98.02,Type C,0.1,3000.0,1093.0,327.9,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"Pro1000-7, AX900-8, GX500-9",620.0,99.89,Type C,0.1,4000.0,1286.0,514.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,500.0,"AX900-11, AX900-12",612.0,98.65,Type E,0.15,3000.0,807.0,363.15,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,10.0,"GX500-14, Elite4K-16",478.0,98.62,Type E,0.1,2000.0,967.0,193.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,500.0,"AX900-20, RT300-15, GX500-9, Pro1000-11",691.0,99.17,Type C,0.25,3000.0,1125.0,843.75,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,100.0,"GX500-8, Elite4K-4, Elite4K-18",465.0,99.22,Type C,0.1,2000.0,1493.0,298.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,100.0,"AX900-20, GX500-5, RT300-19, RT300-15, RT300-11",513.0,98.81,Type D,0.25,1000.0,642.0,160.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,GX500-16,850.0,98.65,Type C,0.15,5000.0,1084.0,813.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,"RT300-11, GX500-6",549.0,98.56,Type E,0.25,3000.0,662.0,496.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,50.0,"Pro1000-17, Elite4K-20, AX900-16, RT300-14",162.0,98.74,Type A,0.12,5000.0,1046.0,627.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,200.0,"GX500-14, GX500-20, Pro1000-10",114.0,99.54,Type C,0.2,1000.0,640.0,128.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,10.0,"Elite4K-4, Pro1000-19, AX900-20",670.0,99.4,Type C,0.12,1000.0,666.0,79.92,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"Elite4K-1, Elite4K-3, Pro1000-19, RT300-4",496.0,98.14,Type C,0.1,2000.0,725.0,145.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,50.0,"RT300-2, Pro1000-18, RT300-13, Pro1000-13",320.0,99.87,Type D,0.25,4000.0,1450.0,1450.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,"Pro1000-15, Elite4K-4, RT300-8, Pro1000-14",113.0,98.05,Type A,0.2,3000.0,905.0,543.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,200.0,"Pro1000-10, GX500-17, AX900-11",760.0,99.57,Type B,0.12,4000.0,964.0,462.72,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,RT300-5,207.0,99.24,Type A,0.1,2000.0,1172.0,234.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,100.0,"AX900-6, RT300-4, Elite4K-20, AX900-17",462.0,99.78,Type E,0.25,1000.0,603.0,150.75,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,10.0,"RT300-16, GX500-18, Elite4K-8, Elite4K-13, Elite4K-14",368.0,98.63,Type A,0.1,3000.0,1028.0,308.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,GX500-8,559.0,99.38,Type D,0.1,4000.0,686.0,274.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,100.0,GX500-5,157.0,98.92,Type C,0.25,1000.0,605.0,151.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,200.0,"Pro1000-1, GX500-9, GX500-13, RT300-19, AX900-7",561.0,98.76,Type C,0.2,3000.0,1413.0,847.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,100.0,"Pro1000-14, Pro1000-4, RT300-11, Pro1000-12, RT300-10",576.0,98.69,Type C,0.25,2000.0,1225.0,612.5,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,200.0,"RT300-11, AX900-20, AX900-16",412.0,98.09,Type A,0.1,3000.0,687.0,206.1,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,200.0,Pro1000-8,643.0,98.23,Type D,0.25,1000.0,973.0,243.25,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,50.0,"Elite4K-3, AX900-19, GX500-14, AX900-13, Pro1000-17",910.0,99.35,Type B,0.25,4000.0,1260.0,1260.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,500.0,AX900-9,317.0,98.5,Type C,0.25,2000.0,834.0,417.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,200.0,"RT300-12, Pro1000-6, AX900-12, Pro1000-1, GX500-20",207.0,98.53,Type B,0.25,4000.0,787.0,787.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,50.0,"Elite4K-15, GX500-3, AX900-8",602.0,98.38,Type A,0.2,2000.0,1392.0,556.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,500.0,"AX900-19, RT300-19, RT300-9",390.0,99.34,Type A,0.25,1000.0,516.0,129.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,200.0,"RT300-9, Pro1000-13, Pro1000-1",153.0,98.76,Type E,0.12,5000.0,550.0,330.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,100.0,"GX500-13, Pro1000-3, Elite4K-13, RT300-9, AX900-11",663.0,98.17,Type A,0.12,2000.0,719.0,172.56,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,10.0,"RT300-18, RT300-13, GX500-12",237.0,98.78,Type A,0.12,5000.0,608.0,364.8,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,50.0,Pro1000-1,487.0,98.97,Type C,0.12,1000.0,703.0,84.36,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,50.0,"GX500-2, Pro1000-20, Pro1000-16",712.0,98.97,Type D,0.15,4000.0,1204.0,722.4,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Australia,50.0,"Elite4K-3, Pro1000-11, Elite4K-5, GX500-9, Pro1000-15",156.0,98.92,Type A,0.2,1000.0,1170.0,234.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,200.0,"AX900-3, RT300-18, RT300-13",102.0,98.39,Type B,0.2,4000.0,1060.0,848.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Asia,10.0,"RT300-18, GX500-14, Elite4K-3, Pro1000-4, RT300-14",412.0,99.96,Type D,0.1,4000.0,1369.0,547.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,Europe,10.0,"Pro1000-6, GX500-8, Pro1000-2",447.0,99.11,Type C,0.2,5000.0,1068.0,1068.0,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,South America,200.0,"AX900-16, Pro1000-11, GX500-14, Pro1000-3, AX900-6",954.0,98.76,Type B,0.15,3000.0,1368.0,615.6,,,,,,,,
+Provider B,UK,1963,41240,24.15,Graphics Processing,North America,200.0,"AX900-14, RT300-17, Elite4K-18",441.0,98.53,Type C,0.25,5000.0,968.0,1210.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,10.0,GX500-20,857.0,98.16,Type C,0.15,4000.0,1249.0,749.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,10.0,"AX900-3, Elite4K-7, Pro1000-15, AX900-12",345.0,98.55,Type C,0.12,3000.0,1386.0,498.96,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,500.0,"RT300-13, GX500-20, Elite4K-6, Elite4K-19",656.0,98.52,Type D,0.2,4000.0,836.0,668.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,500.0,AX900-14,324.0,99.79,Type B,0.1,3000.0,1249.0,374.7,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,100.0,"Pro1000-20, RT300-18, GX500-2, Pro1000-11, AX900-7",362.0,99.28,Type C,0.15,2000.0,1201.0,360.3,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,10.0,"AX900-20, GX500-10, GX500-5, Pro1000-1, Pro1000-14",528.0,98.85,Type A,0.2,4000.0,564.0,451.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,200.0,"GX500-4, GX500-20, Elite4K-15, Elite4K-16",172.0,98.42,Type B,0.12,2000.0,818.0,196.32,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,10.0,"GX500-4, RT300-17, Elite4K-9, Elite4K-2, GX500-8",862.0,98.68,Type B,0.1,3000.0,1263.0,378.9,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,100.0,"RT300-1, Pro1000-12",434.0,98.27,Type E,0.15,2000.0,1266.0,379.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,10.0,"GX500-5, RT300-18, Pro1000-4, RT300-19",209.0,99.16,Type E,0.15,1000.0,1195.0,179.25,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,50.0,"Elite4K-6, Pro1000-10, GX500-17, GX500-19",192.0,99.55,Type B,0.1,5000.0,1447.0,723.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,200.0,AX900-13,225.0,98.14,Type E,0.15,3000.0,1055.0,474.75,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,500.0,"Elite4K-15, Elite4K-2, RT300-8, GX500-13",973.0,99.52,Type C,0.25,5000.0,1173.0,1466.25,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,200.0,"AX900-9, AX900-6",867.0,99.17,Type B,0.12,2000.0,766.0,183.84,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,100.0,Elite4K-7,599.0,98.87,Type C,0.25,4000.0,1183.0,1183.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,100.0,Pro1000-5,140.0,98.53,Type E,0.15,1000.0,966.0,144.9,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,500.0,"RT300-16, RT300-15, GX500-7",428.0,98.21,Type B,0.12,1000.0,632.0,75.84,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,200.0,"Pro1000-13, Elite4K-7",419.0,98.69,Type E,0.12,1000.0,1046.0,125.52,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,10.0,"AX900-17, Pro1000-6",122.0,99.96,Type C,0.25,4000.0,1166.0,1166.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,50.0,"RT300-12, AX900-1",356.0,99.46,Type A,0.2,1000.0,1429.0,285.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,50.0,RT300-8,988.0,99.73,Type E,0.12,2000.0,1165.0,279.6,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,200.0,"Elite4K-19, Pro1000-18",278.0,98.67,Type D,0.1,5000.0,1095.0,547.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,100.0,"RT300-14, GX500-11, GX500-9",247.0,99.9,Type B,0.12,4000.0,1261.0,605.28,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,50.0,"AX900-10, RT300-7, Pro1000-3",240.0,99.96,Type C,0.12,5000.0,880.0,528.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,200.0,"AX900-7, Elite4K-4",677.0,99.65,Type D,0.12,3000.0,944.0,339.84,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,50.0,"GX500-12, GX500-10, AX900-3, GX500-14",552.0,99.44,Type B,0.12,3000.0,786.0,282.96,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,50.0,AX900-6,903.0,98.48,Type E,0.12,5000.0,1410.0,846.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,50.0,"Pro1000-13, AX900-2, AX900-15, RT300-16",974.0,98.08,Type E,0.25,2000.0,1468.0,734.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,10.0,"Elite4K-18, RT300-15, GX500-10",491.0,98.15,Type A,0.15,2000.0,609.0,182.7,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,200.0,GX500-6,822.0,99.56,Type E,0.1,5000.0,1384.0,692.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,500.0,"Elite4K-1, Elite4K-12",411.0,99.14,Type C,0.25,4000.0,1413.0,1413.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,50.0,"AX900-19, Elite4K-17, Pro1000-16",562.0,98.65,Type D,0.1,4000.0,1138.0,455.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,500.0,"Pro1000-15, Elite4K-9",415.0,98.3,Type C,0.25,3000.0,1356.0,1017.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,200.0,"RT300-15, Elite4K-20",637.0,99.82,Type A,0.12,5000.0,923.0,553.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,500.0,"GX500-11, GX500-6, AX900-5, Pro1000-9",483.0,98.67,Type A,0.25,5000.0,1025.0,1281.25,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,10.0,"RT300-14, Pro1000-7, GX500-4, Elite4K-11, Pro1000-5",114.0,98.5,Type E,0.1,3000.0,1117.0,335.1,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,500.0,"Pro1000-7, Pro1000-13, Pro1000-18, RT300-4, GX500-14",754.0,99.87,Type B,0.25,3000.0,652.0,489.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,200.0,"RT300-11, AX900-17",538.0,98.11,Type B,0.25,1000.0,1233.0,308.25,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,50.0,"GX500-17, AX900-7, Elite4K-7",688.0,99.36,Type C,0.2,1000.0,854.0,170.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,50.0,"GX500-13, Pro1000-11, AX900-1, Pro1000-17",798.0,98.4,Type B,0.2,5000.0,878.0,878.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,100.0,"Pro1000-1, RT300-4, GX500-4, Pro1000-6, Pro1000-14",381.0,98.18,Type A,0.12,3000.0,1264.0,455.04,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,100.0,"Pro1000-5, AX900-16, Pro1000-10, Elite4K-7",791.0,99.81,Type C,0.2,2000.0,613.0,245.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,10.0,"GX500-1, Pro1000-20, RT300-19, Elite4K-17",742.0,98.11,Type D,0.25,1000.0,1290.0,322.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,200.0,"Pro1000-16, RT300-1, AX900-6",141.0,99.31,Type D,0.1,3000.0,706.0,211.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,200.0,"AX900-12, Elite4K-9",113.0,99.1,Type E,0.25,1000.0,890.0,222.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,500.0,"AX900-6, GX500-15, RT300-7, Elite4K-2, AX900-2",857.0,98.0,Type B,0.15,3000.0,1389.0,625.05,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,10.0,"Elite4K-4, Pro1000-3, Pro1000-12",941.0,99.07,Type A,0.25,1000.0,1264.0,316.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,500.0,"RT300-20, GX500-10",841.0,98.9,Type E,0.12,3000.0,702.0,252.72,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,50.0,"Elite4K-17, RT300-13, Pro1000-19, AX900-17",616.0,99.74,Type D,0.15,5000.0,1013.0,759.75,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,10.0,"Pro1000-9, AX900-19",795.0,99.03,Type A,0.1,4000.0,1008.0,403.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,100.0,"GX500-16, Elite4K-17, GX500-6, Pro1000-6",197.0,98.92,Type E,0.15,4000.0,762.0,457.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,200.0,"GX500-15, Elite4K-4",276.0,98.86,Type E,0.12,1000.0,735.0,88.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,100.0,Elite4K-3,264.0,98.04,Type B,0.15,1000.0,982.0,147.3,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,50.0,"GX500-12, GX500-2, AX900-19",784.0,99.96,Type D,0.2,4000.0,584.0,467.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,50.0,GX500-15,356.0,99.9,Type E,0.1,2000.0,552.0,110.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,100.0,"Elite4K-10, Pro1000-17, Elite4K-15",913.0,98.47,Type C,0.12,3000.0,992.0,357.12,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,200.0,"GX500-4, RT300-16, Elite4K-14, AX900-1, GX500-11",567.0,99.72,Type E,0.1,2000.0,1406.0,281.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,100.0,RT300-15,369.0,99.79,Type D,0.1,2000.0,593.0,118.6,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,100.0,"RT300-11, AX900-4, AX900-7",277.0,99.65,Type E,0.2,1000.0,1198.0,239.6,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,100.0,"Pro1000-18, Elite4K-8, GX500-17, GX500-4",409.0,99.22,Type C,0.1,4000.0,1023.0,409.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,10.0,"GX500-4, RT300-5, RT300-19, AX900-1, RT300-6",492.0,98.93,Type B,0.12,2000.0,935.0,224.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,500.0,"AX900-9, AX900-5, Elite4K-14, RT300-18, RT300-8",374.0,98.92,Type A,0.2,2000.0,659.0,263.6,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,500.0,GX500-20,687.0,98.66,Type D,0.1,3000.0,1264.0,379.2,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,10.0,"AX900-5, RT300-16, Pro1000-1, RT300-2",137.0,98.2,Type A,0.15,5000.0,758.0,568.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,10.0,"GX500-6, GX500-7, AX900-15",899.0,99.5,Type D,0.12,5000.0,1229.0,737.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,500.0,"AX900-8, RT300-5, AX900-3, Pro1000-8",938.0,99.84,Type C,0.1,1000.0,1233.0,123.3,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,200.0,"RT300-2, Pro1000-14",933.0,99.38,Type D,0.12,1000.0,1274.0,152.88,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,100.0,"Elite4K-5, Elite4K-8, AX900-20, GX500-18",703.0,99.73,Type E,0.1,2000.0,677.0,135.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,50.0,"AX900-8, GX500-5, Pro1000-20",820.0,98.14,Type C,0.15,4000.0,1416.0,849.6,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Europe,50.0,AX900-18,434.0,98.41,Type E,0.12,5000.0,570.0,342.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,100.0,"AX900-6, AX900-5, GX500-15, AX900-9, RT300-13",750.0,99.8,Type B,0.1,2000.0,690.0,138.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,100.0,"RT300-2, GX500-20, AX900-8, AX900-5, Pro1000-1",275.0,98.24,Type C,0.15,4000.0,1443.0,865.8,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,100.0,"AX900-2, Pro1000-8, Pro1000-17, Pro1000-9, RT300-19",103.0,99.9,Type C,0.1,3000.0,1207.0,362.1,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,North America,200.0,"Elite4K-3, RT300-7",706.0,98.26,Type D,0.2,3000.0,1315.0,789.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,50.0,"RT300-6, Pro1000-12, Pro1000-14, AX900-14",661.0,98.28,Type E,0.15,4000.0,850.0,510.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,100.0,Pro1000-16,317.0,98.38,Type E,0.12,4000.0,533.0,255.84,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,10.0,GX500-10,964.0,98.94,Type D,0.1,1000.0,573.0,57.3,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,50.0,"RT300-20, Pro1000-19",827.0,98.07,Type C,0.2,3000.0,1259.0,755.4,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,50.0,RT300-20,825.0,98.66,Type D,0.15,5000.0,1204.0,903.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,500.0,"RT300-8, Elite4K-15, GX500-12, Elite4K-9",866.0,99.91,Type A,0.15,5000.0,518.0,388.5,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,100.0,Pro1000-19,149.0,99.42,Type D,0.1,5000.0,792.0,396.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Australia,100.0,"GX500-10, GX500-7",565.0,98.69,Type B,0.12,1000.0,866.0,103.92,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,200.0,"Elite4K-5, Elite4K-11, Pro1000-4, Elite4K-10, Pro1000-1",857.0,99.53,Type E,0.25,4000.0,652.0,652.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,Asia,200.0,"RT300-13, GX500-6",483.0,98.05,Type A,0.25,1000.0,560.0,140.0,,,,,,,,
+Provider C,Japan,1993,9347,78.41,Datacenter Solutions,South America,200.0,"GX500-3, RT300-14",526.0,98.24,Type D,0.2,1000.0,666.0,133.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,500.0,"Pro1000-1, Elite4K-16, GX500-12, Pro1000-16, Elite4K-8",646.0,99.14,Type A,0.2,2000.0,974.0,389.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,"Pro1000-9, RT300-7, RT300-18, Pro1000-13, AX900-15",885.0,99.41,Type D,0.2,1000.0,1299.0,259.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,Elite4K-4,106.0,99.25,Type E,0.25,4000.0,897.0,897.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,"AX900-13, Elite4K-7, Elite4K-1",442.0,99.25,Type B,0.15,4000.0,1451.0,870.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,100.0,"RT300-7, Elite4K-2, RT300-17, GX500-20",241.0,99.22,Type D,0.1,3000.0,1184.0,355.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,200.0,"RT300-3, Pro1000-5, RT300-20, GX500-15",309.0,99.03,Type D,0.25,3000.0,578.0,433.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,"RT300-18, Elite4K-2",142.0,98.69,Type D,0.1,1000.0,1165.0,116.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,"AX900-18, RT300-2",175.0,99.41,Type B,0.12,5000.0,1017.0,610.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,100.0,"RT300-14, GX500-11, Elite4K-3",807.0,99.38,Type C,0.12,5000.0,1152.0,691.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,"AX900-8, GX500-20, AX900-16",385.0,98.42,Type A,0.25,1000.0,1299.0,324.75,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,100.0,"Pro1000-5, AX900-17, Elite4K-6",233.0,98.42,Type E,0.2,3000.0,807.0,484.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,100.0,GX500-11,715.0,99.69,Type C,0.1,3000.0,895.0,268.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,"RT300-3, RT300-15, Pro1000-7, Pro1000-19, Elite4K-2",926.0,99.45,Type C,0.1,2000.0,598.0,119.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,"GX500-9, Elite4K-15, RT300-1, Pro1000-7, Elite4K-12",635.0,99.83,Type D,0.25,3000.0,854.0,640.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,"AX900-14, GX500-8",127.0,99.8,Type B,0.25,1000.0,1255.0,313.75,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,10.0,"Pro1000-16, GX500-3",468.0,99.13,Type A,0.12,1000.0,1361.0,163.32,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,500.0,"RT300-20, Pro1000-3, Elite4K-12, Elite4K-15",762.0,99.91,Type A,0.2,4000.0,548.0,438.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,500.0,"RT300-16, Pro1000-10, AX900-12, Elite4K-19",210.0,98.97,Type D,0.25,3000.0,1483.0,1112.25,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"Elite4K-10, GX500-16, Elite4K-7",829.0,99.52,Type B,0.25,3000.0,500.0,375.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,"Elite4K-4, Elite4K-9, RT300-16",233.0,99.85,Type A,0.25,5000.0,1081.0,1351.25,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,"Elite4K-20, Pro1000-7, GX500-20",670.0,98.63,Type D,0.25,5000.0,1488.0,1860.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,500.0,"RT300-10, Pro1000-8, GX500-18",623.0,99.89,Type B,0.2,2000.0,900.0,360.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,500.0,"RT300-19, AX900-5, AX900-4, Pro1000-5, Elite4K-5",741.0,98.1,Type D,0.2,5000.0,796.0,796.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"Elite4K-11, RT300-5, Elite4K-4",718.0,98.37,Type B,0.25,4000.0,1437.0,1437.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,200.0,"Pro1000-12, AX900-4, Pro1000-20",304.0,98.76,Type D,0.1,4000.0,1215.0,486.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,"RT300-6, Pro1000-5, AX900-9",338.0,99.35,Type A,0.25,2000.0,1325.0,662.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,500.0,Elite4K-4,434.0,98.77,Type A,0.12,2000.0,1337.0,320.88,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,"RT300-17, GX500-4, AX900-20",605.0,98.89,Type A,0.15,3000.0,1339.0,602.55,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,100.0,"Pro1000-19, RT300-11, AX900-18",730.0,99.18,Type C,0.1,2000.0,823.0,164.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,50.0,"RT300-9, RT300-1, Pro1000-20, Elite4K-1, Pro1000-3",372.0,98.18,Type B,0.25,2000.0,674.0,337.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,"Pro1000-10, Elite4K-1",692.0,99.77,Type C,0.12,1000.0,1309.0,157.08,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,"AX900-4, RT300-6, RT300-14, Pro1000-7, AX900-10",760.0,98.98,Type D,0.15,3000.0,1196.0,538.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,"GX500-14, GX500-5, RT300-18, AX900-7, AX900-11",298.0,98.1,Type D,0.1,2000.0,1321.0,264.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,"Pro1000-5, Pro1000-15, Pro1000-16, AX900-20, GX500-3",334.0,99.06,Type C,0.2,5000.0,950.0,950.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,10.0,"GX500-13, Pro1000-2",491.0,99.45,Type C,0.2,3000.0,1170.0,702.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,200.0,"GX500-13, RT300-1, Elite4K-3",454.0,98.69,Type A,0.15,4000.0,1352.0,811.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,100.0,RT300-16,612.0,99.3,Type E,0.2,2000.0,1034.0,413.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,100.0,"Pro1000-1, GX500-19, Pro1000-15, RT300-3",434.0,98.06,Type D,0.12,2000.0,610.0,146.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,200.0,RT300-11,326.0,98.5,Type D,0.2,3000.0,1053.0,631.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,500.0,"Elite4K-19, RT300-3, GX500-13",891.0,99.18,Type D,0.25,5000.0,1138.0,1422.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,"Elite4K-20, Elite4K-4, GX500-7, Pro1000-7",828.0,100.0,Type D,0.15,4000.0,1165.0,699.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,500.0,"Pro1000-12, GX500-10, Pro1000-3, Pro1000-5",701.0,99.3,Type D,0.2,5000.0,1450.0,1450.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,50.0,"RT300-10, AX900-3",580.0,98.57,Type E,0.12,3000.0,803.0,289.08,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,100.0,"Elite4K-15, Elite4K-17, Pro1000-17, AX900-8",779.0,98.06,Type E,0.1,5000.0,714.0,357.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,500.0,"RT300-1, RT300-5, Pro1000-19",230.0,99.44,Type D,0.15,2000.0,718.0,215.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,"Pro1000-15, AX900-8, Pro1000-4, Pro1000-7, Pro1000-8",579.0,99.23,Type A,0.12,4000.0,1118.0,536.64,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,AX900-1,865.0,99.72,Type D,0.1,1000.0,819.0,81.9,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,Elite4K-5,784.0,98.19,Type D,0.15,5000.0,1390.0,1042.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,500.0,Pro1000-3,633.0,98.99,Type B,0.2,1000.0,912.0,182.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,AX900-3,369.0,99.91,Type D,0.25,2000.0,610.0,305.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,Pro1000-17,694.0,99.86,Type C,0.15,1000.0,910.0,136.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,Pro1000-4,185.0,99.76,Type A,0.15,1000.0,738.0,110.7,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,"AX900-18, AX900-7, Elite4K-20",890.0,99.39,Type E,0.25,5000.0,872.0,1090.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,"AX900-12, Pro1000-19, GX500-18",987.0,98.66,Type E,0.1,5000.0,1104.0,552.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,500.0,"GX500-10, RT300-19, AX900-16",754.0,98.95,Type D,0.12,3000.0,980.0,352.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"RT300-20, Pro1000-6",864.0,99.37,Type D,0.2,1000.0,1323.0,264.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,"Elite4K-3, Elite4K-20",124.0,98.22,Type A,0.2,5000.0,1280.0,1280.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,50.0,"GX500-1, Pro1000-15, AX900-7, Pro1000-19",786.0,99.08,Type C,0.15,2000.0,1484.0,445.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,200.0,Pro1000-7,386.0,99.92,Type C,0.25,3000.0,1178.0,883.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,"GX500-5, RT300-6",728.0,99.65,Type A,0.15,3000.0,1233.0,554.85,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"Elite4K-4, RT300-19, Elite4K-13, GX500-15",912.0,98.53,Type E,0.2,2000.0,1360.0,544.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,"GX500-13, GX500-5",830.0,99.79,Type B,0.1,3000.0,1480.0,444.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,100.0,"RT300-2, RT300-14, GX500-2, Pro1000-17, RT300-6",101.0,98.57,Type E,0.15,2000.0,1473.0,441.9,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"RT300-12, RT300-14, AX900-15, RT300-8, Pro1000-13",843.0,99.74,Type E,0.12,3000.0,1444.0,519.84,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,"GX500-6, GX500-5",577.0,98.27,Type D,0.15,3000.0,1070.0,481.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,RT300-13,692.0,99.06,Type D,0.15,2000.0,833.0,249.9,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,50.0,"Pro1000-9, Elite4K-11",466.0,98.63,Type C,0.12,5000.0,1293.0,775.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,RT300-15,773.0,98.56,Type D,0.15,3000.0,889.0,400.05,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,50.0,"Pro1000-9, Pro1000-3, GX500-10, GX500-20",852.0,98.14,Type C,0.25,2000.0,686.0,343.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,"GX500-6, Pro1000-8, Elite4K-10",951.0,99.39,Type B,0.15,4000.0,724.0,434.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,50.0,"AX900-8, AX900-3, AX900-7",452.0,98.85,Type E,0.2,3000.0,851.0,510.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"GX500-14, Pro1000-4, GX500-11, RT300-4",169.0,99.21,Type A,0.25,1000.0,1196.0,299.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"RT300-9, Elite4K-1, AX900-17",425.0,98.95,Type E,0.25,1000.0,1267.0,316.75,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,10.0,"GX500-15, Pro1000-3, AX900-6, Elite4K-20",341.0,98.18,Type C,0.15,2000.0,776.0,232.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,200.0,"AX900-14, Pro1000-18, RT300-6, AX900-8",645.0,99.9,Type C,0.12,3000.0,1273.0,458.28,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,100.0,"RT300-8, AX900-20, Elite4K-11",894.0,98.89,Type E,0.1,4000.0,1230.0,492.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,Pro1000-12,621.0,99.09,Type E,0.12,3000.0,751.0,270.36,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,Elite4K-5,105.0,99.43,Type C,0.1,4000.0,878.0,351.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,"Pro1000-12, AX900-3, GX500-10, Elite4K-4",820.0,98.21,Type B,0.25,3000.0,1116.0,837.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,200.0,"AX900-5, GX500-11, RT300-1",993.0,98.58,Type A,0.12,3000.0,693.0,249.48,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,"Pro1000-4, RT300-17, Elite4K-18",720.0,98.14,Type B,0.25,4000.0,1220.0,1220.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,RT300-6,983.0,98.18,Type E,0.25,5000.0,737.0,921.25,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,200.0,Pro1000-5,874.0,99.56,Type B,0.1,2000.0,953.0,190.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,100.0,"GX500-12, AX900-13, Pro1000-16, GX500-14, AX900-3",760.0,99.46,Type B,0.15,4000.0,1276.0,765.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,10.0,Pro1000-4,581.0,99.06,Type A,0.25,1000.0,734.0,183.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,"Pro1000-17, Pro1000-15, AX900-7",519.0,98.65,Type C,0.12,4000.0,1362.0,653.76,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,500.0,"Pro1000-8, RT300-7, AX900-17",791.0,99.36,Type A,0.2,1000.0,1363.0,272.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,"Elite4K-5, Elite4K-3, GX500-20, RT300-2",915.0,98.41,Type B,0.25,2000.0,1393.0,696.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,100.0,AX900-3,780.0,98.11,Type C,0.1,3000.0,863.0,258.9,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,Pro1000-4,166.0,99.51,Type C,0.2,3000.0,1355.0,813.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,"GX500-9, GX500-1, GX500-12",250.0,99.15,Type C,0.25,4000.0,1467.0,1467.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,50.0,"RT300-11, AX900-14, GX500-4, AX900-19, AX900-6",422.0,98.52,Type D,0.2,4000.0,776.0,620.8,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,100.0,"AX900-7, RT300-12, Pro1000-7, Pro1000-4, Elite4K-11",618.0,98.23,Type D,0.2,3000.0,1082.0,649.2,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,"RT300-13, GX500-19, AX900-10",544.0,98.59,Type B,0.25,3000.0,1014.0,760.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,"GX500-20, Pro1000-8",546.0,99.6,Type B,0.2,5000.0,1089.0,1089.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,RT300-15,260.0,98.55,Type E,0.1,5000.0,992.0,496.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,200.0,"RT300-8, GX500-13",169.0,99.48,Type A,0.2,2000.0,935.0,374.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,100.0,"Pro1000-19, Elite4K-10, GX500-10",753.0,98.35,Type C,0.12,2000.0,759.0,182.16,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"Elite4K-2, Pro1000-18, Pro1000-2, Elite4K-9, AX900-11",326.0,98.91,Type E,0.2,1000.0,1370.0,274.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,200.0,"RT300-15, RT300-6",544.0,99.04,Type E,0.1,2000.0,1188.0,237.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,"RT300-20, RT300-16, Elite4K-17, Elite4K-19, Pro1000-6",458.0,99.19,Type B,0.25,3000.0,1203.0,902.25,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,North America,10.0,AX900-16,722.0,99.41,Type E,0.2,5000.0,1086.0,1086.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,200.0,GX500-17,895.0,99.33,Type A,0.15,1000.0,876.0,131.4,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,RT300-7,536.0,99.94,Type A,0.2,5000.0,1173.0,1173.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,"AX900-13, RT300-20, GX500-18, Pro1000-9, RT300-8",117.0,99.95,Type A,0.15,5000.0,670.0,502.5,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,10.0,Pro1000-14,852.0,98.6,Type A,0.25,4000.0,933.0,933.0,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Asia,500.0,"GX500-3, GX500-8, RT300-13, RT300-2",684.0,98.74,Type B,0.1,4000.0,574.0,229.6,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,South America,200.0,"AX900-1, AX900-9, RT300-13, Elite4K-20",389.0,99.11,Type B,0.12,1000.0,1303.0,156.36,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Europe,50.0,RT300-16,143.0,98.49,Type B,0.12,2000.0,1341.0,321.84,,,,,,,,
+Provider D,Germany,1995,16428,87.11,Datacenter Solutions,Australia,10.0,"Pro1000-17, RT300-3",627.0,99.29,Type A,0.2,4000.0,771.0,616.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,10.0,"AX900-9, AX900-10, GX500-20",112.0,99.79,Type B,0.12,2000.0,687.0,164.88,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"AX900-16, Elite4K-4",387.0,99.7,Type E,0.2,2000.0,1363.0,545.2,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,10.0,"GX500-14, Pro1000-10, RT300-11",158.0,98.72,Type E,0.15,2000.0,1031.0,309.3,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,500.0,"RT300-4, AX900-14",929.0,98.57,Type D,0.15,5000.0,1076.0,807.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,200.0,"Pro1000-8, Pro1000-15, Elite4K-18",919.0,99.83,Type C,0.1,2000.0,892.0,178.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,100.0,Elite4K-15,596.0,98.0,Type E,0.12,2000.0,500.0,120.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,500.0,"AX900-1, RT300-7, RT300-4, RT300-12",241.0,98.56,Type D,0.2,3000.0,754.0,452.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,10.0,"GX500-18, Pro1000-6, AX900-14",479.0,99.72,Type E,0.1,4000.0,1056.0,422.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,10.0,"Elite4K-11, RT300-13, GX500-9, Elite4K-1",276.0,99.99,Type A,0.25,1000.0,524.0,131.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"RT300-17, Pro1000-8, GX500-17, Elite4K-3, Elite4K-10",970.0,99.71,Type A,0.2,5000.0,1480.0,1480.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,10.0,"GX500-1, RT300-18, Pro1000-9, AX900-8, GX500-7",370.0,99.43,Type A,0.12,2000.0,1027.0,246.48,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,500.0,"Pro1000-17, GX500-8, AX900-6, Elite4K-9",307.0,99.85,Type E,0.12,2000.0,708.0,169.92,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,10.0,Pro1000-16,973.0,98.86,Type D,0.1,3000.0,809.0,242.7,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"Pro1000-13, AX900-8, Pro1000-8",872.0,99.26,Type B,0.15,4000.0,690.0,414.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,50.0,"Elite4K-17, Pro1000-11, Pro1000-10, AX900-13",448.0,99.37,Type B,0.1,5000.0,1424.0,712.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,10.0,"Pro1000-14, Elite4K-5, Elite4K-20, Elite4K-8",429.0,98.45,Type C,0.25,1000.0,1171.0,292.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,10.0,"GX500-17, Elite4K-5",970.0,99.71,Type E,0.25,3000.0,889.0,666.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,50.0,"Pro1000-6, RT300-18",176.0,99.26,Type B,0.1,1000.0,984.0,98.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"Elite4K-1, RT300-1, Pro1000-15, Pro1000-2, Elite4K-15",803.0,99.91,Type E,0.12,4000.0,872.0,418.56,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"Elite4K-9, GX500-19",361.0,98.02,Type B,0.25,5000.0,1352.0,1690.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"GX500-18, Elite4K-6, GX500-16",646.0,98.65,Type A,0.1,5000.0,564.0,282.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,10.0,RT300-17,689.0,98.84,Type A,0.25,1000.0,797.0,199.25,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,500.0,"Pro1000-1, AX900-6",467.0,98.31,Type D,0.12,5000.0,628.0,376.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,50.0,"Pro1000-5, Pro1000-3, GX500-12",564.0,98.71,Type A,0.15,2000.0,854.0,256.2,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,200.0,"Pro1000-20, Elite4K-11, RT300-19, Pro1000-2, Pro1000-5",981.0,98.54,Type B,0.15,1000.0,926.0,138.9,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"Elite4K-19, Elite4K-15, GX500-6, GX500-2, RT300-20",326.0,99.71,Type E,0.1,2000.0,1386.0,277.2,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"GX500-1, Elite4K-20",616.0,99.59,Type B,0.15,3000.0,777.0,349.65,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,10.0,"RT300-1, Elite4K-4, GX500-19, Pro1000-19, Pro1000-17",238.0,99.03,Type A,0.2,3000.0,1054.0,632.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,10.0,"Elite4K-6, Elite4K-7",637.0,99.02,Type E,0.15,4000.0,1374.0,824.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,100.0,Pro1000-4,634.0,99.6,Type E,0.1,2000.0,1420.0,284.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,200.0,"Pro1000-17, GX500-12",402.0,98.5,Type C,0.2,1000.0,908.0,181.6,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,50.0,"RT300-14, GX500-11",823.0,98.74,Type B,0.15,4000.0,870.0,522.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,10.0,"GX500-7, GX500-11, AX900-4, RT300-13, Elite4K-1",115.0,98.39,Type B,0.25,1000.0,762.0,190.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,500.0,"RT300-15, AX900-13",770.0,99.93,Type D,0.15,4000.0,1161.0,696.6,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,10.0,"Pro1000-6, Pro1000-3, Elite4K-17",691.0,98.91,Type C,0.25,3000.0,682.0,511.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"RT300-7, Pro1000-2, RT300-12, Elite4K-13",329.0,98.73,Type D,0.12,3000.0,520.0,187.2,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,GX500-4,680.0,99.1,Type E,0.1,4000.0,1399.0,559.6,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,50.0,"AX900-6, GX500-6, RT300-7, GX500-18",265.0,99.31,Type D,0.12,1000.0,1030.0,123.6,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"AX900-9, AX900-4, Elite4K-17",750.0,99.87,Type B,0.1,5000.0,1192.0,596.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,200.0,"AX900-20, RT300-2, Elite4K-9",627.0,99.22,Type D,0.1,1000.0,1304.0,130.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"GX500-16, Elite4K-5, AX900-9, AX900-3, Pro1000-8",883.0,99.82,Type A,0.25,5000.0,1433.0,1791.25,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,500.0,"AX900-15, Elite4K-8, RT300-12, Pro1000-18",279.0,98.14,Type A,0.2,4000.0,873.0,698.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,10.0,"GX500-16, Elite4K-16",152.0,99.72,Type D,0.2,4000.0,785.0,628.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"RT300-10, RT300-6, AX900-6, Elite4K-5, AX900-2",926.0,99.84,Type D,0.25,2000.0,1278.0,639.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,100.0,AX900-7,165.0,99.3,Type A,0.25,2000.0,761.0,380.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,100.0,"RT300-16, Elite4K-9, Pro1000-19",236.0,98.39,Type E,0.2,2000.0,1067.0,426.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,100.0,"GX500-14, Elite4K-3, GX500-18, RT300-16",966.0,99.08,Type E,0.15,2000.0,1004.0,301.2,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"AX900-2, Pro1000-16, GX500-14, RT300-5, Elite4K-11",526.0,99.37,Type C,0.15,5000.0,1233.0,924.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,200.0,Pro1000-16,936.0,99.67,Type E,0.1,3000.0,759.0,227.7,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"RT300-18, AX900-11, GX500-12, GX500-9",219.0,98.39,Type A,0.2,5000.0,684.0,684.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"RT300-3, GX500-4, AX900-17",371.0,98.13,Type B,0.2,1000.0,1069.0,213.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,10.0,"AX900-12, Pro1000-5, Pro1000-20, RT300-9",842.0,99.51,Type B,0.15,1000.0,1080.0,162.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,200.0,"AX900-19, Elite4K-6, GX500-9",140.0,99.08,Type B,0.12,2000.0,641.0,153.84,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"GX500-8, AX900-19",188.0,98.82,Type C,0.1,3000.0,639.0,191.7,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"AX900-8, Elite4K-9",786.0,99.18,Type D,0.25,3000.0,1132.0,849.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,50.0,"AX900-10, Pro1000-4, RT300-13, AX900-14",974.0,99.98,Type D,0.15,5000.0,1417.0,1062.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,500.0,"Elite4K-4, AX900-6, Pro1000-12",423.0,98.41,Type D,0.2,5000.0,654.0,654.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,500.0,"RT300-5, Pro1000-14, RT300-19, RT300-9, Elite4K-8",879.0,98.78,Type C,0.25,2000.0,1165.0,582.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"RT300-17, AX900-9, Elite4K-16, Elite4K-10",415.0,99.91,Type C,0.1,5000.0,1168.0,584.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,200.0,"RT300-7, Pro1000-1",232.0,99.26,Type B,0.25,4000.0,1423.0,1423.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,100.0,GX500-8,684.0,99.51,Type A,0.1,4000.0,564.0,225.6,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,50.0,Elite4K-18,540.0,99.02,Type D,0.1,4000.0,537.0,214.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,200.0,"GX500-10, Pro1000-7, GX500-20, RT300-13, AX900-12",928.0,99.54,Type C,0.25,1000.0,1020.0,255.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,50.0,"Elite4K-16, GX500-7, Pro1000-1",656.0,99.45,Type E,0.15,3000.0,1492.0,671.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,10.0,"Elite4K-14, GX500-14, Pro1000-1",760.0,99.07,Type B,0.2,5000.0,508.0,508.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"Elite4K-4, GX500-19, RT300-1",504.0,99.28,Type E,0.15,3000.0,1141.0,513.45,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"AX900-4, AX900-17, Elite4K-7, GX500-6",347.0,98.45,Type E,0.12,3000.0,861.0,309.96,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,100.0,"Elite4K-9, Elite4K-17, RT300-18, AX900-4, RT300-16",682.0,99.97,Type C,0.15,3000.0,689.0,310.05,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,10.0,"AX900-9, RT300-7",108.0,98.55,Type C,0.15,5000.0,1171.0,878.25,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"GX500-14, Pro1000-16",706.0,99.25,Type E,0.25,5000.0,512.0,640.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,50.0,"Pro1000-4, Elite4K-14, Elite4K-3",251.0,99.87,Type A,0.12,1000.0,942.0,113.04,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,500.0,Pro1000-16,709.0,99.6,Type B,0.2,3000.0,800.0,480.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,100.0,"Elite4K-8, RT300-15, Elite4K-20, AX900-13",147.0,98.19,Type C,0.12,3000.0,637.0,229.32,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,10.0,AX900-2,692.0,98.4,Type D,0.12,2000.0,1413.0,339.12,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,100.0,"RT300-18, GX500-8, Elite4K-19, GX500-14",325.0,99.32,Type D,0.25,5000.0,1385.0,1731.25,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,100.0,"RT300-2, Elite4K-10, GX500-10, RT300-3, Elite4K-17",475.0,99.37,Type C,0.12,2000.0,1194.0,286.56,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,100.0,"AX900-14, Elite4K-14",471.0,99.87,Type C,0.25,1000.0,1224.0,306.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,200.0,"Elite4K-14, AX900-4, AX900-1",231.0,98.08,Type D,0.12,2000.0,709.0,170.16,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,Elite4K-20,861.0,99.82,Type D,0.12,4000.0,657.0,315.36,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"Pro1000-6, Elite4K-20",926.0,98.56,Type C,0.15,5000.0,809.0,606.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,100.0,"Elite4K-8, Elite4K-3",707.0,98.67,Type E,0.2,3000.0,1449.0,869.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,100.0,"AX900-10, AX900-11",599.0,99.97,Type A,0.1,3000.0,641.0,192.3,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,Elite4K-11,897.0,98.87,Type C,0.2,3000.0,1388.0,832.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"GX500-13, AX900-9, AX900-3, Elite4K-8, RT300-10",325.0,98.84,Type D,0.12,3000.0,1002.0,360.72,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Asia,500.0,RT300-19,449.0,99.02,Type B,0.1,4000.0,671.0,268.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,500.0,"Elite4K-13, Elite4K-10, AX900-19, Elite4K-18, GX500-7",441.0,98.18,Type B,0.2,3000.0,1270.0,762.0,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,50.0,"Elite4K-15, AX900-11, Elite4K-17, RT300-17",353.0,99.02,Type B,0.25,5000.0,1319.0,1648.75,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Europe,200.0,Elite4K-3,542.0,98.3,Type C,0.1,3000.0,866.0,259.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,200.0,"RT300-10, GX500-20, GX500-12, Elite4K-2",380.0,99.29,Type B,0.12,5000.0,1253.0,751.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"GX500-16, RT300-11",926.0,98.36,Type B,0.25,1000.0,698.0,174.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,200.0,"RT300-6, GX500-16, GX500-20, GX500-19, Pro1000-4",186.0,98.0,Type B,0.15,3000.0,992.0,446.4,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,South America,100.0,"AX900-4, RT300-8, RT300-10, GX500-16, AX900-12",884.0,99.04,Type E,0.2,4000.0,826.0,660.8,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,10.0,"AX900-5, Pro1000-15, AX900-10, RT300-3",619.0,99.01,Type C,0.25,3000.0,1450.0,1087.5,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,Australia,200.0,"Elite4K-13, Elite4K-15",584.0,98.03,Type A,0.15,1000.0,946.0,141.9,,,,,,,,
+Provider E,France,1997,39289,77.46,Datacenter Solutions,North America,200.0,AX900-3,177.0,99.75,Type E,0.1,4000.0,1330.0,532.0,,,,,,,,
+AMD,China,1960,9512,4.14,Datacenter Solutions,,,,,,,,,,,,,,,,,,
+Intel,UK,1961,45997,32.62,Semiconductor Manufacturing,,,,,,,,,,,,,,,,,,
+NVIDIA,China,1978,37632,30.71,Datacenter Solutions,,,,,,,,,,,,,,,,,,

@@ -134,7 +134,6 @@ def model_development_preprompt() -> str:
         As the worlds best machine learning assistant, your task is to help users write machine learning model code.
         You will respond with valid python code that defines a machine learning solution.
         Data information can be found in the context: data_summary, and preprocessing_context. The goal of the model can be found in: user_goal. And necessary feature engineering in: feature_engineering_code.
-        Data can be found at {self.train_set_path}.
 
         Always return an accuracy score and a model results dataframe with descriptive columns.
 
