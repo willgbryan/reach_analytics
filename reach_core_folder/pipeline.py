@@ -47,6 +47,7 @@ from dataset_builder import GPTRequestHandler
 class Reach:
     def __init__(
             self,
+            local: bool,
             client,
             marqo_index: str, 
             train_set_path: str, 
@@ -55,10 +56,11 @@ class Reach:
             attempt_validation: bool,
             **kwargs,
             ) -> None:
+        self.local = local
         self.client = client
         self.marqo_client = marqo.Client(url="http://localhost:8882")
         self.marqo_index = marqo_index
-        self.context_file_name = "memory.txt"
+        self.context_file_name = "web_upload/working_dir/memory.txt"
         self.train_set_path = train_set_path
         self.dataset_description = dataset_description
         self.goal_prompt = goal_prompt
@@ -366,9 +368,11 @@ class Reach:
                     role_preprompt=self.validation_preprompt,
                     context=context,
                     prompt=f"""
+                    You are a python coding expert.
                     Debug the following python code: {code_to_validate}. \n\nError:\n{error_message}\n\nTraceback:\n{error_traceback}\n\n.
-                    Training data can be found at {self.train_set_path} 
-                    You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
+                    Data can be found at {self.train_set_path} 
+                    IMPORTANT: Think through your response.
+                    IMPORTANT: You must return THE ENTIRE ORIGINAL CODE BLOCK WITH THE REQUIRED CHANGES.
                     """,
                 )
 
@@ -488,7 +492,7 @@ class Reach:
     def main(self, n_suggestions: int, index_name: str) -> None:
         # workflow = Workflow()
 
-        if os.path.exists("data_context.txt"):
+        if os.path.exists("web_upload/working_dir/data_context.txt"):
 
             # self.log.info("Loading data context")
             print("Loading data context")
@@ -535,7 +539,7 @@ class Reach:
             print("Storing data context")
             store_data_context(preprocessing_context, df_context, validated_preprocessing_code)
 
-        memory_dict = read_json_from_file('memory.txt')
+        memory_dict = read_json_from_file('web_upload/working_dir/memory.txt')
 
         decision = extract_content_from_gpt_response(
                     send_request_to_gpt(
@@ -739,19 +743,20 @@ class Reach:
             # self.launch_mlflow_ui(port = 5000)
 
             # user_defined_tag = input("Tag the model")
-            dict_to_dataframe(
-                data_dict = {
-                    'goal': self.goal_prompt,
-                    # 'model_tag': user_defined_tag,
-                    'data_summary': df_context,
-                    'preprocessing_code': validated_preprocessing_code,
-                    'feature_engineering_code': feature_engineering_context,
-                    'model_code': validated_code,
-                    'analysis_code': None,
-                    'ml_model': 1
-                    },
-                file_path = 'ml_finetuning_set.csv'
-                )
+            if self.local:
+                dict_to_dataframe(
+                    data_dict = {
+                        'goal': self.goal_prompt,
+                        # 'model_tag': user_defined_tag,
+                        'data_summary': df_context,
+                        'preprocessing_code': validated_preprocessing_code,
+                        'feature_engineering_code': feature_engineering_context,
+                        'model_code': validated_code,
+                        'analysis_code': None,
+                        'ml_model': 1
+                        },
+                    file_path = 'ml_finetuning_set.csv'
+                    )
             
         else:
             # self.log.info('No modelling is required. Beginning analysis')
@@ -830,22 +835,23 @@ class Reach:
         code_output = buffer.getvalue()
         sys.stdout = old_stdout
 
-        dict_to_dataframe(
-                data_dict = {
-                    'goal': self.goal_prompt,
-                    'data_summary': df_context,
-                    'preprocessing_code': validated_preprocessing_code,
-                    'feature_engineering_code': None,
-                    'model_code': None,
-                    'analysis_code': validated_code,
-                    'ml_model': 0,
-                    },
-                file_path = 'analytics_finetuning_set.csv',
-        )
+        if self.local:
+            dict_to_dataframe(
+                    data_dict = {
+                        'goal': self.goal_prompt,
+                        'data_summary': df_context,
+                        'preprocessing_code': validated_preprocessing_code,
+                        'feature_engineering_code': None,
+                        'model_code': None,
+                        'analysis_code': validated_code,
+                        'ml_model': 0,
+                        },
+                    file_path = 'analytics_finetuning_set.csv',
+            )
 
-        if os.path.exists("memory.txt") or not os.path.exists("memory.txt"):
+        if os.path.exists("web_upload/working_dir/memory.txt") or not os.path.exists("web_upload/working_dir/memory.txt"):
             append_data_to_file(
-                filename='memory.txt',
+                filename='web_upload/working_dir/memory.txt',
                 data={
                     "user_goal": self.goal_prompt,
                     "solution": validated_code,
