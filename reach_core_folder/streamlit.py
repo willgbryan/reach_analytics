@@ -67,7 +67,7 @@ ascii_text = """
 """
 
 st.text(ascii_text)
-prompt = st.chat_input("How can I help?")
+prompt = st.chat_input("Lets extend your reach")
 with st.status("Writing some code...", expanded=True) as status:
     if prompt:
         st.write(f'Prompt: {prompt}')
