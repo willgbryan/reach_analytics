@@ -71,7 +71,7 @@ def append_data_to_file(filename, data):
         json.dump(content, f)
 
 def store_data_context(preprocessing_context: str, df_context: str, code: str):
-    file_path = "data_context.txt"
+    file_path = "web_upload/working_dir/data_context.txt"
     
     if not os.path.exists(file_path):
         with open(file_path, 'w') as _:
@@ -89,7 +89,7 @@ def store_data_context(preprocessing_context: str, df_context: str, code: str):
         file.write(data_str)
 
 def load_data_context():
-    with open("data_context.txt", "r") as file:
+    with open("web_upload/working_dir/data_context.txt", "r") as file:
         content = file.read()
         
     data_dict = ast.literal_eval(content)

@@ -21,6 +21,9 @@ import os
 
 class GPTRequestHandler:
 
+    def __init__(self, client):
+        self.client = client
+
     def get_data_engineer_preprompt(self, file_paths: list):
         """
         Generates a dynamic preprompt for a data engineer with the file paths.
@@ -50,7 +53,9 @@ class GPTRequestHandler:
 
             ```python
             # engineering join logic
-            aggregated_data.to_csv('aggregated_data.csv')
+
+            # always output the result to the following directory
+            aggregated_data.to_csv('web_upload/datasets/aggregated_data.csv')
             ```
         """.strip()
 
@@ -98,6 +103,7 @@ class GPTRequestHandler:
 
                 # Debugging via GPT-4
                 response = send_request_to_gpt(
+                    self.client,
                     role_preprompt=f"""
                     As a python coding assistant, your task is to help users debug the supplied code using the context, code, and traceback provided.
                     Simply return the remedied code, but try to be proactive in debugging. If you see multiple errors that can be corrected, fix them all.
@@ -158,6 +164,7 @@ class GPTRequestHandler:
         role_preprompt = self.get_data_engineer_preprompt(file_paths)
 
         code = send_request_to_gpt(
+            client=self.client,
             role_preprompt=role_preprompt,
             prompt=prompt,
             context=[{"role": "user", "content": f"Dataframe Summaries: {summary_dict}"}],
