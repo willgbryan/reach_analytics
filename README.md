@@ -25,7 +25,7 @@ Example use cases include but are not limited to:
 - [Runtime Options](#runtime-options)
 - [License](#license)
 
-## Prerequisites
+## Development Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
