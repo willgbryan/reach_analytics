@@ -53,6 +53,8 @@ class GPTRequestHandler:
 
             ```python
             # engineering join logic
+
+            # always output the result to the following directory
             aggregated_data.to_csv('web_upload/datasets/aggregated_data.csv')
             ```
         """.strip()

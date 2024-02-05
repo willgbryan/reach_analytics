@@ -4,6 +4,8 @@
 Reach analytics is an AI automated development program intended to tackle heavy analytics
 workloads such as machine learning model development, validation, and testing.
 
+Check out the current demo: [Forecasting Demo](https://www.loom.com/share/9e16d30cc27d46eab6d105edfbeffec9?sid=9c930689-4ce1-42c9-ab0d-805d4c8bb9d5)
+
 Also be sure to check out [Reach Search](https://github.com/willgbryan/reach_search),
 and some early UI testing at [Reach PoD](https://github.com/willgbryan/reach_PoD)!
 
