@@ -16,22 +16,21 @@ from reusable_utils import (
 
 dataset_description = None
 
-# # Deployment config
-# base_dir = os.path.dirname(__file__)
-# uploads_dir = os.path.join(base_dir, 'web_upload', 'datasets')
-# plots_dir = os.path.join(base_dir, 'web_upload', 'plots')
-# working_dir = os.path.join(base_dir, 'web_upload', 'working_dir')
+# Deployment config
+base_dir = os.path.dirname('web_upload')
+uploads_dir = os.path.join(base_dir, 'web_upload', 'datasets')
+plots_dir = os.path.join(base_dir, 'web_upload', 'plots')
+working_dir = os.path.join(base_dir, 'web_upload', 'working_dir')
 
-# os.makedirs(uploads_dir, exist_ok=True)
-# os.makedirs(plots_dir, exist_ok=True)
-# os.makedirs(working_dir, exist_ok=True)
-# local = False
+os.makedirs(uploads_dir, exist_ok=True)
+os.makedirs(plots_dir, exist_ok=True)
+os.makedirs(working_dir, exist_ok=True)
+local = False
 
 # Local config
 uploads_dir = 'web_upload/datasets'
 plots_dir = 'web_upload/plots'
 working_dir = 'web_upload/working_dir'
-local = True
 
 if not os.path.exists(uploads_dir):
     os.makedirs(uploads_dir)
