@@ -40,8 +40,8 @@ with st.sidebar:
     if key:
         os.environ["OPENAI_API_KEY"] = key
         client = get_openai_client(api_key=key)
-    uploaded_files = st.file_uploader('Choose flat files to upload (.csv)', accept_multiple_files=True)
     st.markdown("[Synthetic Datasets](https://github.com/willgbryan/reach_analytics/tree/main/synthetic_sets)")
+    uploaded_files = st.file_uploader('Choose flat files to upload (.csv)', accept_multiple_files=True)
     if os.path.exists(os.path.join(uploads_dir, 'aggregated_data.csv')):
         df_aggregated = pd.read_csv(os.path.join(uploads_dir, 'aggregated_data.csv'))
         st.title("Aggregated Data")
