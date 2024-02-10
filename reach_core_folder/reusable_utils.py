@@ -46,7 +46,7 @@ def send_request_to_gpt(
             prompt: str,
             context: Dict[str, str],  
             stream: bool = False
-            ) -> (Any | List | Dict):
+            ) -> str:
 
         # Handle string input for context
         if isinstance(context, str):
