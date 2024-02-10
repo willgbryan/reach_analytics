@@ -36,6 +36,7 @@ if not os.path.exists(uploads_dir):
     os.makedirs(uploads_dir)
 
 with st.sidebar:
+    st.markdown("[Synthetic Datasets](https://github.com/willgbryan/reach_analytics/tree/main/synthetic_sets)")
     key = st.sidebar.text_input("Enter your OpenAI API Key:", type="password")
     if key:
         os.environ["OPENAI_API_KEY"] = key
