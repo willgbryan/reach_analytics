@@ -327,7 +327,7 @@ class Reach:
 
     def extract_suggestions(
             self,
-            response: (Any | List | Dict),
+            response,
             ) -> List[str]:
         
         content = response.choices[0].message.content
