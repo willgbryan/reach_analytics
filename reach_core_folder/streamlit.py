@@ -67,6 +67,8 @@ ascii_text = """
 """
 
 st.text(ascii_text)
+container = st.container(border=True)
+container.write("Not sure what to ask? Just say: 'What analysis (machine learning or not) is possible with this data?'")
 prompt = st.chat_input("Lets extend your reach")
 with st.status("Writing some code...", expanded=True) as status:
     if prompt:
@@ -74,64 +76,68 @@ with st.status("Writing some code...", expanded=True) as status:
         # reset plots
         clear_directory(plots_dir)
         flat_files_exist = any(f.endswith('.csv') for f in os.listdir('web_upload/datasets'))
-        if flat_files_exist and not os.path.exists(os.path.join(uploads_dir, 'aggregated_data.csv')):
-            st.write("Aggregating supplied data, this may take a few minutes.")
-            # reset session state to new
-            clear_directory(working_dir)
-            handler = GPTRequestHandler(client)
 
-            response, supplied_file_paths, generated_df_summaries = handler.handle_files_and_send_request(
-                file_paths=file_paths,
-                prompt="Aggregate these datasets",
-            )
-            extracted_response = extract_content_from_gpt_response(response)
-            data_eng_code = extract_code(extracted_response)
-
-            validated_code = handler.code_validation_agent(
-                code_to_validate=data_eng_code,
-                file_paths=supplied_file_paths,
-                context=[{"role": "user", "content": f"Dataframe Summaries: {generated_df_summaries}"}]
-            )
-            set = True
-            st.write("Beginning analysis...")
-
+        if not flat_files_exist:
+            st.error('No uploads found, please upload some files and try again...')
         else:
-            st.write('Existing aggregated set found...')
+            if flat_files_exist and not os.path.exists(os.path.join(uploads_dir, 'aggregated_data.csv')):
+                st.write("Aggregating supplied data, this may take a few minutes.")
+                # reset session state to new
+                clear_directory(working_dir)
+                handler = GPTRequestHandler(client)
 
-        r = Reach(
-                local=local,
-                client=client,        
-                marqo_client=marqo.Client(url="http://localhost:8882"),
-                marqo_index='validation_testing', 
-                train_set_path='web_upload/datasets/aggregated_data.csv', 
-                dataset_description=dataset_description, 
-                goal_prompt=prompt,
-                attempt_validation=True,
-            )
-            
-        status_placeholder = st.empty()
-        code_output, validated_code, so_what = None, None, None
+                response, supplied_file_paths, generated_df_summaries = handler.handle_files_and_send_request(
+                    file_paths=file_paths,
+                    prompt="Aggregate these datasets",
+                )
+                extracted_response = extract_content_from_gpt_response(response)
+                data_eng_code = extract_code(extracted_response)
 
-        main_generator = r.main(n_suggestions=1, index_name=r.marqo_index)
-        for output in main_generator:
-            if isinstance(output, str):
-                status_placeholder.write(output)
+                validated_code = handler.code_validation_agent(
+                    code_to_validate=data_eng_code,
+                    file_paths=supplied_file_paths,
+                    context=[{"role": "user", "content": f"Dataframe Summaries: {generated_df_summaries}"}]
+                )
+                set = True
+                st.write("Beginning analysis...")
+
             else:
-                code_output, validated_code, so_what = output
+                st.write('Existing aggregated set found...')
 
-        st.write('Analysis complete...')
-        
-        with st.chat_message('user'):
-            st.write(f'Result: {so_what}')
-            if os.path.exists(plots_dir):
-                plot_files = os.listdir(plots_dir)
+            r = Reach(
+                    local=local,
+                    client=client,        
+                    marqo_client=marqo.Client(url="http://localhost:8882"),
+                    marqo_index='validation_testing', 
+                    train_set_path='web_upload/datasets/aggregated_data.csv', 
+                    dataset_description=dataset_description, 
+                    goal_prompt=prompt,
+                    attempt_validation=True,
+                )
                 
-                for plot_file in plot_files:
-                    if plot_file.endswith('.png'):
-                        file_path = os.path.join(plots_dir, plot_file)
-                        
-                        st.image(file_path, caption=plot_file, use_column_width=True)
-            else:
-                st.error(f"The directory {plots_dir} does not exist.")
-            st.code(validated_code)
-    status.update(label="System Idle...", state="complete", expanded=True)
+            status_placeholder = st.empty()
+            code_output, validated_code, so_what = None, None, None
+
+            main_generator = r.main(n_suggestions=1, index_name=r.marqo_index)
+            for output in main_generator:
+                if isinstance(output, str):
+                    status_placeholder.write(output)
+                else:
+                    code_output, validated_code, so_what = output
+
+            st.write('Analysis complete...')
+            
+            with st.chat_message('user'):
+                st.write(f'Result: {so_what}')
+                if os.path.exists(plots_dir):
+                    plot_files = os.listdir(plots_dir)
+                    
+                    for plot_file in plot_files:
+                        if plot_file.endswith('.png'):
+                            file_path = os.path.join(plots_dir, plot_file)
+                            
+                            st.image(file_path, caption=plot_file, use_column_width=True)
+                else:
+                    st.error(f"The directory {plots_dir} does not exist.")
+                st.code(validated_code)
+        status.update(label="System Idle...", state="complete", expanded=True)
