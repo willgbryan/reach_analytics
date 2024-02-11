@@ -38,13 +38,13 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
 ```bash
-gh repo clone willgbryan/reach_development
+gh repo clone willgbryan/reach_analytics
 ```
 
 2. Navigate to the directory where the repository is cloned:
 
 ```bash
-cd reach_development
+cd reach_analytics
 ```
 
 3. Navigate to the 'reach_core_folder' directory:
