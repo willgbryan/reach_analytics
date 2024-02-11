@@ -4,7 +4,7 @@
 Reach analytics is an AI automated development program intended to tackle heavy analytics
 workloads such as machine learning model development, validation, and testing.
 
-## Analytics is live!: [Reach Analytics Site](https://reachai.streamlit.app/) Testing datasets are available in the sidebar
+## Analytics is live!: [Reach Analytics Site](https://reachai.streamlit.app/)... Testing datasets are available in the sidebar
 
 Also be sure to check out [Reach Search](https://github.com/willgbryan/reach_search),
 and some early UI testing at [Reach PoD](https://github.com/willgbryan/reach_PoD)!
