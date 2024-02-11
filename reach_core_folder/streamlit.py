@@ -96,7 +96,7 @@ with st.status("Writing some code...", expanded=True) as status:
             st.write("Beginning analysis...")
 
         else:
-            st.write('Existing aggregated set found, Beginning analysis...')
+            st.write('Existing aggregated set found...')
 
         r = Reach(
                 local=local,
@@ -109,9 +109,17 @@ with st.status("Writing some code...", expanded=True) as status:
                 attempt_validation=True,
             )
             
-        code_output, validated_code, so_what = r.main(n_suggestions=1, index_name=r.marqo_index)
-        st.write('Analysis complete...')
+        status_placeholder = st.empty()
+        code_output, validated_code, so_what = None, None, None
 
+        main_generator = r.main(n_suggestions=1, index_name=r.marqo_index)
+        for output in main_generator:
+            if isinstance(output, str):
+                status_placeholder.write(output)
+            else:
+                code_output, validated_code, so_what = output
+
+        st.write('Analysis complete...')
         
         with st.chat_message('user'):
             st.write(f'Result: {so_what}')

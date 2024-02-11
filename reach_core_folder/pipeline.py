@@ -350,7 +350,8 @@ class Reach:
 
             try:
                 exec(code_to_validate)
-                print('\033[38;2;199;254;0m' + 'Code executed without errors...' + '\033[0m')
+                print('Code executed without errors...')
+                # print('\033[38;2;199;254;0m' + 'Code executed without errors...' + '\033[0m')
 
                 # self.log.info("Code executed without errors.")
                 return code_to_validate
@@ -495,13 +496,13 @@ class Reach:
         if os.path.exists("web_upload/working_dir/data_context.txt"):
 
             # self.log.info("Loading data context")
-            print("Loading data context")
+            yield("Loading data context")
             preprocessing_context, df_context, validated_preprocessing_code = load_data_context()
 
         else:
 
             # self.log.info("Interpreting the provided data")
-            print("Interpreting the provided data")
+            yield("Interpreting the provided data")
             processed_train_data = self.preprocess_dataframe()  
 
             df_context = dataframe_summary(
@@ -536,7 +537,7 @@ class Reach:
             sys.stdout = old_stdout
 
             # self.log.info("Storing data context")
-            print("Storing data context")
+            yield("Storing data context")
             store_data_context(preprocessing_context, df_context, validated_preprocessing_code)
 
         memory_dict = read_json_from_file('web_upload/working_dir/memory.txt')
@@ -558,7 +559,7 @@ class Reach:
 
         if decision == 'yes':
             # self.log.info('ML modelling is required. Beginning model development')
-            print('ML modelling is required. Beginning model development. This will take a few minutes.')
+            yield('ML modelling is required. Beginning model development. This will take a few minutes.')
 
             # # There's probably a smarter way to do this
             # token_count_ml = num_tokens_from_messages(
@@ -599,7 +600,7 @@ class Reach:
                 )
 
             for model in suggestions:
-
+                yield('Developing new model features...')
                 with tqdm(total=100, desc="Generating model features...") as pbar:
                     feature_engineering_context = extract_content_from_gpt_response(
                             send_request_to_gpt(
@@ -616,7 +617,8 @@ class Reach:
                             )
                         )
                     pbar.update(100)
-                print('\033[38;2;199;254;0m' + 'Model features generated...' + '\033[0m')
+                yield('Model features generated, beginning model development...')
+                # print('\033[38;2;199;254;0m' + 'Model features generated...' + '\033[0m')
 
                 with tqdm(total=100, desc="Developing model...") as pbar:
                     model_context = extract_content_from_gpt_response(
@@ -634,7 +636,8 @@ class Reach:
                             )
                         )
                     pbar.update(100)
-                print('\033[38;2;199;254;0m' + 'Model development complete...' + '\033[0m')
+                yield('Model development complete...')
+                # print('\033[38;2;199;254;0m' + 'Model development complete...' + '\033[0m')
                 # print('Identifying performance metrics...')
                 # model_context_performance_metric_additions = extract_content_from_gpt_response(
                 #         send_request_to_gpt(
@@ -651,7 +654,7 @@ class Reach:
                 #         )
                 #     )
                 # print('Model code updated to include performance metrics...')
-
+                yield('Validation handoff...')
                 with tqdm(total=100, desc='Validating all developed code. This can take some time...') as pbar:
                     if self.attempt_validation == True:
                         validated_code = self.code_validation_agent(
@@ -781,7 +784,7 @@ class Reach:
             #     self.log.info(f'Trimmed message: {trimmed_message}')
             #     print(trimmed_message)
 
-            print('No modelling is required. Beginning analysis')
+            yield('No modelling is required. Beginning analysis')
         
             with tqdm(total=100, desc="Developing code...") as pbar:
 
@@ -799,8 +802,9 @@ class Reach:
                         )
                     )
                 pbar.update(100)
-            print('\033[38;2;199;254;0m' + 'Development complete...' + '\033[0m')
-
+            yield('Development complete...')
+            # print('\033[38;2;199;254;0m' + 'Development complete...' + '\033[0m')
+            yield('Validation handoff...')
             with tqdm(total=100, desc='Validating all developed code. This can take some time...') as pbar:
                 if self.attempt_validation == True:
                         validated_code = self.code_validation_agent(
@@ -858,5 +862,5 @@ class Reach:
                     "output": code_output,
                 }
             )
-        return code_output, validated_code, so_what   
+        yield code_output, validated_code, so_what   
 
