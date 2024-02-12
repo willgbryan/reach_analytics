@@ -140,4 +140,4 @@ with st.status("Writing some code...", expanded=True) as status:
                 else:
                     st.error(f"The directory {plots_dir} does not exist.")
                 st.code(validated_code)
-        status.update(label="System Idle...", state="complete", expanded=True)
+    status.update(label="System Idle...", state="complete", expanded=True)
