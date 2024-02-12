@@ -42,8 +42,8 @@ with st.sidebar:
         client = get_openai_client(api_key=key)
     st.markdown("[Synthetic Datasets](https://github.com/willgbryan/reach_analytics/tree/main/synthetic_sets)")
     uploaded_files = st.file_uploader('Choose flat files to upload (.csv)', accept_multiple_files=True)
-    if os.path.exists(os.path.join(uploads_dir, 'aggregated_data.csv')):
-        df_aggregated = pd.read_csv(os.path.join(uploads_dir, 'aggregated_data.csv'))
+    if os.path.exists(os.path.join(working_dir, 'aggregated_data.csv')):
+        df_aggregated = pd.read_csv(os.path.join(working_dir, 'aggregated_data.csv'))
         st.title("Aggregated Data")
         st.dataframe(df_aggregated)
     
@@ -80,7 +80,7 @@ with st.status("Writing some code...", expanded=True) as status:
         if not flat_files_exist:
             st.error('No uploads found, please upload some files and try again...')
         else:
-            if flat_files_exist and not os.path.exists(os.path.join(uploads_dir, 'aggregated_data.csv')):
+            if flat_files_exist and not os.path.exists(os.path.join(working_dir, 'aggregated_data.csv')):
                 st.write("Aggregating supplied data, this may take a few minutes.")
                 # reset session state to new
                 clear_directory(working_dir)
@@ -109,7 +109,7 @@ with st.status("Writing some code...", expanded=True) as status:
                     client=client,        
                     marqo_client=marqo.Client(url="http://localhost:8882"),
                     marqo_index='validation_testing', 
-                    train_set_path='web_upload/datasets/aggregated_data.csv', 
+                    train_set_path='web_upload/working_dir/aggregated_data.csv', 
                     dataset_description=dataset_description, 
                     goal_prompt=prompt,
                     attempt_validation=True,
