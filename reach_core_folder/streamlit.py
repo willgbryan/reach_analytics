@@ -68,7 +68,12 @@ ascii_text = """
 
 st.text(ascii_text)
 container = st.container(border=True)
-container.write("Not sure what to ask? Just say: 'What analysis (machine learning or not) is possible with this data?'")
+container.write(
+    """
+    - Not sure what to ask? Just say: 'What analysis (machine learning or not) is possible with this data?'
+    - Sample sets can be downloaded from the 'Synthetic Datasets' field in the left sidebar.
+    """
+    )
 prompt = st.chat_input("Lets extend your reach")
 with st.status("Writing some code...", expanded=True) as status:
     if prompt:
