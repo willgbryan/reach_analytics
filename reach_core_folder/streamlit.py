@@ -41,8 +41,6 @@ def clear_aggregated_data_file(working_dir):
         os.remove(aggregated_data_file)
         st.write("Cleared existing aggregated data.")
 
-clear_aggregated_data_file('web_upload/working_dir')
-
 with st.sidebar:
     key = st.sidebar.text_input("Enter your OpenAI API Key:", type="password")
     if key:
@@ -50,6 +48,8 @@ with st.sidebar:
         client = get_openai_client(api_key=key)
     st.markdown("[Synthetic Datasets](https://github.com/willgbryan/reach_analytics/tree/main/synthetic_sets)")
     uploaded_files = st.file_uploader('Choose flat files to upload (.csv)', accept_multiple_files=True)
+    if uploaded_files:
+        clear_aggregated_data_file('web_upload/working_dir')
     # if os.path.exists(os.path.join(working_dir, 'aggregated_data.csv')):
     #     df_aggregated = pd.read_csv(os.path.join(working_dir, 'aggregated_data.csv'))
     #     st.title("Aggregated Data")
@@ -96,7 +96,6 @@ with st.status("Writing some code...", expanded=True) as status:
             if flat_files_exist and not os.path.exists(os.path.join(working_dir, 'aggregated_data.csv')):
                 st.write("Aggregating supplied data, this may take a few minutes.")
                 # reset session state to new
-                clear_directory(working_dir)
                 handler = GPTRequestHandler(client)
 
                 response, supplied_file_paths, generated_df_summaries = handler.handle_files_and_send_request(
