@@ -35,6 +35,14 @@ working_dir = 'web_upload/working_dir'
 if not os.path.exists(uploads_dir):
     os.makedirs(uploads_dir)
 
+def clear_aggregated_data_file(working_dir):
+    aggregated_data_file = os.path.join(working_dir, 'aggregated_data.csv')
+    if os.path.exists(aggregated_data_file):
+        os.remove(aggregated_data_file)
+        st.write("Cleared existing aggregated data.")
+
+clear_aggregated_data_file('web_upload/working_dir')
+
 with st.sidebar:
     key = st.sidebar.text_input("Enter your OpenAI API Key:", type="password")
     if key:
