@@ -72,14 +72,14 @@ def run_script_in_container(container_name: str, script_path: str) -> str:
 
     return output
 
-# Example usage
-container_name = "unstructured"
-pdf_path = "C:/Users/willb/OneDrive/Desktop/cover_letter_neuralink.pdf"
-text_path = "example-docs/fake-text.txt"
+# # Example usage
+# container_name = "unstructured"
+# pdf_path = "C:/Users/willb/OneDrive/Desktop/cover_letter_neuralink.pdf"
+# text_path = "example-docs/fake-text.txt"
 
-# Process a PDF file
-pdf_output = process_pdf_in_container(container_name, pdf_path)
-print(pdf_output)
+# # Process a PDF file
+# pdf_output = process_pdf_in_container(container_name, pdf_path)
+# print(pdf_output)
 
 # # Process a text file
 # text_output = process_text_in_container(container_name, text_path)
