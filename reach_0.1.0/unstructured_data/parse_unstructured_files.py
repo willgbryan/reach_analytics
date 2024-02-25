@@ -23,7 +23,7 @@ def process_pdf_in_container(container_name: str, local_pdf_path: str) -> str:
     - container_name (str): The name of the Docker container.
     - local_pdf_path (str): The local path to the PDF file.
 
-    Returns:
+    Returns: 
     - str: The output from processing the PDF.
     """
     copy_command = f"docker cp {local_pdf_path} {container_name}:/tmp"
