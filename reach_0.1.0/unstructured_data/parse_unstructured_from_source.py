@@ -1,5 +1,11 @@
 from typing import List
 
+"""
+Runners return the objects from a specified source to the 
+specified output directory. Parsing and embedding the documents
+will need to be handled by additional functions.
+"""
+
 def create_airtable_ingest_script(
         airtable_pat: str,
         output_dir: str,
